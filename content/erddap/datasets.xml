@@ -1,0 +1,1045 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<erddapDatasets>
+<!-- GENERAL INFORMATION
+The information in this file specifies which datasets your ERDDAP will serve.
+The initial version of this file has a few examples which should work for you.
+But after your initial experiments with ERDDAP, 
+you should replace them with information for your datasets.
+
+You can change this document (e.g., add datasets, change metadata) while ERDDAP is running. 
+The changes will be detected the next time this document is read
+(as often as setup.xml loadDatasetsMinMinutes).
+
+Each dataset has a reloadEveryNMinutes value (default = 10080 (one week)).
+When this document is reread, datasets that haven't been been reloaded in 
+their reloadEveryNMinutes will be reloaded.
+You only need to specify a reloadEveryNMinutes value if you anticipate that
+the dataset will change periodically.
+
+If this document has an xml error, processing will stop and an email
+will be sent to emailEverythingTo as indicated in setup.xml.
+
+If you want to remove a dataset while ERDDAP is running, add 
+    active="false"
+to the dataset tag.  For example,
+    <dataset type="EDDGridFromDap" datasetID="erdMHchla8day" active="false">
+
+For more information, see 
+http://coastwatch.pfel.noaa.gov/erddap/download/setupDatasetsXml.html
+-->
+
+<!-- If you want to refuse requests from certain clients
+  (e.g., to fend off a Denial of Service attack or an overly zealous web robot), 
+  add their numeric IP address (e.g., 123.45.67.89) to this comma-separated list. 
+  You can also replace the last number in an IP address with * to block 0-255 (e.g., 123.45.67.*).
+  See your ERDDAP daily report for a list/tally of the most active requesters. -->
+<requestBlacklist></requestBlacklist>
+
+<!-- If you want to prevent specific people from using the email/URL subscription
+     system, uncomment the following tag and add their email addresses to the comma-separated list. 
+<subscriptionEmailBlacklist>some.name@company.com, another.name@company.com</subscriptionEmailBlacklist>
+-->
+
+<!-- These convert the local sourceUrl (used in dataset tags) 
+into the public sourceUrl (which appears in a dataset's globalAttributes).
+This is only needed if some datasets use non-public sourceUrl's
+(usually because their computer is in your DMZ or a local LAN). 
+'from' and 'to' are the start of the URLs and are case sensitive.
+'from' must be '[something]//[something]/' . 
+For example,
+<convertToPublicSourceUrl from="http://192.168.31.18/" to="http://oceanwatch.pfeg.noaa.gov/" />
+will cause a matching local sourceUrl (such as http://192.168.31.18/thredds/dodsC/satellite/BA/ssta/5day)
+into a public sourceUrl (http://oceanwatch.pfeg.noaa.gov/thredds/dodsC/satellite/BA/ssta/5day). 
+-->
+<!--
+<convertToPublicSourceUrl from="http://192.168.31.18/" to="http://oceanwatch.pfeg.noaa.gov/" />
+<convertToPublicSourceUrl from="http://192.168.31.27/" to="http://thredds1.pfeg.noaa.gov/"   />
+-->
+
+<dataset type="EDDGridFromEtopo" datasetID="etopo180" />
+
+<dataset type="EDDGridFromEtopo" datasetID="etopo360" />
+
+<dataset type="EDDGridFromDap" datasetID="erdMHchla8day">
+    <sourceUrl>http://oceanwatch.pfeg.noaa.gov/thredds/dodsC/satellite/MH/chla/8day</sourceUrl>
+    <reloadEveryNMinutes>1440</reloadEveryNMinutes>
+    <addAttributes> 
+        <att name="Conventions">CF-1.4</att>
+        <att name="Metadata_Conventions">COARDS, CF-1.4, Unidata Dataset Discovery v1.0</att>
+        <att name="infoUrl">http://coastwatch.pfeg.noaa.gov/infog/MH_chla_las.html</att>
+        <att name="institution">NOAA CoastWatch, West Coast Node</att>
+        <att name="title">Chlorophyll-a, Aqua MODIS, NPP, Global, Science Quality (8 Day Composite)</att>
+        <att name="cwhdf_version" />
+        <att name="cols" />  
+        <att name="et_affine" />
+        <att name="gctp_datum" />
+        <att name="gctp_parm" />
+        <att name="gctp_sys" />
+        <att name="gctp_zone" />
+        <att name="id" />
+        <att name="pass_date" />
+        <att name="polygon_latitude" />
+        <att name="polygon_longitude" />
+        <att name="rows" />
+        <att name="start_time" />
+        <att name="time_coverage_end" />  
+        <att name="time_coverage_start" />
+    </addAttributes>
+    <axisVariable>
+        <sourceName>time</sourceName>
+    </axisVariable>
+    <axisVariable>
+        <sourceName>altitude</sourceName>
+    </axisVariable>
+    <axisVariable>
+        <sourceName>lat</sourceName>
+        <destinationName>latitude</destinationName>
+    </axisVariable>
+    <axisVariable>
+        <sourceName>lon</sourceName>
+        <destinationName>longitude</destinationName>
+    </axisVariable>
+    <dataVariable>
+        <sourceName>MHchla</sourceName>
+        <destinationName>chlorophyll</destinationName>
+        <addAttributes> 
+            <att name="ioos_category">Ocean Color</att>
+            <att name="long_name">Concentration Of Chlorophyll In Sea Water</att>
+            <att name="colorBarMinimum" type="double">0.03</att>
+            <att name="colorBarMaximum" type="double">30</att>
+            <att name="colorBarScale">Log</att>
+            <att name="actual_range" /> 
+            <att name="numberOfObservations" /> 
+            <att name="percentCoverage" />
+        </addAttributes>
+    </dataVariable>
+</dataset>
+
+<dataset type="EDDGridSideBySide" datasetID="erdTAssh1day">
+<dataset type="EDDGridFromDap" datasetID="erdTAsshl1day">
+    <sourceUrl>http://192.168.31.18/thredds/dodsC/satellite/TA/sshl/1day</sourceUrl>
+    <reloadEveryNMinutes>1440</reloadEveryNMinutes>
+    <addAttributes> 
+        <att name="Conventions">COARDS, CF-1.4, Unidata Dataset Discovery v1.0</att>
+        <att name="Metadata_Conventions">COARDS, CF-1.4, Unidata Dataset Discovery v1.0</att>
+        <att name="infoUrl">http://coastwatch.pfeg.noaa.gov/infog/TA_sshl_las.html</att>
+        <att name="institution">NOAA CoastWatch, West Coast Node</att>
+        <att name="standard_name_vocabulary">CF-12</att>
+        <att name="title">Sea Surface Height, Aviso, Global, Science Quality (1 Day Composite)</att>
+        <att name="cwhdf_version" />
+        <att name="cols" />  
+        <att name="et_affine" />
+        <att name="gctp_datum" />
+        <att name="gctp_parm" />
+        <att name="gctp_sys" />
+        <att name="gctp_zone" />
+        <att name="id" />
+        <att name="pass_date" />
+        <att name="polygon_latitude" />
+        <att name="polygon_longitude" />
+        <att name="rows" />
+        <att name="start_time" />
+        <att name="time_coverage_end" />  
+        <att name="time_coverage_start" />
+    </addAttributes>
+    <axisVariable>
+        <sourceName>time</sourceName>
+    </axisVariable>
+    <axisVariable>
+        <sourceName>altitude</sourceName>
+    </axisVariable>
+    <axisVariable>
+        <sourceName>lat</sourceName>
+        <destinationName>latitude</destinationName>
+    </axisVariable>
+    <axisVariable>
+        <sourceName>lon</sourceName>
+        <destinationName>longitude</destinationName>
+    </axisVariable>
+    <dataVariable>
+        <sourceName>TAsshl</sourceName>
+        <destinationName>ssh</destinationName>
+        <addAttributes> 
+            <att name="ioos_category">Sea Level</att>
+            <att name="long_name">Sea Surface Height</att>
+            <att name="colorBarMinimum" type="double">-10</att>
+            <att name="colorBarMaximum" type="double">10</att>
+            <att name="actual_range" /> 
+            <att name="numberOfObservations" /> 
+            <att name="percentCoverage" />
+        </addAttributes>
+    </dataVariable>
+</dataset>
+<dataset type="EDDGridFromDap" datasetID="erdTAsshd1day">
+    <sourceUrl>http://192.168.31.18/thredds/dodsC/satellite/TA/sshd/1day</sourceUrl>
+    <reloadEveryNMinutes>1440</reloadEveryNMinutes>
+    <addAttributes> 
+        <att name="Conventions">COARDS, CF-1.4, Unidata Dataset Discovery v1.0</att>
+        <att name="Metadata_Conventions">COARDS, CF-1.4, Unidata Dataset Discovery v1.0</att>
+        <att name="infoUrl">http://coastwatch.pfeg.noaa.gov/infog/TA_sshd_las.html</att>
+        <att name="institution">NOAA CoastWatch, West Coast Node</att>
+        <att name="standard_name_vocabulary">CF-12</att>
+        <att name="title">Sea Surface Height Deviation, Aviso, Global, Science Quality (1 Day Composite)</att>
+        <att name="cwhdf_version" />
+        <att name="cols" />  
+        <att name="et_affine" />
+        <att name="gctp_datum" />
+        <att name="gctp_parm" />
+        <att name="gctp_sys" />
+        <att name="gctp_zone" />
+        <att name="id" />
+        <att name="pass_date" />
+        <att name="polygon_latitude" />
+        <att name="polygon_longitude" />
+        <att name="rows" />
+        <att name="start_time" />
+        <att name="time_coverage_end" />  
+        <att name="time_coverage_start" />
+    </addAttributes>
+    <axisVariable>
+        <sourceName>time</sourceName>
+    </axisVariable>
+    <axisVariable>
+        <sourceName>altitude</sourceName>
+    </axisVariable>
+    <axisVariable>
+        <sourceName>lat</sourceName>
+        <destinationName>latitude</destinationName>
+    </axisVariable>
+    <axisVariable>
+        <sourceName>lon</sourceName>
+        <destinationName>longitude</destinationName>
+    </axisVariable>
+    <dataVariable>
+        <sourceName>TAsshd</sourceName>
+        <destinationName>sshd</destinationName>
+        <addAttributes> 
+            <att name="ioos_category">Sea Level</att>
+            <att name="long_name">Sea Surface Height Deviation</att>
+            <att name="colorBarMinimum" type="double">-0.5</att>
+            <att name="colorBarMaximum" type="double">0.5</att>
+            <att name="actual_range" /> 
+            <att name="numberOfObservations" /> 
+            <att name="percentCoverage" />
+        </addAttributes>
+    </dataVariable>
+</dataset>
+</dataset>
+
+
+<dataset type="EDDTableFromDapSequence" datasetID="erdGlobecBottle">
+    <sourceUrl>http://oceanwatch.pfeg.noaa.gov/opendap/GLOBEC/GLOBEC_bottle</sourceUrl>
+    <outerSequenceName>bottle_data_2002</outerSequenceName>
+    <innerSequenceName></innerSequenceName>
+    <sourceCanConstrainStringRegex></sourceCanConstrainStringRegex>
+    <altitudeMetersPerSourceUnit>1</altitudeMetersPerSourceUnit>
+    <addAttributes>
+        <att name="title">GLOBEC NEP Rosette Bottle Data (2002)</att>
+        <att name="cdm_data_type">TrajectoryProfile</att>
+        <att name="cdm_altitude_proxy">bottle_posn</att>
+        <att name="cdm_trajectory_variables">cruise_id, ship</att>
+        <att name="cdm_profile_variables">cast, longitude, latitude, time</att>
+        <att name="subsetVariables">cruise_id, ship, cast, longitude, latitude, time</att>
+        <att name="Conventions">COARDS, CF-1.4, Unidata Dataset Discovery v1.0</att>
+        <att name="Metadata_Conventions">COARDS, CF-1.4, Unidata Dataset Discovery v1.0</att>
+        <att name="infoUrl">http://oceanwatch.pfeg.noaa.gov/thredds/PaCOOS/GLOBEC/catalog.html?dataset=GLOBEC_Bottle_data</att>
+        <att name="institution">GLOBEC</att>
+        <att name="license">[standard]</att>
+        <att name="standard_name_vocabulary">CF-12</att>
+        <att name="summary">
+GLOBEC (GLOBal Ocean ECosystems Dynamics) NEP (Northeast Pacific)
+Rosette Bottle Data from New Horizon Cruise (NH0207: 1-19 August 2002).
+Notes:
+Physical data processed by Jane Fleischbein (OSU).
+Chlorophyll readings done by Leah Feinberg (OSU).
+Nutrient analysis done by Burke Hales (OSU).
+Sal00 - salinity calculated from primary sensors (C0,T0).
+Sal11 - salinity calculated from secondary sensors (C1,T1).
+secondary sensor pair was used in final processing of CTD data for
+most stations because the primary had more noise and spikes. The
+primary pair were used for cast #9, 24, 48, 111 and 150 due to
+multiple spikes or offsets in the secondary pair.
+Nutrient samples were collected from most bottles; all nutrient data
+developed from samples frozen during the cruise and analyzed ashore;
+data developed by Burke Hales (OSU).
+Operation Detection Limits for Nutrient Concentrations
+Nutrient  Range         Mean    Variable         Units
+PO4       0.003-0.004   0.004   Phosphate        micromoles per liter
+N+N       0.04-0.08     0.06    Nitrate+Nitrite  micromoles per liter
+Si        0.13-0.24     0.16    Silicate         micromoles per liter
+NO2       0.003-0.004   0.003   Nitrite          micromoles per liter
+Dates and Times are UTC.
+
+For more information, see
+http://cis.whoi.edu/science/bcodmo/dataset.cfm?id=10180&flag=view
+
+Inquiries about how to access this data should be directed to
+Dr. Hal Batchelder (hbatchelder@coas.oregonstate.edu).
+</att>
+    </addAttributes>
+    <dataVariable>
+        <sourceName>cruise_id</sourceName>
+        <addAttributes>
+            <att name="ioos_category">Identifier</att>
+            <att name="cf_role">trajectory_id</att>
+        </addAttributes>
+    </dataVariable>
+    <dataVariable>
+        <sourceName>ship</sourceName>
+        <addAttributes>
+            <att name="ioos_category">Identifier</att>
+        </addAttributes>
+    </dataVariable>
+    <dataVariable>
+        <sourceName>cast_no</sourceName>
+        <destinationName>cast</destinationName>
+        <addAttributes>
+            <att name="actual_range" type="shortList">1 127</att>
+            <att name="colorBarMinimum" type="double">0</att>
+            <att name="colorBarMaximum" type="double">140</att>
+            <att name="ioos_category">Identifier</att>
+            <att name="long_name">Cast Number</att>
+        </addAttributes>
+    </dataVariable>
+    <dataVariable>
+        <sourceName>lon100</sourceName>
+        <destinationName>longitude</destinationName>
+        <addAttributes>
+            <att name="actual_range" type="doubleList">-12620 -12410</att>
+            <att name="colorBarMinimum" type="double">-135</att>
+            <att name="colorBarMaximum" type="double">-115</att>
+        </addAttributes>
+    </dataVariable>
+    <dataVariable>
+        <sourceName>lat100</sourceName>
+        <destinationName>latitude</destinationName>
+        <addAttributes>
+            <att name="actual_range" type="doubleList">4190 4465</att>
+            <att name="colorBarMinimum" type="double">30</att>
+            <att name="colorBarMaximum" type="double">55</att>
+        </addAttributes>
+    </dataVariable>
+    <dataVariable>
+        <sourceName>datetime_epoch</sourceName>
+        <destinationName>time</destinationName>
+        <addAttributes>
+            <!--2002-05-30  2002-08-20 -->
+            <att name="actual_range" type="doubleList">1022728860, 1029788280</att>
+            <att name="long_name">Time</att>
+            <att name="units">seconds since 1970-01-01T00:00:00Z</att>
+            <att name="standard_name">time</att>
+            <att name="cf_role">profile_id</att>
+        </addAttributes>
+    </dataVariable>
+    <dataVariable>
+        <sourceName>bottle_posn</sourceName>
+        <addAttributes>
+            <att name="actual_range" type="shortList">0 12</att>
+            <att name="colorBarMinimum" type="double">0</att>
+            <att name="colorBarMaximum" type="double">12</att>
+            <att name="ioos_category">Location</att>
+            <att name="missing_value" type="short">-128</att>
+        </addAttributes>
+    </dataVariable>
+    <dataVariable>
+        <sourceName>chl_a_total</sourceName>
+        <addAttributes>
+            <att name="actual_range" type="floatList">-2.602, 40.17</att>
+            <att name="colorBarMinimum" type="double">.03</att>
+            <att name="colorBarMaximum" type="double">30</att>
+            <att name="colorBarScale">Log</att>
+            <att name="ioos_category">Ocean Color</att>
+            <att name="missing_value" type="float">-9999.0</att>
+            <att name="standard_name">concentration_of_chlorophyll_in_sea_water</att>
+            <att name="units">ug L-1</att>
+        </addAttributes>
+    </dataVariable>
+    <dataVariable>
+        <sourceName>chl_a_10um</sourceName>
+        <addAttributes>
+            <att name="actual_range" type="floatList">0.239 1.875</att>
+            <att name="colorBarMinimum" type="double">.03</att>
+            <att name="colorBarMaximum" type="double">30</att>
+            <att name="colorBarScale">Log</att>
+            <att name="ioos_category">Ocean Color</att>
+            <att name="missing_value" type="float">-9999.0</att>
+            <att name="standard_name">concentration_of_chlorophyll_in_sea_water</att>
+            <att name="units">ug L-1</att>
+        </addAttributes>
+    </dataVariable>
+    <dataVariable>
+        <sourceName>phaeo_total</sourceName>
+        <addAttributes>
+            <att name="actual_range" type="floatList">-1.705 16.047</att>
+            <att name="colorBarMinimum" type="double">.03</att>
+            <att name="colorBarMaximum" type="double">30</att>
+            <att name="colorBarScale">Log</att>
+            <att name="ioos_category">Ocean Color</att>
+            <att name="long_name">Total Phaeopigments</att>
+            <att name="missing_value" type="float">-9999.0</att>
+            <att name="units">ug L-1</att>
+        </addAttributes>
+    </dataVariable>
+    <dataVariable>
+        <sourceName>phaeo_10um</sourceName>
+        <addAttributes>
+            <att name="actual_range" type="floatList">0.224 0.933</att>
+            <att name="colorBarMinimum" type="double">.03</att>
+            <att name="colorBarMaximum" type="double">30</att>
+            <att name="colorBarScale">Log</att>
+            <att name="ioos_category">Ocean Color</att>
+            <att name="long_name">Phaeopigments 10um</att>
+            <att name="missing_value" type="float">-9999.0</att>
+            <att name="units">ug L-1</att>
+        </addAttributes>
+    </dataVariable>
+    <dataVariable>
+        <sourceName>sal00</sourceName>
+        <addAttributes>
+            <att name="actual_range" type="floatList">31.0308 34.2026</att>
+            <att name="colorBarMinimum" type="double">32.0</att>
+            <att name="colorBarMaximum" type="double">37.0</att>
+            <att name="ioos_category">Salinity</att>
+            <att name="long_name">Salinity from T0 and C0 Sensors</att>
+            <att name="missing_value" type="float">-9999.0</att>
+            <att name="standard_name">sea_water_salinity</att>
+            <att name="units">PSU</att>
+        </addAttributes>
+    </dataVariable>
+    <dataVariable>
+        <sourceName>sal11</sourceName>
+        <addAttributes>
+            <att name="actual_range" type="floatList">31.0242 34.214</att>
+            <att name="colorBarMinimum" type="double">32.0</att>
+            <att name="colorBarMaximum" type="double">37.0</att>
+            <att name="ioos_category">Salinity</att>
+            <att name="long_name">Salinity from T1 and C1 Sensors</att>
+            <att name="missing_value" type="float">-9999.0</att>
+            <att name="standard_name">sea_water_salinity</att>
+            <att name="units">PSU</att>
+        </addAttributes>
+    </dataVariable>
+    <dataVariable>
+        <sourceName>t0</sourceName>
+        <destinationName>temperature0</destinationName>
+        <addAttributes>
+            <att name="actual_range" type="floatList">4.981 16.871</att>
+            <att name="colorBarMinimum" type="double">0.0</att>
+            <att name="colorBarMaximum" type="double">32.0</att>
+            <att name="ioos_category">Temperature</att>
+            <att name="long_name">Sea Water Temperature from T0 Sensor</att>
+            <att name="missing_value" type="float">-9999.0</att>
+            <att name="standard_name">sea_water_temperature</att>
+            <att name="units">degree_C</att>
+        </addAttributes>
+    </dataVariable>
+    <dataVariable>
+        <sourceName>t1</sourceName>
+        <destinationName>temperature1</destinationName>
+        <addAttributes>
+            <att name="actual_range" type="floatList">4.982 16.863</att>
+            <att name="colorBarMinimum" type="double">0.0</att>
+            <att name="colorBarMaximum" type="double">32.0</att>
+            <att name="ioos_category">Temperature</att>
+            <att name="long_name">Sea Water Temperature from T1 Sensor</att>
+            <att name="missing_value" type="float">-9999.0</att>
+            <att name="standard_name">sea_water_temperature</att>
+            <att name="units">degree_C</att>
+        </addAttributes>
+    </dataVariable>
+    <dataVariable>
+        <sourceName>fluor_v</sourceName>
+        <addAttributes>
+            <att name="actual_range" type="floatList">0.046 5.0</att>
+            <att name="colorBarMinimum" type="double">0</att>
+            <att name="colorBarMaximum" type="double">5</att>
+            <att name="ioos_category">Ocean Color</att>
+            <att name="long_name">Fluorescence Voltage</att>
+            <att name="missing_value" type="float">-9999.0</att>
+            <!-- att name="standard_name"></att> //lots of radiance options; I don't know which -->
+            <att name="units">volts</att>
+        </addAttributes>
+    </dataVariable>
+    <dataVariable>
+        <sourceName>xmiss_v</sourceName>
+        <addAttributes>
+            <att name="actual_range" type="floatList">0.493 4.638</att>
+            <att name="colorBarMinimum" type="double">0</att>
+            <att name="colorBarMaximum" type="double">5</att>
+            <att name="ioos_category">Optical Properties</att>
+            <att name="long_name">Transmissivity Voltage</att>
+            <att name="missing_value" type="float">-9999.0</att>
+            <!-- att name="standard_name"></att> //lots of radiance options; I don't know which -->
+            <att name="units">volts</att>
+        </addAttributes>
+    </dataVariable>
+    <dataVariable>
+        <sourceName>PO4</sourceName>
+        <addAttributes>
+            <att name="actual_range" type="floatList">0 3.237</att>
+            <att name="colorBarMinimum" type="double">0</att>
+            <att name="colorBarMaximum" type="double">4</att>
+            <att name="ioos_category">Dissolved Nutrients</att>
+            <att name="missing_value" type="float">-9999.0</att>
+            <att name="standard_name">mole_concentration_of_phosphate_in_sea_water</att>
+            <att name="units">micromoles L-1</att>
+        </addAttributes>
+    </dataVariable>
+    <dataVariable>
+        <sourceName>N_N</sourceName>
+        <addAttributes>
+            <att name="actual_range" type="floatList">0 42.41</att>
+            <att name="colorBarMinimum" type="double">0</att>
+            <att name="colorBarMaximum" type="double">50</att>
+            <att name="ioos_category">Dissolved Nutrients</att>
+            <att name="long_name">Nitrate plus Nitrite</att>
+            <att name="_FillValue" type="float">-99.0</att>
+            <att name="missing_value" type="float">-9999.0</att>
+            <att name="standard_name">moles_of_nitrate_and_nitrite_per_unit_mass_in_sea_water</att>
+            <att name="units">micromoles L-1</att>
+        </addAttributes>
+    </dataVariable>
+    <dataVariable>
+        <sourceName>NO3</sourceName>
+        <addAttributes>
+            <att name="actual_range" type="floatList">0 99.79</att>
+            <att name="colorBarMinimum" type="double">0</att>
+            <att name="colorBarMaximum" type="double">50</att>
+            <att name="ioos_category">Dissolved Nutrients</att>
+            <att name="_FillValue" type="float">-99.0</att>
+            <att name="missing_value" type="float">-9999.0</att>
+            <att name="standard_name">mole_concentration_of_nitrate_in_sea_water</att>
+            <att name="units">micromoles L-1</att>
+        </addAttributes>
+    </dataVariable>
+    <dataVariable>
+        <sourceName>Si</sourceName>
+        <addAttributes>
+            <att name="actual_range" type="floatList">0.07 88.19</att>
+            <att name="colorBarMinimum" type="double">0</att>
+            <att name="colorBarMaximum" type="double">50</att>
+            <att name="ioos_category">Dissolved Nutrients</att>
+            <att name="missing_value" type="float">-9999.0</att>
+            <att name="standard_name">mole_concentration_of_silicate_in_sea_water</att>
+            <att name="units">micromoles L-1</att>
+        </addAttributes>
+    </dataVariable>
+    <dataVariable>
+        <sourceName>NO2</sourceName>
+        <addAttributes>
+            <att name="actual_range" type="floatList">-0.0090 0.757</att>
+            <att name="colorBarMinimum" type="double">0</att>
+            <att name="colorBarMaximum" type="double">1</att>
+            <att name="ioos_category">Dissolved Nutrients</att>
+            <att name="missing_value" type="float">-9999.0</att>
+            <att name="standard_name">mole_concentration_of_nitrite_in_sea_water</att>
+            <att name="units">micromoles L-1</att>
+        </addAttributes>
+    </dataVariable>
+    <dataVariable>
+        <sourceName>NH4</sourceName>
+        <addAttributes>
+            <att name="actual_range" type="floatList">-0.014 4.914</att>
+            <att name="colorBarMinimum" type="double">0</att>
+            <att name="colorBarMaximum" type="double">5</att>
+            <att name="ioos_category">Dissolved Nutrients</att>
+            <att name="missing_value" type="float">-9999.0</att>
+            <att name="standard_name">mole_concentration_of_ammonium_in_sea_water</att>
+            <att name="units">micromoles L-1</att>
+        </addAttributes>
+    </dataVariable>
+    <dataVariable>
+        <sourceName>oxygen</sourceName>
+        <addAttributes>
+            <att name="actual_range" type="floatList">NaN NaN</att>
+            <att name="colorBarMinimum" type="double">0</att>
+            <att name="colorBarMaximum" type="double">10</att>
+            <att name="ioos_category">Dissolved O2</att>
+            <att name="long_name">Oxygen</att>
+            <att name="missing_value" type="float">-9999.0</att>
+            <att name="standard_name">volume_fraction_of_oxygen_in_sea_water</att>
+            <att name="units">mL L-1</att>
+        </addAttributes>
+    </dataVariable>
+    <dataVariable>
+        <sourceName>par</sourceName>
+        <addAttributes>
+            <att name="actual_range" type="floatList">0.1515 3.261</att>
+            <att name="colorBarMinimum" type="double">0</att>
+            <att name="colorBarMaximum" type="double">3</att>
+            <att name="ioos_category">Ocean Color</att>
+            <att name="long_name">Photosynthetically Active Radiation</att>
+            <att name="missing_value" type="float">-9999.0</att>
+            <!-- att name="standard_name">lots of options, I don't know which</att -->
+            <att name="units">volts</att>
+        </addAttributes>
+    </dataVariable>
+</dataset>
+
+
+
+<dataset type="EDDTableFromOBIS" datasetID="rutgersSeamap">
+    <sourceUrl>http://iobis.marine.rutgers.edu/digir2/DiGIR.php</sourceUrl>
+    <sourceCode>OBIS-SEAMAP</sourceCode>
+    <addAttributes>
+        <att name="citation">Read, A. J. and P. Halpin. Editors. 2003. OBIS-SEAMAP. World Wide Web electronic publication. http://www.obis.env.duke.edu, April 2003</att>
+        <att name="creator_email">dhyrenbach@duke.edu</att>
+        <att name="infoUrl">http://obis.env.duke.edu</att>
+        <att name="institution">Duke</att>
+        <att name="keywords">marine mammal, bird, turtle, seabird, sea turtle, OBIS, marine, whale, dolphin, seal, pinniped</att>
+        <att name="license">[standard]</att>
+        <att name="summary">
+The Ocean Biogeographic Information System - Spatial Ecological Analysis of Megavertabrate Populations (OBIS-SEAMAP) is a spatially referenced database of data related to marine mammals, birds and turtles. This project is one of several nodes comprising the Ocean Biogeographic Information System (OBIS).
+
+[OBIS_SUMMARY]
+
+Available Genera (and number of records): Actitis (13),
+Aechmophorus (13015), Alca (362), Alle (8858), Anas (20383),
+Anous (66), Anser (1), Aphriza (17), Aptenodytes (43),
+Arctocephalus (20), Ardea (8542), Arenaria (141), Aythya (17396),
+Balaenoptera (9140), Berardius (61), Brachyramphus (2530),
+Branta (3335), Brevoortia (149), Bucephala (98937), Bulweria (32),
+Buteo (31), Calidris (185), Callorhinus (1799), Calonectris (2217),
+Caranx (24), Caretta (18679), Casmerodius (2), Catharacta (1022),
+Cathartes (5), Catoptrophorus (14), Cephalorhynchus (26),
+Cepphus (11227), Cerorhinca (8842), Cetorhinus (472), Charadrius (47),
+Chelonia (1192), Chen (83), Chionis (7), Chlidonias (809),
+Chloroscombrus (1), Circus (51), Clangula (3525), Colaptes (5),
+Columba (48), Corvus (3119), Coryphaena (120), Cubaris (2047),
+Cygnus (301), Cystophora (22), Daption (1688), Delphinapterus (9),
+Delphinus (3255), Dermochelys (473), Diomedea (2779), Egretta (5),
+Enhydra (2079), Eretmochelys (2), Erignathus (43),
+Eschrichtius (1648), Eubalaena (808), Eudyptes (79), Eumetopias (293),
+Falco (15), Feresa (77), Fratercula (2463), Fregata (560),
+Fregetta (791), Fulica (32), Fulmarus (42217), Gallinago (3),
+Garrodia (25), Gavia (15422), Genus (1364), Globicephala (2506),
+Grampus (2352), Gygis (14), Haematopus (162), Haliaeetus (2433),
+Halichoerus (9487), Halobaena (557), Heteroscelus (4), Himantopus (2),
+Histrio (271), Histrionicus (4151), Hydrobates (165), Hyperoodon (52),
+Indopacetus (4), Kogia (415), Lagenodelphis (38),
+Lagenorhynchus (2948), Larus (138165), Lepidochelys (1637),
+Limnodromus (12), Limosa (34), Lissodelphis (570), Lontra (75),
+Lophodytes (1045), Macronectes (1412), Manta (53), Megaceryle (833),
+Megaptera (12415), Melanitta (54800), Mergus (15475),
+Mesoplodon (331), Mirounga (7728), Mola (2757), Morus (8944),
+Myliobatis (2), Nesofregetta (1), Numenius (16), Oceanites (9448),
+Oceanodroma (11690), Odobenus (146), Opisthonema (1), Orcinus (423),
+Oxyura (756), Pachyptila (3407), Pagodroma (454), Pagophila (1305),
+Pagophilus (47), Pandion (100), Patagioenas (8), Pelagodroma (18),
+Pelecanoides (410), Pelecanus (3148), Peponocephala (43),
+Phaethon (209), Phalacrocorax (21676), Phalacrocorax Spp. (1962),
+Phalaropus (10516), Phoca (9040), Phocoena (14526),
+Phocoenoides (4385), Phoebastria (12166), Phoebetria (1035),
+Physeter (1603), Pluvialis (53), Podiceps (9543), Podilymbus (3),
+Pogonias (1), Polysticta (8), Prionace (464), Procellaria (2723),
+Pseudobulweria (14), Pseudorca (76), Pterodroma (2128),
+Ptychoramphus (11032), Puffinus (40941), Pusa (125), Pygoscelis (480),
+Rachycentron (6), Recurvirostra (14), Rhincodon (18), Rhinoptera (55),
+Rissa (26672), Rynchops (3), Scomberomorus (18), Somateria (568),
+Spheniscus (13), Sphyrna (317), Stenella (5011), Steno (268),
+Stercorarius (7383), Sterna (6974), Stomolophus (3), Sula (831),
+Synthliboramphus (849), Thalassoica (898), Thunnus (19),
+Trichechus (1), Tringa (1083), Tursiops (12455), Uria (48880),
+Ursus (25), Xiphias (16), Zalophus (4668), Ziphius (455)
+</att>
+        <att name="title">OBIS - SEAMAP (Rutgers) - marine mammals, birds and turtles</att>
+    </addAttributes>
+</dataset>
+
+
+<dataset type="EDDTableFromSOS" datasetID="ndbcSosWTemp" active="true">
+    <sourceUrl>http://sdf.ndbc.noaa.gov/sos/server.php</sourceUrl>
+    <reloadEveryNMinutes>1440</reloadEveryNMinutes>
+    <observationOfferingIdRegex>.+</observationOfferingIdRegex>
+    <requestObservedPropertiesSeparately>true</requestObservedPropertiesSeparately>
+    <bboxOffering>urn:ioos:network:noaa.nws.ndbc:all</bboxOffering>
+    <bboxParameter>featureofinterest=BBOX:</bboxParameter>
+    <addAttributes>
+        <att name="cdm_data_type">TimeSeries</att>
+        <att name="cdm_timeseries_variables">station_id, longitude, latitude, sensor_id</att>
+        <att name="Conventions">COARDS, CF-1.4, Unidata Dataset Discovery v1.0</att>
+        <att name="Metadata_Conventions">COARDS, CF-1.4, Unidata Dataset Discovery v1.0</att>
+        <att name="infoUrl">http://sdf.ndbc.noaa.gov/sos/</att>
+        <att name="institution">NOAA NDBC</att>
+        <att name="license">[standard]</att>
+        <att name="standard_name_vocabulary">CF-12</att>
+        <att name="summary">The NOAA NDBC SOS server is part of the IOOS DIF SOS Project.  The stations in this dataset have sea_water_temperature data.
+
+Because of the nature of SOS requests, requests for data MUST include constraints for the longitude, latitude, time, and/or station_id variables.</att>
+        <att name="title">NOAA NDBC SOS - sea_water_temperature</att>
+    </addAttributes>
+    <longitudeSourceName>longitude (degree)</longitudeSourceName>
+    <latitudeSourceName>latitude (degree)</latitudeSourceName>
+    <altitudeSourceName>depth (m)</altitudeSourceName>
+    <altitudeMetersPerSourceUnit>-1</altitudeMetersPerSourceUnit>
+    <timeSourceName>date_time</timeSourceName>
+    <timeSourceFormat>yyyy-MM-dd'T'HH:mm:ss'Z'</timeSourceFormat>
+    <dataVariable>
+        <sourceName>sensor_id</sourceName>
+        <dataType>String</dataType>
+        <!-- sourceAttributes>
+        </sourceAttributes -->
+        <addAttributes>
+            <att name="comment">Always check the quality_flags before using this data.</att>
+            <att name="ioos_category">Identifier</att>
+            <att name="long_name">Sensor ID</att>
+            <att name="observedProperty">http://mmisw.org/ont/cf/parameter/sea_water_temperature</att>
+        </addAttributes>
+    </dataVariable>
+    <dataVariable>
+        <sourceName>sea_water_temperature (C)</sourceName>
+        <destinationName>sea_water_temperature</destinationName>
+        <dataType>float</dataType>
+        <addAttributes>
+            <att name="colorBarMinimum" type="double">0</att>
+            <att name="colorBarMaximum" type="double">32</att>
+            <att name="ioos_category">Temperature</att>
+            <att name="long_name">Sea Water Temperature</att>
+            <att name="observedProperty">http://mmisw.org/ont/cf/parameter/sea_water_temperature</att>
+            <att name="standard_name">sea_water_temperature</att>
+            <att name="units">degree_C</att>
+        </addAttributes>
+    </dataVariable>
+</dataset>
+
+
+<!-- 
+Here are some examples of EDDGridFromErddap and EDDTableFromErddap.
+-->
+<dataset type="EDDGridFromErddap" datasetID="erdBAssta5day" active="true">
+    <sourceUrl>http://oceanwatch.pfeg.noaa.gov/erddap/griddap/erdBAssta5day</sourceUrl>
+</dataset>
+<dataset type="EDDTableFromErddap" datasetID="pmelTaoDySst" active="true">
+    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/tabledap/pmelTaoDySst</sourceUrl>
+</dataset>
+
+
+<!-- This is an example of EDDTableFromNcFiles, but commented out since you won't have these files.
+<dataset type="EDDTableFromNcFiles" datasetID="cwwcNDBCMet">
+    <nDimensions>4</nDimensions>
+    <reloadEveryNMinutes>15</reloadEveryNMinutes>
+    <fileDir>/u00/data/points/ndbcMet/</fileDir>
+    <recursive>false</recursive>
+    <fileNameRegex>NDBC_.*\x2Enc</fileNameRegex>
+    <metadataFrom>last</metadataFrom>
+    <preExtractRegex>^NDBC_</preExtractRegex>
+    <postExtractRegex>_met\x2Enc$</postExtractRegex>
+    <extractRegex>.*</extractRegex>
+    <columnNameForExtract>station</columnNameForExtract>
+    <sortedColumnSourceName>TIME</sortedColumnSourceName>
+    <altitudeMetersPerSourceUnit>-1</altitudeMetersPerSourceUnit>
+    <addAttributes>
+        <att name="cdm_data_type">TimeSeries</att>
+        <att name="cdm_timeseries_variables">station, longitude, latitude</att>
+        <att name="subsetVariables">station, longitude, latitude</att>
+        <att name="Conventions">COARDS, CF-1.4, Unidata Dataset Discovery v1.0</att>
+        <att name="Metadata_Conventions">COARDS, CF-1.4, Unidata Dataset Discovery v1.0</att>
+        <att name="date_created">null</att>
+        <att name="date_issued">null</att>
+        <att name="id">null</att>
+        <att name="infoUrl">http://www.ndbc.noaa.gov/</att>
+        <att name="institution">NOAA NDBC, CoastWatch WCN</att>
+        <att name="keywords">EARTH SCIENCE &gt; Oceans</att>
+        <att name="license">[standard]</att>
+        <att name="sourceUrl">http://www.ndbc.noaa.gov/</att>
+        <att name="summary">The National Data Buoy Center (NDBC) distributes meteorological data from
+moored buoys maintained by NDBC and others. Moored buoys are the weather
+sentinels of the sea. They are deployed in the coastal and offshore waters
+from the western Atlantic to the Pacific Ocean around Hawaii, and from the
+Bering Sea to the South Pacific. NDBC's moored buoys measure and transmit
+barometric pressure; wind direction, speed, and gust; air and sea
+temperature; and wave energy spectra from which significant wave height,
+dominant wave period, and average wave period are derived. Even the
+direction of wave propagation is measured on many moored buoys.
+
+The data is from NOAA NDBC. It has been reformatted by NOAA Coastwatch,
+West Coast Node. This dataset only has the data that is closest to a
+given hour. The time values in the dataset are rounded to the nearest hour.
+
+This dataset has both historical data (quality controlled, before
+2011-04-01T00:00:00) and near real time data (less quality controlled, from
+2011-04-01T00:00:00 on).</att>
+        <att name="title">NDBC Standard Meteorological Buoy Data</att>
+    </addAttributes>
+    <dataVariable>
+        <sourceName>station</sourceName>
+        <destinationName>station</destinationName>
+        <dataType>String</dataType>
+        <addAttributes>
+            <att name="ioos_category">Identifier</att>
+            <att name="long_name">Station Name</att>
+            <att name="cf_role">timeseries_id</att>
+        </addAttributes>
+    </dataVariable>
+    <dataVariable>
+        <sourceName>LON</sourceName>
+        <destinationName>longitude</destinationName>
+        <dataType>float</dataType>
+        <addAttributes>
+        </addAttributes>
+    </dataVariable>
+    <dataVariable>
+        <sourceName>LAT</sourceName>
+        <destinationName>latitude</destinationName>
+        <dataType>float</dataType>
+        <addAttributes>
+        </addAttributes>
+    </dataVariable>
+    <dataVariable>
+        <sourceName>TIME</sourceName>
+        <destinationName>time</destinationName>
+        <dataType>double</dataType>
+        <addAttributes>
+            <att name="point_spacing">null</att>
+        </addAttributes>
+    </dataVariable>
+    <dataVariable>
+        <sourceName>WD</sourceName>
+        <destinationName>wd</destinationName>
+        <dataType>short</dataType>
+        <addAttributes>
+            <att name="colorBarMinimum" type="double">0</att>
+            <att name="colorBarMaximum" type="double">360</att>
+            <att name="_FillValue" type="short">32767</att>
+            <att name="ioos_category">Wind</att>
+        </addAttributes>
+    </dataVariable>
+    <dataVariable>
+        <sourceName>WSPD</sourceName>
+        <destinationName>wspd</destinationName>
+        <dataType>float</dataType>
+        <addAttributes>
+            <att name="colorBarMinimum" type="double">0</att>
+            <att name="colorBarMaximum" type="double">15</att>
+            <att name="_FillValue" type="float">-9999999</att>
+            <att name="ioos_category">Wind</att>
+        </addAttributes>
+    </dataVariable>
+    <dataVariable>
+        <sourceName>GST</sourceName>
+        <destinationName>gst</destinationName>
+        <dataType>float</dataType>
+        <addAttributes>
+            <att name="colorBarMinimum" type="double">0</att>
+            <att name="colorBarMaximum" type="double">30</att>
+            <att name="_FillValue" type="float">-9999999</att>
+            <att name="ioos_category">Wind</att>
+        </addAttributes>
+    </dataVariable>
+    <dataVariable>
+        <sourceName>WVHT</sourceName>
+        <destinationName>wvht</destinationName>
+        <dataType>float</dataType>
+        <addAttributes>
+            <att name="colorBarMinimum" type="double">0</att>
+            <att name="colorBarMaximum" type="double">10</att>
+            <att name="_FillValue" type="float">-9999999</att>
+            <att name="ioos_category">Surface Waves</att>
+        </addAttributes>
+    </dataVariable>
+    <dataVariable>
+        <sourceName>DPD</sourceName>
+        <destinationName>dpd</destinationName>
+        <dataType>float</dataType>
+        <addAttributes>
+            <att name="colorBarMinimum" type="double">0</att>
+            <att name="colorBarMaximum" type="double">20</att>
+            <att name="_FillValue" type="float">-9999999</att>
+            <att name="ioos_category">Surface Waves</att>
+        </addAttributes>
+    </dataVariable>
+    <dataVariable>
+        <sourceName>APD</sourceName>
+        <destinationName>apd</destinationName>
+        <dataType>float</dataType>
+        <addAttributes>
+            <att name="colorBarMinimum" type="double">0</att>
+            <att name="colorBarMaximum" type="double">20</att>
+            <att name="_FillValue" type="float">-9999999</att>
+            <att name="ioos_category">Surface Waves</att>
+        </addAttributes>
+    </dataVariable>
+    <dataVariable>
+        <sourceName>MWD</sourceName>
+        <destinationName>mwd</destinationName>
+        <dataType>short</dataType>
+        <addAttributes>
+            <att name="colorBarMinimum" type="double">0</att>
+            <att name="colorBarMaximum" type="double">360</att>
+            <att name="_FillValue" type="short">32767</att>
+            <att name="ioos_category">Surface Waves</att>
+        </addAttributes>
+    </dataVariable>
+    <dataVariable>
+        <sourceName>BAR</sourceName>
+        <destinationName>bar</destinationName>
+        <dataType>float</dataType>
+        <addAttributes>
+            <att name="colorBarMinimum" type="double">970</att>
+            <att name="colorBarMaximum" type="double">1030</att>
+            <att name="comment">Air pressure (hPa). ('PRES' on some NDBC tables.) For C-MAN sites and Great Lakes buoys, the recorded pressure is reduced to sea level using the method described in NWS Technical Procedures Bulletin 291 (11/14/80).</att>
+            <att name="_FillValue" type="float">-9999999</att>
+            <att name="ioos_category">Pressure</att>
+        </addAttributes>
+    </dataVariable>
+    <dataVariable>
+        <sourceName>ATMP</sourceName>
+        <destinationName>atmp</destinationName>
+        <dataType>float</dataType>
+        <addAttributes>
+            <att name="colorBarMinimum" type="double">0</att>
+            <att name="colorBarMaximum" type="double">40</att>
+            <att name="_FillValue" type="float">-9999999</att>
+            <att name="ioos_category">Temperature</att>
+        </addAttributes>
+    </dataVariable>
+    <dataVariable>
+        <sourceName>WTMP</sourceName>
+        <destinationName>wtmp</destinationName>
+        <dataType>float</dataType>
+        <addAttributes>
+            <att name="colorBarMinimum" type="double">0</att>
+            <att name="colorBarMaximum" type="double">32</att>
+            <att name="_FillValue" type="float">-9999999</att>
+            <att name="ioos_category">Temperature</att>
+        </addAttributes>
+    </dataVariable>
+    <dataVariable>
+        <sourceName>DEWP</sourceName>
+        <destinationName>dewp</destinationName>
+        <dataType>float</dataType>
+        <addAttributes>
+            <att name="colorBarMinimum" type="double">0</att>
+            <att name="colorBarMaximum" type="double">40</att>
+            <att name="_FillValue" type="float">-9999999</att>
+            <att name="ioos_category">Meteorology</att>
+        </addAttributes>
+    </dataVariable>
+    <dataVariable>
+        <sourceName>VIS</sourceName>
+        <destinationName>vis</destinationName>
+        <dataType>float</dataType>
+        <addAttributes>
+            <att name="colorBarMinimum" type="double">0</att>
+            <att name="colorBarMaximum" type="double">100</att>
+            <att name="_FillValue" type="float">-9999999</att>
+            <att name="ioos_category">Meteorology</att>
+        </addAttributes>
+    </dataVariable>
+    <dataVariable>
+        <sourceName>PTDY</sourceName>
+        <destinationName>ptdy</destinationName>
+        <dataType>float</dataType>
+        <addAttributes>
+            <att name="colorBarMinimum" type="double">-3</att>
+            <att name="colorBarMaximum" type="double">3</att>
+            <att name="_FillValue" type="float">-9999999</att>
+            <att name="ioos_category">Pressure</att>
+        </addAttributes>
+    </dataVariable>
+    <dataVariable>
+        <sourceName>TIDE</sourceName>
+        <destinationName>tide</destinationName>
+        <dataType>float</dataType>
+        <addAttributes>
+            <att name="colorBarMinimum" type="double">-5</att>
+            <att name="colorBarMaximum" type="double">5</att>
+            <att name="_FillValue" type="float">-9999999</att>
+            <att name="ioos_category">Sea Level</att>
+        </addAttributes>
+    </dataVariable>
+    <dataVariable>
+        <sourceName>WSPU</sourceName>
+        <destinationName>wspu</destinationName>
+        <dataType>float</dataType>
+        <addAttributes>
+            <att name="colorBarMinimum" type="double">-15</att>
+            <att name="colorBarMaximum" type="double">15</att>
+            <att name="_FillValue" type="float">-9999999</att>
+            <att name="ioos_category">Wind</att>
+        </addAttributes>
+    </dataVariable>
+    <dataVariable>
+        <sourceName>WSPV</sourceName>
+        <destinationName>wspv</destinationName>
+        <dataType>float</dataType>
+        <addAttributes>
+            <att name="colorBarMinimum" type="double">-15</att>
+            <att name="colorBarMaximum" type="double">15</att>
+            <att name="_FillValue" type="float">-9999999</att>
+            <att name="ioos_category">Wind</att>
+        </addAttributes>
+    </dataVariable>
+</dataset>
+-->
+
+<!-- This is an example of EDDTableFromDatabase, 
+     but commented out and with generic setup information (e.g., "yourUserName") 
+     since you won't have access to this database.
+<dataset type="EDDTableFromDatabase" datasetID="yourDatasetID">
+    <sourceUrl>jdbc:postgresql://123.45.67.89:5432/yourDatabaseName</sourceUrl>
+    <driverName>org.postgresql.Driver</driverName>
+    <connectionProperty name="user">yourUserName</connectionProperty>
+    <connectionProperty name="password">yourPassword</connectionProperty>
+    <connectionProperty name="ssl">true</connectionProperty>
+    <connectionProperty name="sslfactory">org.postgresql.ssl.NonValidatingFactory</connectionProperty>
+    <catalogName></catalogName>
+    <schemaName>yourSchemaName</schemaName>
+    <tableName>yourTableName</tableName>
+    <orderBy>id, timestamp</orderBy>
+    <reloadEveryNMinutes>10080</reloadEveryNMinutes>
+    <altitudeMetersPerSourceUnit>1</altitudeMetersPerSourceUnit>
+    <addAttributes>
+        <att name="cdm_data_type">Point</att>
+        <att name="Conventions">COARDS, CF-1.0, Unidata Dataset Discovery v1.0</att>
+        <att name="infoUrl">http://www.postcoml.org/</att>
+        <att name="institution">yourInstitution</att>
+        <att name="license">[standard]</att>
+        <att name="standard_name_vocabulary">CF-11</att>
+        <att name="subsetVariables">id, longitude, latitude</att>
+        <att name="summary">yourSummary</att>
+        <att name="title">yourTitle</att>        
+    </addAttributes>
+    <dataVariable>
+        <sourceName>id</sourceName>
+        <dataType>int</dataType>
+        <addAttributes>
+            <att name="ioos_category">Identifier</att>
+            <att name="long_name">Station ID</att>
+        </addAttributes>
+    </dataVariable>
+    <dataVariable>
+        <sourceName>timestamp</sourceName>
+        <destinationName>time</destinationName>
+        <dataType>String</dataType>
+        <addAttributes>
+            <att name="units">yyyy-MM-dd HH:mm:ssZ</att>
+        </addAttributes>
+    </dataVariable>
+    <dataVariable>
+        <sourceName>station_latitude</sourceName>
+        <destinationName>latitude</destinationName>
+        <dataType>double</dataType>
+        <addAttributes>
+        </addAttributes>
+    </dataVariable>
+    <dataVariable>
+        <sourceName>station_longitude</sourceName>
+        <destinationName>longitude</destinationName>
+        <dataType>double</dataType>
+        <addAttributes>
+        </addAttributes>
+    </dataVariable>
+    <dataVariable>
+        <sourceName>temperature</sourceName>
+        <dataType>float</dataType>
+        <addAttributes>
+            <att name="ioos_category">Temperature</att>
+            <att name="long_name">Sea Surface Temperature</att>
+        </addAttributes>
+    </dataVariable>
+</dataset>
+-->
+
+</erddapDatasets>
+
