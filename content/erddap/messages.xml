@@ -1008,10 +1008,10 @@ But some things you might not have considered are:
 
 <EDDGridDapLongDescription><![CDATA[
 <b>griddap</b> lets you request a data subset, graph, or map from a gridded dataset (for example, sea surface
-<br>temperature data from a satellite), via a specially formed URL. griddap is a superset of the
+<br>temperature data from a satellite), via a specially formed URL. griddap uses the
 <br><a href="http://www.opendap.org">OPeNDAP</a>
-    <a href="http://www.opendap.org/pdf/ESE-RFC-004v1.1.pdf">DAP</a>
-    <a href="http://www.opendap.org/user/guide-html/guide_61.html#id5">hyperslab protocol</a>.
+    <a href="http://www.opendap.org/pdf/ESE-RFC-004v1.2.pdf">Data Access Protocol (DAP)</a> and its
+    <a href="http://docs.opendap.org/index.php/UserGuideOPeNDAPMessages#Selecting_Data:_Using_Constraint_Expressions">projection constraints</a>.
 <p><b>The URL specifies what you want:</b> the dataset, a description of the graph or the subset of the data, and the file
 <br>type for the response.
 <ul>
@@ -1077,10 +1077,10 @@ But some things you might not have considered are:
 
 <EDDTableDapLongDescription><![CDATA[
 <b>tabledap</b> lets you request a data subset, a graph, or a map from a tabular dataset (for example, buoy data),
-<br>via a specially formed URL. tabledap is a superset of the
+<br>via a specially formed URL. tabledap uses the 
   <a href="http://www.opendap.org">OPeNDAP</a>
-  <a href="http://www.opendap.org/pdf/ESE-RFC-004v1.1.pdf">DAP</a>
-  <a href="http://www.opendap.org/user/guide-html/guide_33.html">constraint/selection protocol</a>.
+  <a href="http://www.opendap.org/pdf/ESE-RFC-004v1.2.pdf">Data Access Protocol (DAP)</a> and its
+  <a href="http://docs.opendap.org/index.php/UserGuideOPeNDAPMessages#Constraint_Expressions">selection constraints</a>.
 <p><b>The URL specifies what you want:</b> the dataset, a description of the graph or the subset of the data, and the file
 <br>type for the response.
 <ul>
@@ -1162,8 +1162,6 @@ This constraint variable has a limited number of values. They are listed here.
 <errorCopyFrom>Unable to copy from {0}.</errorCopyFrom>
 <errorFileNotFound>File not found: {0}.</errorFileNotFound>
 <errorFileNotFoundImage>File not found in cache. Recreate the image and try again.</errorFileNotFoundImage>
-<errorFgdc>There is no FGDC metadata for this dataset:</errorFgdc>
-<errorIso19115>There is no ISO 19115 metadata for this dataset:</errorIso19115>
 <errorInternal>Internal error:</errorInternal>
 <errorMoreThan2GB>{1} is more than the {0} 2 GB limit.</errorMoreThan2GB>
 <errorNotFound>Error: {0} wasn''t found.</errorNotFound>
@@ -1917,7 +1915,7 @@ Widths are in ratio 1:2:3.
   <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html#sec9.3">HTTP GET</a>,
   <a href="http://www.xml.com/pub/a/98/10/guide0.html">XML</a>,
   <a href="http://www.w3schools.com/soap/soap_intro.asp">SOAP+XML</a>,
-  <a href="http://www.opendap.org/pdf/ESE-RFC-004v1.1.pdf">OPeNDAP</a>,
+  <a href="http://www.opendap.org/pdf/ESE-RFC-004v1.2.pdf">OPeNDAP</a>,
   <a href="http://www.opengeospatial.org/standards/wcs">WCS</a>,
   <a href="http://www.opengeospatial.org/standards/wfs">WFS</a>,
   <a href="http://www.opengeospatial.org/standards/requests/32">SOS</a>,
@@ -2551,7 +2549,7 @@ there are problems ...
   that you want.
 <!--  <a href="http://www.xml.com/pub/a/98/10/guide0.html">XML</a>,
   <a href="http://www.w3schools.com/soap/soap_intro.asp">SOAP+XML</a>,
-  <a href="http://www.opendap.org/pdf/ESE-RFC-004v1.1.pdf">OPeNDAP binary data stream</a>,
+  <a href="http://www.opendap.org/pdf/ESE-RFC-004v1.2.pdf">OPeNDAP binary data stream</a>,
   <a href="http://www.webopedia.com/TERM/A/ASCII.html">ASCII text</a>,
   <a href="http://hdf.ncsa.uiuc.edu/products/hdf4/index.html">HDF 4</a>,
   <a href="http://hdf.ncsa.uiuc.edu/products/hdf5/index.html">HDF 5</a>,
@@ -2642,14 +2640,13 @@ remote (accessed via the web) data sources.</b>
   </ul>
   ERDDAP also provides Data Access Forms (web pages) which help humans create the OPeNDAP
   requests. <a href="http://www.opendap.org">OPeNDAP's</a>
-    <a href="http://www.opendap.org/pdf/ESE-RFC-004v1.1.pdf">DAP</a>
+    <a href="http://www.opendap.org/pdf/ESE-RFC-004v1.2.pdf">Data Access Protocol (DAP)</a>
     is one of the recommended
     <a href="http://www.ioos.gov/">IOOS</a>
     <a href="http://www.ioos.gov/dif/">DMAC</a>
-    data transport mechanisms and a
-    
-      <a href="http://www.esdswg.org/spg/">NASA EOSDIS standard</a>.
-      (OPeNDAP is great!)
+    data transport mechanisms and a    
+    <a href="http://www.esdswg.org/spg/">NASA EOSDIS standard</a>.
+    (OPeNDAP is great!)
   ERDDAP translates your request from the OPeNDAP, WMS, or SOS format to the data source's
   request format and converts the response to one of ERDDAP's internal data structures.
   Then ERDDAP reformats the data in the common file format of your choice (for example, as an
