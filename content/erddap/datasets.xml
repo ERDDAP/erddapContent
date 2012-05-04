@@ -64,8 +64,8 @@ into a public sourceUrl (http://oceanwatch.pfeg.noaa.gov/thredds/dodsC/satellite
     <sourceUrl>http://oceanwatch.pfeg.noaa.gov/thredds/dodsC/satellite/MH/chla/8day</sourceUrl>
     <reloadEveryNMinutes>1440</reloadEveryNMinutes>
     <addAttributes> 
-        <att name="Conventions">CF-1.4</att>
-        <att name="Metadata_Conventions">COARDS, CF-1.4, Unidata Dataset Discovery v1.0</att>
+        <att name="Conventions">CF-1.6</att>
+        <att name="Metadata_Conventions">COARDS, CF-1.6, Unidata Dataset Discovery v1.0</att>
         <att name="infoUrl">http://coastwatch.pfeg.noaa.gov/infog/MH_chla_las.html</att>
         <att name="institution">NOAA CoastWatch, West Coast Node</att>
         <att name="title">Chlorophyll-a, Aqua MODIS, NPP, Global, Science Quality (8 Day Composite)</att>
@@ -115,13 +115,14 @@ into a public sourceUrl (http://oceanwatch.pfeg.noaa.gov/thredds/dodsC/satellite
     </dataVariable>
 </dataset>
 
+<!-- For EDDGridSideBySide, the datasetID's for the parent and the children must be different. -->
 <dataset type="EDDGridSideBySide" datasetID="erdTAssh1day">
-<dataset type="EDDGridFromDap" datasetID="erdTAsshl1day">
-    <sourceUrl>http://192.168.31.18/thredds/dodsC/satellite/TA/sshl/1day</sourceUrl>
+<dataset type="EDDGridFromDap"    datasetID="erdTAsshl1day">
+    <sourceUrl>http://oceanwatch.pfeg.noaa.gov/thredds/dodsC/satellite/TA/sshl/1day</sourceUrl>
     <reloadEveryNMinutes>1440</reloadEveryNMinutes>
     <addAttributes> 
-        <att name="Conventions">COARDS, CF-1.4, Unidata Dataset Discovery v1.0</att>
-        <att name="Metadata_Conventions">COARDS, CF-1.4, Unidata Dataset Discovery v1.0</att>
+        <att name="Conventions">COARDS, CF-1.6, Unidata Dataset Discovery v1.0</att>
+        <att name="Metadata_Conventions">COARDS, CF-1.6, Unidata Dataset Discovery v1.0</att>
         <att name="infoUrl">http://coastwatch.pfeg.noaa.gov/infog/TA_sshl_las.html</att>
         <att name="institution">NOAA CoastWatch, West Coast Node</att>
         <att name="standard_name_vocabulary">CF-12</att>
@@ -171,11 +172,11 @@ into a public sourceUrl (http://oceanwatch.pfeg.noaa.gov/thredds/dodsC/satellite
     </dataVariable>
 </dataset>
 <dataset type="EDDGridFromDap" datasetID="erdTAsshd1day">
-    <sourceUrl>http://192.168.31.18/thredds/dodsC/satellite/TA/sshd/1day</sourceUrl>
+    <sourceUrl>http://oceanwatch.pfeg.noaa.gov/thredds/dodsC/satellite/TA/sshd/1day</sourceUrl>
     <reloadEveryNMinutes>1440</reloadEveryNMinutes>
     <addAttributes> 
-        <att name="Conventions">COARDS, CF-1.4, Unidata Dataset Discovery v1.0</att>
-        <att name="Metadata_Conventions">COARDS, CF-1.4, Unidata Dataset Discovery v1.0</att>
+        <att name="Conventions">COARDS, CF-1.6, Unidata Dataset Discovery v1.0</att>
+        <att name="Metadata_Conventions">COARDS, CF-1.6, Unidata Dataset Discovery v1.0</att>
         <att name="infoUrl">http://coastwatch.pfeg.noaa.gov/infog/TA_sshd_las.html</att>
         <att name="institution">NOAA CoastWatch, West Coast Node</att>
         <att name="standard_name_vocabulary">CF-12</att>
@@ -236,14 +237,30 @@ into a public sourceUrl (http://oceanwatch.pfeg.noaa.gov/thredds/dodsC/satellite
     <addAttributes>
         <att name="title">GLOBEC NEP Rosette Bottle Data (2002)</att>
         <att name="cdm_data_type">TrajectoryProfile</att>
+        <att name="featureType">TrajectoryProfile</att>
         <att name="cdm_altitude_proxy">bottle_posn</att>
         <att name="cdm_trajectory_variables">cruise_id, ship</att>
         <att name="cdm_profile_variables">cast, longitude, latitude, time</att>
         <att name="subsetVariables">cruise_id, ship, cast, longitude, latitude, time</att>
-        <att name="Conventions">COARDS, CF-1.4, Unidata Dataset Discovery v1.0</att>
-        <att name="Metadata_Conventions">COARDS, CF-1.4, Unidata Dataset Discovery v1.0</att>
+        <att name="Conventions">COARDS, CF-1.6, Unidata Dataset Discovery v1.0</att>
+        <att name="Metadata_Conventions">COARDS, CF-1.6, Unidata Dataset Discovery v1.0</att>
         <att name="infoUrl">http://oceanwatch.pfeg.noaa.gov/thredds/PaCOOS/GLOBEC/catalog.html?dataset=GLOBEC_Bottle_data</att>
         <att name="institution">GLOBEC</att>
+        <att name="keywords">
+Biosphere &gt; Vegetation &gt; Photosynthetically Active Radiation,
+Oceans &gt; Ocean Optics &gt; Attenuation/Transmission,
+Oceans &gt; Ocean Chemistry &gt; Ammonia,
+Oceans &gt; Ocean Chemistry &gt; Chlorophyll,
+Oceans &gt; Ocean Chemistry &gt; Nitrate,
+Oceans &gt; Ocean Chemistry &gt; Nitrite,
+Oceans &gt; Ocean Chemistry &gt; Nitrogen,
+Oceans &gt; Ocean Chemistry &gt; Oxygen,
+Oceans &gt; Ocean Chemistry &gt; Phosphate,
+Oceans &gt; Ocean Chemistry &gt; Pigments,
+Oceans &gt; Ocean Temperature &gt; Water Temperature,
+Oceans &gt; Salinity/Density &gt; Salinity
+</att>
+        <att name="keywords_vocabulary">GCMD Science Keywords</att>
         <att name="license">[standard]</att>
         <att name="standard_name_vocabulary">CF-12</att>
         <att name="summary">
@@ -271,7 +288,7 @@ NO2       0.003-0.004   0.003   Nitrite          micromoles per liter
 Dates and Times are UTC.
 
 For more information, see
-http://cis.whoi.edu/science/bcodmo/dataset.cfm?id=10180&flag=view
+http://cis.whoi.edu/science/bcodmo/dataset.cfm?id=10180&amp;flag=view
 
 Inquiries about how to access this data should be directed to
 Dr. Hal Batchelder (hbatchelder@coas.oregonstate.edu).
@@ -578,71 +595,33 @@ Dr. Hal Batchelder (hbatchelder@coas.oregonstate.edu).
 
 
 
-<dataset type="EDDTableFromOBIS" datasetID="rutgersSeamap">
-    <sourceUrl>http://iobis.marine.rutgers.edu/digir2/DiGIR.php</sourceUrl>
-    <sourceCode>OBIS-SEAMAP</sourceCode>
+<dataset type="EDDTableFromOBIS" datasetID="aadcArgos">
+    <sourceUrl>http://aadc-maps.aad.gov.au/digir/digir.php</sourceUrl>
+    <sourceCode>argos_tracking</sourceCode>
     <addAttributes>
-        <att name="citation">Read, A. J. and P. Halpin. Editors. 2003. OBIS-SEAMAP. World Wide Web electronic publication. http://www.obis.env.duke.edu, April 2003</att>
-        <att name="creator_email">dhyrenbach@duke.edu</att>
-        <att name="infoUrl">http://obis.env.duke.edu</att>
-        <att name="institution">Duke</att>
-        <att name="keywords">marine mammal, bird, turtle, seabird, sea turtle, OBIS, marine, whale, dolphin, seal, pinniped</att>
+        <att name="citation">See the following Metadata records http://data.aad.gov.au/aadc/metadata/metadata_redirect.cfm?md=AMD/AU/DB_Argos_PTT_Tracking http://data.aad.gov.au/aadc/metadata/metadata_redirect.cfm?md=AMD/AU/HI_animaltracks_ARGOS http://data.aad.gov.au/aadc/metadata/metadata_redirect.cfm?md=AMD/AU/Tracking_BI http://data.aad.gov.au/aadc/metadata/metadata_redirect.cfm?md=AMD/AU/Tracking_Mag http://data.aad.gov.au/aadc/metadata/metadata_redirect.cfm?md=AMD/AU/STA_Bibliography http://data.aad.gov.au/aadc/metadata/metadata_redirect.cfm?md=AMD/AU/Tracking_SI http://data.aad.gov.au/aadc/metadata/metadata_redirect.cfm?md=AMD/AU/Tracking_EDP http://data.aad.gov.au/aadc/metadata/metadata_redirect.cfm?md=AMD/AU/Tracking_DD Contact Data Centre for help on citation details.</att>
+        <att name="creator_email">kim.finney@aad.gov.au</att>
+        <att name="infoUrl">http://data.aad.gov.au/</att>
+        <att name="institution">AADC</att>
+        <att name="keywords">ARGOS, satellite tracking, penguins, whales, seals, albatrosses,
+Biosphere &gt; Aquatic Ecosystems &gt; Benthic Habitat,
+Biosphere &gt; Aquatic Ecosystems &gt; Coastal Habitat,
+Biosphere &gt; Aquatic Ecosystems &gt; Demersal Habitat,
+Biosphere &gt; Aquatic Ecosystems &gt; Marine Habitat,
+Biosphere &gt; Aquatic Ecosystems &gt; Pelagic Habitat,
+Biological Classification &gt; Animals/Vertebrates &gt; Birds,
+Biological Classification &gt; Animals/Vertebrates &gt; Mammals &gt; Cetacean
+</att>
+        <att name="keywords_vocabulary">GCMD Science Keywords</att>
         <att name="license">[standard]</att>
         <att name="summary">
-The Ocean Biogeographic Information System - Spatial Ecological Analysis of Megavertabrate Populations (OBIS-SEAMAP) is a spatially referenced database of data related to marine mammals, birds and turtles. This project is one of several nodes comprising the Ocean Biogeographic Information System (OBIS).
+Various species have been tracked using ARGOS PTT trackers since the early 1990's. These include Emperor, King and Adelie pengiuns, Light-mantled Sooty, Grey-headed and Black-browed albatrosses, Antarctic and Australian fur seals, Southern Elephant Seal and Blue and Humpback whales. Note that not all data for any species or locations is or will be exposed to OBIS. Geographic coverage is from Heard Island to the west and Macquarie Island to the east and several islands near the southern end of Chile. The data has been filtered to remove most but not all erroneous positions.
 
 [OBIS_SUMMARY]
 
-Available Genera (and number of records): Actitis (13),
-Aechmophorus (13015), Alca (362), Alle (8858), Anas (20383),
-Anous (66), Anser (1), Aphriza (17), Aptenodytes (43),
-Arctocephalus (20), Ardea (8542), Arenaria (141), Aythya (17396),
-Balaenoptera (9140), Berardius (61), Brachyramphus (2530),
-Branta (3335), Brevoortia (149), Bucephala (98937), Bulweria (32),
-Buteo (31), Calidris (185), Callorhinus (1799), Calonectris (2217),
-Caranx (24), Caretta (18679), Casmerodius (2), Catharacta (1022),
-Cathartes (5), Catoptrophorus (14), Cephalorhynchus (26),
-Cepphus (11227), Cerorhinca (8842), Cetorhinus (472), Charadrius (47),
-Chelonia (1192), Chen (83), Chionis (7), Chlidonias (809),
-Chloroscombrus (1), Circus (51), Clangula (3525), Colaptes (5),
-Columba (48), Corvus (3119), Coryphaena (120), Cubaris (2047),
-Cygnus (301), Cystophora (22), Daption (1688), Delphinapterus (9),
-Delphinus (3255), Dermochelys (473), Diomedea (2779), Egretta (5),
-Enhydra (2079), Eretmochelys (2), Erignathus (43),
-Eschrichtius (1648), Eubalaena (808), Eudyptes (79), Eumetopias (293),
-Falco (15), Feresa (77), Fratercula (2463), Fregata (560),
-Fregetta (791), Fulica (32), Fulmarus (42217), Gallinago (3),
-Garrodia (25), Gavia (15422), Genus (1364), Globicephala (2506),
-Grampus (2352), Gygis (14), Haematopus (162), Haliaeetus (2433),
-Halichoerus (9487), Halobaena (557), Heteroscelus (4), Himantopus (2),
-Histrio (271), Histrionicus (4151), Hydrobates (165), Hyperoodon (52),
-Indopacetus (4), Kogia (415), Lagenodelphis (38),
-Lagenorhynchus (2948), Larus (138165), Lepidochelys (1637),
-Limnodromus (12), Limosa (34), Lissodelphis (570), Lontra (75),
-Lophodytes (1045), Macronectes (1412), Manta (53), Megaceryle (833),
-Megaptera (12415), Melanitta (54800), Mergus (15475),
-Mesoplodon (331), Mirounga (7728), Mola (2757), Morus (8944),
-Myliobatis (2), Nesofregetta (1), Numenius (16), Oceanites (9448),
-Oceanodroma (11690), Odobenus (146), Opisthonema (1), Orcinus (423),
-Oxyura (756), Pachyptila (3407), Pagodroma (454), Pagophila (1305),
-Pagophilus (47), Pandion (100), Patagioenas (8), Pelagodroma (18),
-Pelecanoides (410), Pelecanus (3148), Peponocephala (43),
-Phaethon (209), Phalacrocorax (21676), Phalacrocorax Spp. (1962),
-Phalaropus (10516), Phoca (9040), Phocoena (14526),
-Phocoenoides (4385), Phoebastria (12166), Phoebetria (1035),
-Physeter (1603), Pluvialis (53), Podiceps (9543), Podilymbus (3),
-Pogonias (1), Polysticta (8), Prionace (464), Procellaria (2723),
-Pseudobulweria (14), Pseudorca (76), Pterodroma (2128),
-Ptychoramphus (11032), Puffinus (40941), Pusa (125), Pygoscelis (480),
-Rachycentron (6), Recurvirostra (14), Rhincodon (18), Rhinoptera (55),
-Rissa (26672), Rynchops (3), Scomberomorus (18), Somateria (568),
-Spheniscus (13), Sphyrna (317), Stenella (5011), Steno (268),
-Stercorarius (7383), Sterna (6974), Stomolophus (3), Sula (831),
-Synthliboramphus (849), Thalassoica (898), Thunnus (19),
-Trichechus (1), Tringa (1083), Tursiops (12455), Uria (48880),
-Ursus (25), Xiphias (16), Zalophus (4668), Ziphius (455)
+Available Genera (and number of records): (error)
 </att>
-        <att name="title">OBIS - SEAMAP (Rutgers) - marine mammals, birds and turtles</att>
+        <att name="title">OBIS - ARGOS Satellite Tracking of Animals</att>
     </addAttributes>
 </dataset>
 
@@ -656,11 +635,14 @@ Ursus (25), Xiphias (16), Zalophus (4668), Ziphius (455)
     <bboxParameter>featureofinterest=BBOX:</bboxParameter>
     <addAttributes>
         <att name="cdm_data_type">TimeSeries</att>
+        <att name="featureType">TimeSeries</att>
         <att name="cdm_timeseries_variables">station_id, longitude, latitude, sensor_id</att>
-        <att name="Conventions">COARDS, CF-1.4, Unidata Dataset Discovery v1.0</att>
-        <att name="Metadata_Conventions">COARDS, CF-1.4, Unidata Dataset Discovery v1.0</att>
+        <att name="Conventions">COARDS, CF-1.6, Unidata Dataset Discovery v1.0</att>
+        <att name="Metadata_Conventions">COARDS, CF-1.6, Unidata Dataset Discovery v1.0</att>
         <att name="infoUrl">http://sdf.ndbc.noaa.gov/sos/</att>
         <att name="institution">NOAA NDBC</att>
+        <att name="keywords">Oceans &gt; Ocean Temperature &gt; Water Temperature</att>
+        <att name="keywords_vocabulary">GCMD Science Keywords</att>
         <att name="license">[standard]</att>
         <att name="standard_name_vocabulary">CF-12</att>
         <att name="summary">The NOAA NDBC SOS server is part of the IOOS DIF SOS Project.  The stations in this dataset have sea_water_temperature data.
@@ -707,7 +689,7 @@ Because of the nature of SOS requests, requests for data MUST include constraint
 Here are some examples of EDDGridFromErddap and EDDTableFromErddap.
 -->
 <dataset type="EDDGridFromErddap" datasetID="erdBAssta5day" active="true">
-    <sourceUrl>http://oceanwatch.pfeg.noaa.gov/erddap/griddap/erdBAssta5day</sourceUrl>
+    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/erdBAssta5day</sourceUrl>
 </dataset>
 <dataset type="EDDTableFromErddap" datasetID="pmelTaoDySst" active="true">
     <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/tabledap/pmelTaoDySst</sourceUrl>
@@ -730,16 +712,27 @@ Here are some examples of EDDGridFromErddap and EDDTableFromErddap.
     <altitudeMetersPerSourceUnit>-1</altitudeMetersPerSourceUnit>
     <addAttributes>
         <att name="cdm_data_type">TimeSeries</att>
+        <att name="featureType">TimeSeries</att>
         <att name="cdm_timeseries_variables">station, longitude, latitude</att>
         <att name="subsetVariables">station, longitude, latitude</att>
-        <att name="Conventions">COARDS, CF-1.4, Unidata Dataset Discovery v1.0</att>
-        <att name="Metadata_Conventions">COARDS, CF-1.4, Unidata Dataset Discovery v1.0</att>
+        <att name="Conventions">COARDS, CF-1.6, Unidata Dataset Discovery v1.0</att>
+        <att name="Metadata_Conventions">COARDS, CF-1.6, Unidata Dataset Discovery v1.0</att>
         <att name="date_created">null</att>
         <att name="date_issued">null</att>
         <att name="id">null</att>
         <att name="infoUrl">http://www.ndbc.noaa.gov/</att>
         <att name="institution">NOAA NDBC, CoastWatch WCN</att>
-        <att name="keywords">EARTH SCIENCE &gt; Oceans</att>
+        <att name="keywords">
+Atmosphere &gt; Air Quality &gt; Visibility,
+Atmosphere &gt; Atmospheric Pressure &gt; Surface Pressure,
+Atmosphere &gt; Atmospheric Temperature &gt; Surface Air Temperature,
+Atmosphere &gt; Atmospheric Winds &gt; Surface Winds,
+Oceans &gt; Ocean Temperature &gt; Sea Surface Temperature,
+Oceans &gt; Ocean Waves &gt; Wave Height,
+Oceans &gt; Ocean Waves &gt; Wave Period,
+Oceans &gt; Ocean Waves &gt; Wave Speed/Direction
+</att>
+        <att name="keywords_vocabulary">GCMD Science Keywords</att>
         <att name="license">[standard]</att>
         <att name="sourceUrl">http://www.ndbc.noaa.gov/</att>
         <att name="summary">The National Data Buoy Center (NDBC) distributes meteorological data from
@@ -991,9 +984,12 @@ This dataset has both historical data (quality controlled, before
     <altitudeMetersPerSourceUnit>1</altitudeMetersPerSourceUnit>
     <addAttributes>
         <att name="cdm_data_type">Point</att>
+        <att name="featureType">Point</att>
         <att name="Conventions">COARDS, CF-1.0, Unidata Dataset Discovery v1.0</att>
         <att name="infoUrl">http://www.postcoml.org/</att>
         <att name="institution">yourInstitution</att>
+        <att name="keywords">Oceans &gt; Ocean Temperature &gt; Sea Surface Temperature</att>
+        <att name="keywords_vocabulary">GCMD Science Keywords</att>
         <att name="license">[standard]</att>
         <att name="standard_name_vocabulary">CF-11</att>
         <att name="subsetVariables">id, longitude, latitude</att>
@@ -1036,6 +1032,7 @@ This dataset has both historical data (quality controlled, before
         <addAttributes>
             <att name="ioos_category">Temperature</att>
             <att name="long_name">Sea Surface Temperature</att>
+            <att name="standard_name">sea_surface_temperature</att>
         </addAttributes>
     </dataVariable>
 </dataset>

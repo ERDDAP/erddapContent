@@ -8,7 +8,7 @@ Settings that you must change when you install ERDDAP on your server are marked 
 <!-- 'logLevel' determines how many diagnostic messages are sent to the log.txt file.
 It can be set to "warning" (the fewest messages), "info" (the default), or "all" (the most messages). 
 Diagnostic messages are displayed on some HTML pages if displayDiagnosticInfo (above) is 'true'.
-Diagnostic messages are always written to the <bigParentDirectory>log.txt file (see below).
+Diagnostic messages are always written to the [bigParentDirectory]log.txt file (see below).
 At ERD, we set this to 'all' for development and 'info' for releases. 
 -->
 <logLevel>info</logLevel>
@@ -23,6 +23,7 @@ see http://coastwatch.pfeg.noaa.gov/erddap/download/setup.html#secondErddap
 <!-- bigParentDirectory is the absolute path on the server (with slash at the end)
 to a directory on a drive with lots of space. 
 This directory must already exist.
+The user that runs Tomcat must have read/write privileges for this directory.
 Subdirectories that will be created by ERDDAP are: 
 * datasetInfo (which some datasets use to cache information about the dataset
    to speed up reloading the dataset in the future), 
@@ -60,6 +61,14 @@ During development or for other reasons, you might want to use a subset, e.g.,
 so that ERDDAP quickly loads a dataset that you are interested in. 
 -->
 <datasetsRegex>.*</datasetsRegex>
+
+<!-- If true, when you start up ERDDAP, some types of datasets (e.g., 
+EDDGridFromDap) will used cached information (.dds, .das, etc.) to reload
+very quickly, without contacting the remote server.  The dataset's age 
+will be based on when the dataset was reloaded last.  Normally this 
+should be true (the default), but set it to false if you want to bypass 
+the cached information. -->
+<quickRestart>true</quickRestart>
 
 <!-- If you want to restrict access to some datasets, you need to specify
 the method used for logging on (authentication).
@@ -117,11 +126,24 @@ You MUST CHANGE this when you install ERDDAP on your server. For example,
 
 <!-- Set 'displayDiagnosticInfo' to true if you want the diagnostic info displayed 
 on almost all html pages that ERDDAP generates.
-The info is the same info that is written to the (bigParentDirectory)/logs/log.txt file.
+The info is the same info that is written to the [bigParentDirectory]logs/log.txt file.
 It is best to always leave this as 'false'.
 -->
 <displayDiagnosticInfo>false</displayDiagnosticInfo>
 
+<!-- ERDDAP lets you choose between two search engines for full text searches:
+* original (the default) - is the best choice if your ERDDAP has fewer 
+  than about 10,000 datasets.  It is very robust and trouble free. 
+* lucene - is the best choice for more than about 10,000 datasets.
+  The advantages are that with any number of datasets it works fast 
+  and uses very little memory.
+  But there are many things that might go wrong with individual 
+  queries and with the whole system. 
+  And although its behaviour (the datasets it finds and the order that
+  it ranks them) is almost identical to the original search engine,
+  it has a few quirky, subtle, small differences.
+-->
+<searchEngine>original</searchEngine>
 
 <!-- Email account information is used for sending emails to the 'emailEverythingTo' 
 and 'emailDailyReportsTo' email addresses above.
@@ -159,7 +181,7 @@ You MUST CHANGE these to describe your installation.
 -->
 <adminInstitution>Your Institution</adminInstitution>
 <adminIndividualName>Your Name</adminIndividualName>
-<adminPosition>Webmaster</adminPosition>
+<adminPosition>ERDDAP administrator</adminPosition>
 <adminPhone>999-999-9999</adminPhone>
 <adminAddress>123 Main St.</adminAddress>
 <adminCity>Some Town</adminCity>
@@ -175,14 +197,14 @@ accessConstraints and fees are the defaults for dataset's without an
   "accessibleTo" tag.
 accessRequiresAuthorization is the default "accessConstraints" for dataset's 
   with an "accessibleTo" tag.
-keywords can be separated by '>', '|', ',', or ' '. 
+keywords should describe this ERDDAP's data in a general way and be comma-separated. 
 "accessConstraints", "fees", "keywords" can be overwritten by same-named
   attributes in a dataset's global attributes in datasets.xml.
 -->
 <accessConstraints>NONE</accessConstraints>
 <accessRequiresAuthorization>only accessible to authorized users</accessRequiresAuthorization>
 <fees>NONE</fees>
-<keywords>Earth science, oceans</keywords> 
+<keywords>earth science, atmosphere, ocean, biosphere, biology, environment</keywords> 
 
 <!-- This appears on the erddap/legal.html web page after the General Disclaimer. 
 You can replace any of the [standardParts] with your own HTML. 
@@ -202,6 +224,12 @@ You can replace any of the [standardParts] with your own HTML.
   converted to UCUM units for WMS and SOS GetCapabilities responses. 
 -->
 <units_standard>UDUNITS</units_standard>
+
+<!-- ERDDAP automatically generates FGDC and ISO19115 metadata 
+for all relevant datasets, using information from the dataset's metadata.
+By default these services are on (true). -->
+<fgdcActive>true</fgdcActive>
+<iso19115Active>true</iso19115Active>
 
 <!-- For the wms examples, pick one of your grid datasets that has longitude and latitude axes.
 The sample variable must be a variable in the sample grid dataset.
@@ -226,7 +254,7 @@ all of the users of the flag system the relevant new flagKeys
 <flagKeyKey>CHANGE THIS TO YOUR FAVORITE QUOTE</flagKeyKey>
 
 <!-- ERDDAP has an email/URL subscription system which sends a user an email
-or pings a url whenever a dataset of interest changes.
+or pings a url whenever an interesting dataset changes.
 (This is different from the RSS system, which is always active.)
 The system relies on the server being able to send out 
 emails to people to validate their subscription requests.
@@ -241,10 +269,10 @@ See also the subscriptionEmailBlacklist in datasets.xml.
 <subscriptionSystemActive>true</subscriptionSystemActive>
 
 
-<!-- Every loadDatasetsNMinutes (see below), files in <bigParentDirectory>/cache and 
+<!-- Every loadDatasetsNMinutes (see below), files in [bigParentDirectory]cache and 
 the public directory which are more than cacheMinutes old will be deleted.  
 At ERD, we use '60'.
-Note that when a dataset is reloaded, all files in the <bigParentDirectory>/cache/<datasetID>
+Note that when a dataset is reloaded, all files in the [bigParentDirectory]cache/[datasetID]
 directory are deleted.
 In general, only image files are cached, because the same images are often requested repeatedly.
 Removing files in the cache based on age (not Least-Recently-Used) 
@@ -290,8 +318,8 @@ The default is 10000.
 -->
 <unusualActivity>10000</unusualActivity>
 
-<!-- The title for the map's legend (or nothing if you don't want a legendTitle).
-At ERD, we don't use this. 
+<!-- The title for the map's legend (or nothing if you don't want a legend title).
+At ERD, we don't use these.  To use these, uncomment them.
 <legendTitle1>NOAA ERD's</legendTitle1>
 <legendTitle2>ERDDAP</legendTitle2>
 -->
@@ -301,11 +329,12 @@ At ERD, we don't use this.
 are scaled to the desired size (highRes->80 or 40 pixels square, lowRes->20 pixels square).
 The googleEarthLogoFile is displayed at its original size in the lower left 
 corner of the Google Earth map if the user selects the .kml image file type.
+The highRes, lowRes and GoogleEarth images are also used by OpenSearch.
 The questionMarkImage identifies the places on HTML pages where a user can 
 mouseOver to get more information.
-These files must be in <tomcat>/content/erddap/images/ directory.
+These files must be in [tomcat]/content/erddap/images/ directory.
 All files in this directory (and subdirectories) 
-will be copied to <tomcat>/webapps/erddap/images (and subdirectories)
+will be copied to [tomcat]/webapps/erddap/images (and subdirectories)
 and thus made available for direct downloading by any client.
 (Any text files must be stored as plain ASCII (7 bit) or with UTF-8 encoding.)
 For SGT graphics, currently, the Files designated below must be png, gif, jpg, or bmp.
@@ -325,9 +354,9 @@ I didn't like any of the fonts initially available on Linux. "SansSerif" is almo
 At ERD, we use "Bitstream Vera Sans" 
   (open source fonts from http://www.gnome.org/fonts/ ).
   I think they are distinctly better than the standard Linux fonts.
-  To use them on your computer, move them 
-    from <ErddapContext>/WEB-INF/fonts/*.ttf
-    to <javaHome>/jre/lib/fonts so Java sees them.
+  To use them on your computer, download
+  http://coastwatch.pfeg.noaa.gov/erddap/download/BitstreamVeraSans.zip
+  and unzip the files into [javaHome]/jre/lib/fonts so Java sees them.
 -->
 <fontFamily>Bitstream Vera Sans</fontFamily>
 
@@ -353,8 +382,9 @@ of the global attribute and variable attribute names which will be
 used to categorize the datasets and shown to clients at urls like .../erddap/categorize/ioos_category/index.html 
 (ioos_category is unusual, but is used at ERD).
 If an attribute is a global attribute, identify it by prefixing it with "global:".
+"variableName" is a special case: it categorizes the dataVariable destinationNames.
 -->
-<categoryAttributes>global:cdm_data_type, global:institution, ioos_category, long_name, standard_name</categoryAttributes>
+<categoryAttributes>global:cdm_data_type, global:institution, ioos_category, global:keywords, long_name, standard_name, variableName</categoryAttributes>
 
 <!-- Griddap Examples
 This group of settings is used to make examples for the griddap documentation 
@@ -474,12 +504,12 @@ You can use your own favicon.ico file by putting it in (tomcat)/content/erddap/i
 ERDDAP's HTML pages by changing the CSS <style> settings below.
 
 For an example of a very different style, change the import reference to
-  <tomcat>/content/erddap/images/erddapAlt.css
+  [tomcat]/content/erddap/images/erddapAlt.css
 
 *** If your CSS style includes links to files (e.g., images), that style
 information must be inline in the style tag below, after the 'import' line, 
 not in the .css file.  
-Put all of the (e.g., image) files in the <tomcat>/content/erddap/images
+Put all of the (e.g., image) files in the [tomcat]/content/erddap/images
 directory (or a subdirectory) and reference them below starting with
 &erddapUrl;.
 Why? On ERDDAP https: web pages, *all* links should use https: (not http:);
