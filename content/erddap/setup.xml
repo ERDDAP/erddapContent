@@ -22,7 +22,7 @@ see http://coastwatch.pfeg.noaa.gov/erddap/download/setup.html#secondErddap
 
 <!-- bigParentDirectory is the absolute path on the server (with slash at the end)
 to a directory on a drive with lots of space. 
-This directory must already exist.
+Create a new directory, outside of the tomcat directory, for this purpose.
 The user that runs Tomcat must have read/write privileges for this directory.
 Subdirectories that will be created by ERDDAP are: 
 * datasetInfo (which some datasets use to cache information about the dataset
