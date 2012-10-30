@@ -17,7 +17,7 @@ You only need to specify a reloadEveryNMinutes value if you anticipate that
 the dataset will change periodically.
 
 If this document has an xml error, processing will stop and an email
-will be sent to emailEverythingTo as indicated in setup.xml.
+will be sent to emailEverythingTo as specified in setup.xml.
 
 If you want to remove a dataset while ERDDAP is running, add 
     active="false"
@@ -985,7 +985,7 @@ This dataset has both historical data (quality controlled, before
     <addAttributes>
         <att name="cdm_data_type">Point</att>
         <att name="featureType">Point</att>
-        <att name="Conventions">COARDS, CF-1.0, Unidata Dataset Discovery v1.0</att>
+        <att name="Conventions">COARDS, CF-1.6, Unidata Dataset Discovery v1.0</att>
         <att name="infoUrl">http://www.postcoml.org/</att>
         <att name="institution">yourInstitution</att>
         <att name="keywords">Oceans &gt; Ocean Temperature &gt; Sea Surface Temperature</att>

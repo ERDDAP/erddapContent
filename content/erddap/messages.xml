@@ -71,9 +71,10 @@ Datasets will match these criteria if they have a least some matching data.
 ]]></advancedSearchRangeTooltip>
 
 <advancedSearchMapTooltip><![CDATA[
-You can specify longitude and latitude bounds by entering text in the textfields,
+This is optional.
+<br>You can specify longitude and latitude bounds by entering text in the textfields,
 <br>or you can specify a rectangle on the map by clicking on two diagonal corners.
-<br>(Do it again if needed.)
+<br>(To change the rectangle, click on the new corners.)
 <br>Drawing a rectangle on the map automatically puts values in the longitude and 
 <br>latitude textfields. 
 <br>The values in the longitude and latitude textfields are what really count.
@@ -89,10 +90,16 @@ You can specify longitude and latitude bounds by entering text in the textfields
 ]]></advancedSearchLonTooltip>
 
 <advancedSearchTimeTooltip><![CDATA[
-Use the format yyyy-MM-dd'T'HH:mm:ssZ, for example, 2009-01-21T23:00:00Z.
-<br>If you specify something, you must include yyyy-MM-dd.
-<br>You can omit (backwards from the end) Z, :ss, :mm, :HH, and T.
-<br>Always use UTC (GMT/Zulu) time.
+This is optional.
+<ul>
+<li>Enter a time string with the format yyyy-MM-dd'T'HH:mm:ssZ, 
+  <br>for example, 2009-01-21T23:00:00Z.
+  <br>If you specify something, you must include yyyy-MM-dd.
+  <br>You can omit (backwards from the end) Z, :ss, :mm, :HH, and T.
+  <br>Always use UTC (GMT/Zulu) time.
+  <br>&nbsp;
+<li>Or specify the number of seconds since 1970-01-01T00:00:00Z.
+</ul>
 ]]></advancedSearchTimeTooltip>
 
 <!-- {0}=plainFileType (e.g., .json) of advanced search query. -->
@@ -103,8 +110,27 @@ Use the format yyyy-MM-dd'T'HH:mm:ssZ, for example, 2009-01-21T23:00:00Z.
 <advancedSearchNoCriteria><![CDATA[
 To see some results, you must specify at least one search criterion above,
 then click <tt>{0}</tt>.
-<br>Or, <a href="{1}/search/advanced.html?page=1&itemsPerPage={2}&searchFor=all">view all of the datasets</a>.
+<br>Or, <a rel="contents" href="{1}/search/advanced.html?page=1&itemsPerPage={2}&searchFor=all">view all of the datasets</a>.
 ]]></advancedSearchNoCriteria>
+
+<!-- These are injected into PrimitiveArray. 
+     These use MessageFormat. -->
+<ArrayAddN>ERROR in {0}.addN: n ({1}) &lt; 0.</ArrayAddN>
+<ArrayAppendTables>ERROR in PrimitiveArray.append:
+the tables have a different number of columns ({0} != {1}).</ArrayAppendTables>
+<ArrayDiff>ERROR: The PrimitiveArrays differ at [{0}] ({1} != {2}).</ArrayDiff>
+<ArrayDifferentSize>The other primitiveArray has a different size ({0} != {1}).</ArrayDifferentSize>
+<ArrayDifferentValue>The other primitiveArray has a different value for [{0}] ({1} != {2}).</ArrayDifferentValue>
+<ArrayDiffString>old [{0}]={1},
+  new [{0}]={2}.</ArrayDiffString>
+<ArrayMissingValue>missing value</ArrayMissingValue>
+<ArrayNotAscending>{0} isn''t sorted in ascending order: {1}.</ArrayNotAscending>
+<ArrayNotDescending>{0} isn''t sorted in descending order: {1}.</ArrayNotDescending>
+<ArrayNotEvenlySpaced>{0} isn''t evenly spaced: [{1}]={2}, [{3}]={4}, spacing={5}, expected spacing={6}.</ArrayNotEvenlySpaced>
+<ArrayRemove>ERROR in {0}.remove: index ({1}) &gt;= size ({2}).</ArrayRemove>
+<ArraySubsetStart>ERROR in {0}.subset: startIndex={1} must be at least 0.</ArraySubsetStart>
+<ArraySubsetStride>ERROR in {0}.subset: stride={1} must greater than 0.</ArraySubsetStride>
+
 
 <!-- These messages are related to Search by Category. -->
 <categoryTitleHtml>Search for Datasets by Category</categoryTitleHtml>
@@ -163,7 +189,7 @@ a table of datasets is displayed (e.g., when you do a full text search for datas
 <!-- Don't change the examples (from defaultN...). -->
 <convertFipsCountyIntro><![CDATA[
 This web page lets you convert a 5-digit, U.S.
-<a href="http://www.itl.nist.gov/fipspubs/fip6-4.htm">FIPS county code</a>
+<a rel="bookmark" href="http://www.itl.nist.gov/fipspubs/fip6-4.htm">FIPS county code</a>
 to/from a county name.
 <br>For example, FIPS code "06053" converts to "CA, Monterey" (the state's postal
 <br>abbreviation plus the county's name).
@@ -201,7 +227,7 @@ to/from a county name.
 <li><a name="equivalent">County-Equivalent Entities</a> -
   This service includes county-equivalent entities from
   <br>U.S. protectorates and freely associated states from Appendix A and B of the
-  <br><a href="http://www.itl.nist.gov/fipspubs/co-codes/states.txt">official FIPS list</a>.
+  <br><a rel="bookmark" href="http://www.itl.nist.gov/fipspubs/co-codes/states.txt">official FIPS list</a>.
     The state-level entities are:
   <br>60000=AS=AMERICA SAMOA
   <br>64000=FM=FEDERATED STATES OF MICRONESIA
@@ -235,7 +261,7 @@ href="{0}/convert/fipscounty.txt?county=CA%2C%20Monterey"
   <br>&nbsp;
 </ul>
 Note that the parameter values in the URL must be properly
- <a href="http://en.wikipedia.org/wiki/Percent-encoding">percent encoded</a>,
+ <a rel="help" href="http://en.wikipedia.org/wiki/Percent-encoding">percent encoded</a>,
  which is normally taken care of by a browser.
 ]]></convertFipsCountyService>
 
@@ -248,8 +274,9 @@ Note that the parameter values in the URL must be properly
 <!-- Don't change the examples (from defaultN...). -->
 <convertKeywordsIntro><![CDATA[
 This web page lets you convert a 
-<a href="http://cf-pcmdi.llnl.gov/documents/cf-standard-names/standard-name-table/current/cf-standard-name-table.html/">CF Standard Name</a>
-to/from a <a href="http://gcmd.nasa.gov/Resources/valids/archives/keyword_list.html">GCMD Science Keyword</a>.
+<a rel="bookmark" href="http://cf-pcmdi.llnl.gov/documents/cf-standard-names/standard-name-table/current/cf-standard-name-table.html/">CF Standard Name</a>
+to/from a 
+<a rel="bookmark" href="http://gcmd.nasa.gov/Resources/valids/archives/keyword_list.html">GCMD Science Keyword</a>.
 <br>Usually, there are more than one GCMD Science Keywords associated with a given
 <br>CF Standard Name, and vice versa.  For example, converting the CF Standard Name<tt>
 <br>&nbsp;&nbsp;air_pressure</tt> 
@@ -310,7 +337,7 @@ href="{0}/convert/keywords.txt?gcmd=Atmosphere%20%3e%20Atmospheric%20Pressure%20
 </ul>
 Percent Encoding - 
 The parameter values in the URL must be properly 
-<a href="http://en.wikipedia.org/wiki/Percent-encoding">Percent Encoded</a>,
+<a rel="help" href="http://en.wikipedia.org/wiki/Percent-encoding">Percent Encoded</a>,
 <br>which is normally taken care of by a browser.
 
 <p><a name="exact">Exact Match</a> -
@@ -328,9 +355,9 @@ The parameter values in the URL must be properly
 <convertTimeIntro><![CDATA[
 This web page lets you convert a time value to/from an
 <ul>
-<li><a href="http://www.unidata.ucar.edu/software/udunits/">UDUNITS-compatible Number</a>
+<li><a rel="bookmark" href="http://www.unidata.ucar.edu/software/udunits/">UDUNITS-compatible Number</a>
   - for example, 473472000 "seconds since 1970-01-01T00:00:00Z", or
-<li><a href="http://www.iso.org/iso/date_and_time_format">ISO 8601:2004 "extended" format String</a>
+<li><a rel="help" href="http://www.iso.org/iso/date_and_time_format">ISO 8601:2004 "extended" format String</a>
   in the form
   <span style="white-space: nowrap;">YYYY-MM-DDThh:mm:ssZ</span> - for example,
   <span style="white-space: nowrap;">1985-01-02T00:00:00Z</span> .
@@ -392,18 +419,18 @@ time values in ERDDAP always use the Zulu (UTC, GMT) time zone.
   ("seconds since 1970-00-00T00:00:00Z")
   <br>for all datasets allows times from different datasets to be compared easily. 
   <br>Seconds are the 
-    <a href="http://en.wikipedia.org/wiki/International_System_of_Units">International 
+    <a rel="help" href="http://en.wikipedia.org/wiki/International_System_of_Units">International 
       System of Units (SI)</a>
     base unit of time.
   <br>1970-01-01T00:00:00Z is the start of the Unix epoch, which is widely used by computer 
   <br>operating systems.  "seconds since 1970-00-00T00:00:00Z" are widely used and are 
   <br>often called
-    <a href="http://en.wikipedia.org/wiki/Unix_time">Unix time</a> or epoch seconds.
+    <a rel="help" href="http://en.wikipedia.org/wiki/Unix_time">Unix time</a> or epoch seconds.
     The use of the units string 
   <br>"seconds since 1970-00-00T00:00:00Z" makes Unix time compatible with
-    <a href="http://www.unidata.ucar.edu/software/udunits/udunits-2/udunits2.html">UDUNITS-2</a>
+    <a rel="bookmark" href="http://www.unidata.ucar.edu/software/udunits/udunits-2/udunits2.html">UDUNITS-2</a>
     and 
-  <br>the <a href="http://cf-pcmdi.llnl.gov/documents/cf-conventions">Climate and Forecast Metadata
+  <br>the <a rel="help" href="http://cf-pcmdi.llnl.gov/documents/cf-conventions">Climate and Forecast Metadata
     Conventions (CF)</a>,
     which uses UDUNITS-2 for units 
   <br>definitions.
@@ -411,7 +438,7 @@ time values in ERDDAP always use the Zulu (UTC, GMT) time zone.
   
 <li><a name="textRepresentation">Text Representation</a> - Currently, when formatting times as
     text, ERDDAP uses the 
-  <br><a href="http://www.iso.org/iso/date_and_time_format">ISO 8601:2004 "extended" format String</a>, 
+  <br><a rel="help" href="http://www.iso.org/iso/date_and_time_format">ISO 8601:2004 "extended" format String</a>, 
     truncated to the second 
   <br>(e.g., 2011-04-26T14:07:12Z).
   <br>&nbsp;
@@ -421,14 +448,14 @@ time values in ERDDAP always use the Zulu (UTC, GMT) time zone.
   <br>discontinuity in 1582 and the Julian calendar for times before the discontinuity.
   <br>(This behavior is counter to the ISO 8601:2004 standard.)
   <br>See the
-    <a href="http://download.oracle.com/javase/6/docs/api/java/util/GregorianCalendar.html">Java GregorianCalendar class</a>
+    <a rel="help" href="http://download.oracle.com/javase/6/docs/api/java/util/GregorianCalendar.html">Java GregorianCalendar class</a>
     (which ERDDAP uses) for details.
   <br>For example, 17611992 hours since 0001-01-01T00:00:00Z = 2010-03-01T00:00:00Z
   <br>(<a href="{0}/convert/time.html?n=17611992&amp;units=hours%20since%200001-01-01T00:00:00Z">see for yourself</a>)
   <br>&nbsp;
   <br>Currently, ERDDAP does not support any other calendar (including the noleap, 365_day,
   <br>360_day, and Julian calendars defined by the
-    <a href="http://cf-pcmdi.llnl.gov/documents/cf-conventions/1.4/cf-conventions.html#calendar">CF metadata conventions</a>).  However, you 
+    <a rel="help" href="http://cf-pcmdi.llnl.gov/documents/cf-conventions/1.6/cf-conventions.html#calendar">CF metadata conventions</a>).  However, you 
   <br>can store such data in ERDDAP by storing the numbers or Strings in a variable that is
   <br>named something other than "time" and doesn''t include "since" in the units metadata.
   <br>Then, ERDDAP won''t interpret the values as times and won''t convert the data to 
@@ -449,13 +476,13 @@ time values in ERDDAP always use the Zulu (UTC, GMT) time zone.
   <br>&nbsp;
 
 <li><a name="UTC">UTC</a> - As much as is practical, ERDDAP, like Unix time and UDUNITS-2, uses the 
-  <br><a href="http://en.wikipedia.org/wiki/Coordinated_Universal_Time">Coordinated Universal 
+  <br><a rel="help" href="http://en.wikipedia.org/wiki/Coordinated_Universal_Time">Coordinated Universal 
     Time (UTC)</a> 
     time system. UTC is the modern version of the GMT 
   <br>time system.  UTC uses occasional leap seconds to stay close to the International Atomic
   <br>Time (TAI). GPS devices use GPS time (which doesn''t use leap seconds) internally,
   <br>but display UTC time to users. (See 
-    <a href="http://tycho.usno.navy.mil/systime.html">http://tycho.usno.navy.mil/systime.html</a>
+    <a rel="help" href="http://tycho.usno.navy.mil/systime.html">http://tycho.usno.navy.mil/systime.html</a>
     or other 
   <br>discussions of Systems of Time.) Strictly speaking, UTC can''t be used in some
   <br>situations for far future times (e.g., in models), since the occurrence of leap
@@ -474,12 +501,12 @@ time values in ERDDAP always use the Zulu (UTC, GMT) time zone.
   <br>time calculations and ignore leap seconds.  With ERDDAP, Unix time, and UDUNITS-2
   <br>numeric time values, all minutes are treated as having 60 seconds, even though UTC
   <br>minutes with leap seconds have 61 seconds.  Note that database programs like
-    <a href="http://www.sql4oracle.com/?p=504">Oracle</a>,
+    <a rel="bookmark" href="http://www.sql4oracle.com/?p=504">Oracle</a>,
   <br>
-    <a href="http://dev.mysql.com/doc/refman/5.0/en/time-zone-leap-seconds.html">MySQL</a>,
-    <a href="http://postgresql-8.4.sourcearchive.com/documentation/8.4.0/pgtz_8c-source.html">PostgreSQL</a>,
+    <a rel="bookmark" href="http://dev.mysql.com/doc/refman/5.0/en/time-zone-leap-seconds.html">MySQL</a>,
+    <a rel="bookmark" href="http://postgresql-8.4.sourcearchive.com/documentation/8.4.0/pgtz_8c-source.html">PostgreSQL</a>,
     and languages like 
-     <a href="http://bytes.com/topic/c-sharp/answers/231842-datetime-accounts-leap-seconds">C#</a>
+     <a rel="bookmark" href="http://bytes.com/topic/c-sharp/answers/231842-datetime-accounts-leap-seconds">C#</a>
      also try to basically ignore leap seconds.
   <br>This won''t cause problems when converting UTC String date+time+timeZone values into
   <br>ERDDAP numeric values if the times are then reconverted back to date+time+Zulu
@@ -495,7 +522,7 @@ time values in ERDDAP always use the Zulu (UTC, GMT) time zone.
   <br>seconds between two points in time, you can use ERDDAP to handle the time data,
   <br>but subtracting one numeric time value from the other is just the first step in
   <br>the calculation.  You need manually adjust that value by consulting a
-  <br><a href="http://en.wikipedia.org/wiki/Leap_seconds">table of leap seconds</a>.
+  <br><a rel="help" href="http://en.wikipedia.org/wiki/Leap_seconds">table of leap seconds</a>.
   <br>&nbsp;
 
 <li><a name="lowResolutionTimes">Low Resolution Times and Time Spans (Time Ranges)</a> - 
@@ -547,7 +574,7 @@ href="{0}/convert/time.txt?isoTime=1985-01-02T00:00:00Z&amp;units=seconds%20sinc
   <br>&nbsp;
 </ul>
 Note that the parameter values in the URL must be properly
- <a href="http://en.wikipedia.org/wiki/Percent-encoding">percent encoded</a>,
+ <a rel="help" href="http://en.wikipedia.org/wiki/Percent-encoding">percent encoded</a>,
  which is normally taken care of by a browser.
 <br>The "&amp;units=..." parameter is optional. The default value is "seconds since 1970-01-01T00:00:00Z".
 ]]></convertTimeService>
@@ -579,8 +606,8 @@ For example, "seconds since 1970-01-01T00:00:00Z".
 <table class="erd commonBGColor" cellspacing="2">
 <tr>
   <th width="8%">Issue</th>
-  <th width="23%"><a href="http://www.unidata.ucar.edu/software/udunits/udunits-2/udunits2lib.html#Syntax">UDUNITS</a></th>
-  <th width="23%"><a href="http://aurora.regenstrief.org/~ucum/ucum.html#section-Grammar-of-Units-and-Unit-Terms">UCUM</a></th>
+  <th width="23%"><a rel="bookmark" href="http://www.unidata.ucar.edu/software/udunits/udunits-2/udunits2lib.html#Syntax">UDUNITS</a></th>
+  <th width="23%"><a rel="bookmark" href="http://aurora.regenstrief.org/~ucum/ucum.html#section-Grammar-of-Units-and-Unit-Terms">UCUM</a></th>
   <th width="23%">UDUNITS &rarr; UCUM Converter</th>
   <th width="23%">UCUM &rarr; UDUNITS Converter</th>
 </tr>
@@ -615,7 +642,7 @@ For example, "seconds since 1970-01-01T00:00:00Z".
     "&micro;" and ''u'' means "times 10^-6")</td>
   <td>Supported (see UDUNITS-2 udunits2-prefixes.xml)</td>
   <td>Supported (see the c/s column of the
-    <a href="http://aurora.regenstrief.org/~ucum/ucum.html#prefixes">prefix symbol table</a>)</td>
+    <a rel="bookmark" href="http://aurora.regenstrief.org/~ucum/ucum.html#prefixes">prefix symbol table</a>)</td>
   <td>The prefix is converted to its acronym (e.g., ''u'')</td>
   <td>The prefix is left as its acronym (e.g., ''u'')</td>
 </tr>
@@ -701,8 +728,8 @@ For most units, there is a one-to-one correspondence between units in UDUNITS an
 <table class="erd commonBGColor" cellspacing="2">
 <tr>
   <th width="8%">Units</th>
-  <th width="23%"><a href="http://www.unidata.ucar.edu/software/udunits/udunits-2/udunits2lib.html#Syntax">UDUNITS</a></th>
-  <th width="23%"><a href="http://aurora.regenstrief.org/~ucum/ucum.html#section-Grammar-of-Units-and-Unit-Terms">UCUM</a></th>
+  <th width="23%"><a rel="bookmark" href="http://www.unidata.ucar.edu/software/udunits/udunits-2/udunits2lib.html#Syntax">UDUNITS</a></th>
+  <th width="23%"><a rel="bookmark" href="http://aurora.regenstrief.org/~ucum/ucum.html#section-Grammar-of-Units-and-Unit-Terms">UCUM</a></th>
   <th width="23%">UDUNITS &rarr; UCUM Converter</th>
   <th width="23%">UCUM &rarr; UDUNITS Converter</th>
 </tr>
@@ -718,8 +745,8 @@ For most units, there is a one-to-one correspondence between units in UDUNITS an
   <td>UDUNITS treats degF, degC, degK, degree_north, degree_east, degree_west,
     degree_true, and their aliases as separate units.
     Some standards (e.g.,
-    <a href="http://ferret.wrc.noaa.gov/noaa_coop/coop_cdf_profile.html">COARDS</a> and
-    <a href="http://cf-pcmdi.llnl.gov/">CF</a>), use
+    <a rel="help" href="http://ferret.wrc.noaa.gov/noaa_coop/coop_cdf_profile.html">COARDS</a> and
+    <a rel="help" href="http://cf-pcmdi.llnl.gov/">CF</a>), use
     degree_east and degree_north to identify the longitude and latitude variables
     in a data file.</td>
   <td>UCUM recognizes separate temperature degree units (e.g, [degF], Cel, K),
@@ -784,12 +811,12 @@ For most units, there is a one-to-one correspondence between units in UDUNITS an
 <p>&nbsp;<hr>
 <h2><a name="unitsFilter">Requesting</a> UDUNITS or UCUM Units from Tabledap</h2>
 When you request data or a graph from a
-<a href="&erddapUrl;/tabledap/index.html">tabledap dataset</a>,
+<a href="{0}/tabledap/index.html">tabledap dataset</a>,
 you can request that the units
 <br>be described via UDUNITS by appending <tt>&amp;units("UDUNITS")</tt> at the end of the request.
 <br>Or, you can request that the units be described via UCUM by appending <tt>&amp;units("UCUM")</tt>.
 <br>(For details, see the
-<a href="&erddapUrl;/tabledap/documentation.html#functions">tabledap documentation</a>.)
+<a rel="help" href="{0}/tabledap/documentation.html#functions">tabledap documentation</a>.)
 <br>On this ERDDAP, the default for most/all datasets is {1}.
 ]]></convertUnitsFilter>
 
@@ -805,8 +832,8 @@ you can request that the units
     first make sure that the input string is valid.
   <br>If you think the input string is valid,
     please email the details to <tt>bob dot simons at noaa dot gov</tt> .
-<li>See the detailed comparison of UDUNITS and UCUM <a href="#syntaxComparison">syntax</a>
-    and <a href="#unitsComparison">units</a> below.
+<li>See the detailed comparison of UDUNITS and UCUM <a rel="help" href="#syntaxComparison">syntax</a>
+    and <a rel="help" href="#unitsComparison">units</a> below.
 <li>DISCLAIMER OF LIABILITY - No person or organization associated with this web site
   <br>makes any warranty, express or implied, including warranties of merchantability
   <br>and fitness for a particular purpose, or assumes any legal liability for the accuracy,
@@ -817,22 +844,23 @@ you can request that the units
 <convertUnitsIntro><![CDATA[
 Two common standards for writing units of measure are:
 <ul>
-<li><a href="http://www.unidata.ucar.edu/software/udunits/">UDUNITS</a>
+<li><a rel="help" href="http://www.unidata.ucar.edu/software/udunits/">UDUNITS</a>
   - from
-  <a href="http://www.unidata.ucar.edu/">Unidata</a>,
+  <a rel="bookmark" href="http://www.unidata.ucar.edu/">Unidata</a>,
   which is used in
-  <a href="http://ferret.wrc.noaa.gov/noaa_coop/coop_cdf_profile.html">COARDS</a>,
-  <a href="http://cf-pcmdi.llnl.gov/documents/cf-conventions/">CF</a>, and
-  <a href="http://www.unidata.ucar.edu/software/netcdf/">NetCDF</a> data files. For example,
+  <a rel="help" href="http://ferret.wrc.noaa.gov/noaa_coop/coop_cdf_profile.html">COARDS</a>,
+  <a rel="help" href="http://cf-pcmdi.llnl.gov/documents/cf-conventions/">CF</a>, and
+  <a rel="help" href="http://www.unidata.ucar.edu/software/netcdf/">NetCDF</a> 
+  data files. For example,
   <br>UDUNITS has many options for degrees Celsius, including "degree_C" and "degC".
   <br>&nbsp;
-<li><a href="http://aurora.regenstrief.org/~ucum/ucum.html">UCUM</a>
+<li><a rel="help" href="http://aurora.regenstrief.org/~ucum/ucum.html">UCUM</a>
   - the Unified Code for Units of Measure.
-  <a href="http://www.opengeospatial.org/">OGC</a>
+  <a rel="bookmark" href="http://www.opengeospatial.org/">OGC</a>
   services such as
-  <a href="http://www.opengeospatial.org/standards/sos">SOS</a>,
-  <a href="http://www.opengeospatial.org/standards/wcs">WCS</a>, and
-  <a href="http://www.opengeospatial.org/standards/wms">WMS</a>
+  <a rel="help" href="http://www.opengeospatial.org/standards/sos">SOS</a>,
+  <a rel="help" href="http://www.opengeospatial.org/standards/wcs">WCS</a>, and
+  <a rel="help" href="http://www.opengeospatial.org/standards/wms">WMS</a>
   <br>often refer to UCUM as UOM (Units Of Measure). For example, UCUM has just one
   <br>case-sensitive option for degrees Celsius: "Cel".
 </ul>
@@ -855,7 +883,7 @@ If you change the extension of this web page''s URL from .html to .txt,
   >{0}/convert/units.txt?UCUM=Cel.m-1</a>
 </ul>
 Note that the parameter value must be properly
-<a href="http://en.wikipedia.org/wiki/Percent-encoding">percent encoded</a>,
+<a rel="help" href="http://en.wikipedia.org/wiki/Percent-encoding">percent encoded</a>,
 which is normally taken care of by a browser.
 ]]></convertUnitsService>
 
@@ -917,15 +945,16 @@ Well, you can do anything you want with your graphs, of course.
 But some things you might not have considered are:
 <ul>
 <li>Web page authors can
-  <a href="http://coastwatch.pfeg.noaa.gov/erddap/images/embed.html">embed a graph of the latest data in a web page</a>
+  <a rel="help" href="http://coastwatch.pfeg.noaa.gov/erddap/images/embed.html">embed a graph of the latest data in a web page</a>
   using HTML &lt;img&gt; tags.
-<li>Anyone can use <a href="{0}/slidesorter.html">Slide Sorter</a>
+<li>Anyone can use <a rel="help" href="{0}/slidesorter.html">Slide Sorter</a>
   to build a personal web page that displays graphs of the latest data, 
   each in its own, draggable slide.
-<li>Anyone can use or make
-  <a href="http://coastwatch.pfeg.noaa.gov/erddap/images/gadgets/GoogleGadgets.html">Google Gadgets</a>
-  to display images with the latest data on their iGoogle home page.
-  <br>&nbsp;
+<!-- li>Anyone can use or make
+  <a href="http://coastwatch.pfeg.noaa.gov/erddap/images/
+/GoogleGadgets.html">Google Gadgets</a>
+  to display images with the latest data.
+  <br-->&nbsp;
 </ul>
 ]]></doWithGraphs>
 
@@ -1009,9 +1038,9 @@ But some things you might not have considered are:
 <EDDGridDapLongDescription><![CDATA[
 <b>griddap</b> lets you request a data subset, graph, or map from a gridded dataset (for example, sea surface
 <br>temperature data from a satellite), via a specially formed URL. griddap uses the
-<br><a href="http://www.opendap.org">OPeNDAP</a>
-    <a href="http://www.opendap.org/pdf/ESE-RFC-004v1.2.pdf">Data Access Protocol (DAP)</a> and its
-    <a href="http://docs.opendap.org/index.php/UserGuideOPeNDAPMessages#Selecting_Data:_Using_Constraint_Expressions">projection constraints</a>.
+<br><a rel="bookmark" href="http://www.opendap.org">OPeNDAP</a>
+    <a rel="help" href="http://www.opendap.org/pdf/ESE-RFC-004v1.2.pdf">Data Access Protocol (DAP)</a> and its
+    <a rel="help"  href="http://docs.opendap.org/index.php/UserGuideOPeNDAPMessages#Selecting_Data:_Using_Constraint_Expressions">projection constraints</a>.
 <p><b>The URL specifies what you want:</b> the dataset, a description of the graph or the subset of the data, and the file
 <br>type for the response.
 <ul>
@@ -1078,9 +1107,9 @@ But some things you might not have considered are:
 <EDDTableDapLongDescription><![CDATA[
 <b>tabledap</b> lets you request a data subset, a graph, or a map from a tabular dataset (for example, buoy data),
 <br>via a specially formed URL. tabledap uses the 
-  <a href="http://www.opendap.org">OPeNDAP</a>
-  <a href="http://www.opendap.org/pdf/ESE-RFC-004v1.2.pdf">Data Access Protocol (DAP)</a> and its
-  <a href="http://docs.opendap.org/index.php/UserGuideOPeNDAPMessages#Constraint_Expressions">selection constraints</a>.
+  <a rel="bookmark" href="http://www.opendap.org">OPeNDAP</a>
+  <a rel="help" href="http://www.opendap.org/pdf/ESE-RFC-004v1.2.pdf">Data Access Protocol (DAP)</a> and its
+  <a rel="help" href="http://docs.opendap.org/index.php/UserGuideOPeNDAPMessages#Constraint_Expressions">selection constraints</a>.
 <p><b>The URL specifies what you want:</b> the dataset, a description of the graph or the subset of the data, and the file
 <br>type for the response.
 <ul>
@@ -1191,7 +1220,8 @@ This constraint variable has a limited number of values. They are listed here.
 <fileHelpGrid_nc>Download a NetCDF-3 binary file with COARDS/CF/THREDDS metadata.</fileHelpGrid_nc>
 <fileHelpTable_nc>Download a flat, table-like, NetCDF-3 binary file with COARDS/CF/THREDDS metadata.</fileHelpTable_nc>
 <fileHelp_ncHeader>View the header (the metadata) for the NetCDF-3 file.</fileHelp_ncHeader>
-<fileHelp_ncCF>Download a structured, NetCDF-3 binary file using the new CF Discrete Sampling Geometries.</fileHelp_ncCF>
+<fileHelp_ncCF>Download a NetCDF-3 CF Discrete Sampling Geometries file (Contiguous Ragged Array).</fileHelp_ncCF>
+<fileHelp_ncCFMA>Download a NetCDF-3 CF Discrete Sampling Geometries file (Multidimensional Array).</fileHelp_ncCFMA>
 <fileHelpGrid_odvTxt>Download time,latitude,longitude,otherVariables as an ODV Generic Spreadsheet File (.txt).</fileHelpGrid_odvTxt>
 <fileHelpTable_odvTxt>Download longitude,latitude,time,otherColumns as an ODV Generic Spreadsheet File (.txt).</fileHelpTable_odvTxt>
 <fileHelp_subset>View an HTML form which uses faceted search to simplify picking subsets of the data.</fileHelp_subset>
@@ -1263,6 +1293,20 @@ For POST: remove <font> and </font> tags.
 -->
 <getStartedHtml><![CDATA[<a name="GetStarted"><font class="standoutColor">Start Using ERDDAP:<br>&nbsp;&nbsp;&nbsp;&nbsp;Search for Interesting Datasets</font></a>]]></getStartedHtml>
 
+<!-- This prevents naive requests for large amounts of data in an HtmlTable
+from crashing the user's browser.      
+This is used to override TableWriterHtmlTable.htmlTableMaxMB.
+If this limit is reached, the table is truncated and <someDataNotDisplayed> is displayed.
+50 here causes Firefox 13.0.1 on Windows XP to crash.
+25 here causes Google Chrome 19.0 on Windows XP to crash.
+IE on Windows XP is painfully slow.
+-->
+<htmlTableMaxMB>15</htmlTableMaxMB>
+<htmlTableMaxMessage>
+To avoid crashing your browser, some additional data was not displayed.&lt;br /&gt;
+You can avoid this by further constraining your request, so the response has less data.&lt;br /&gt;
+Or, download a file which can be viewed in a program which can handle large files (e.g., a .csv file in a text editor).&lt;br /&gt;</htmlTableMaxMessage>
+
 <!-- The ETOPO2v2g_MSB.raw, gshhs*, nationalBoundaries*, and stateBoundaries*
 files must be in SSR.getContextDirectory() + "WEB-INF/ref/".
 I got state and national boundaries from GMT:
@@ -1306,7 +1350,7 @@ You can bypass ERDDAP''s web pages and use ERDDAP''s RESTful web services
 (for example, for searching for datasets, for downloading data, for making maps)
 directly from any computer program (for example, Matlab, R, or a program that you write)
 and even from web pages (via HTML image tags or JavaScript).  
-<a href="{0}/rest.html">documentation</a>
+<a rel="help" href="{0}/rest.html">documentation</a>
 ]]></indexDescribeServices>
 
 <infoAboutFrom>Information about {0}, from {1}</infoAboutFrom>
@@ -1371,7 +1415,7 @@ Wait {1} minutes, then try again.
 ]]></loginDescribeCustom>
 
 <loginDescribeOpenID><![CDATA[
-<p><a href="http://openid.net/">OpenID</a> is an open standard that lets you
+<p><a rel="help" href="http://openid.net/">OpenID</a> is an open standard that lets you
 log in with your password at one web site
 <br>and then log in without your password at many other web sites, including ERDDAP.
 ]]></loginDescribeOpenID>
@@ -1408,7 +1452,7 @@ log in with your password at one web site
 <li>Your password must be 7 or more characters long.
   <br>&nbsp;
 <li>Make sure your browser is set to allow
-  <a href="http://en.wikipedia.org/wiki/HTTP_cookie">cookies</a>:
+  <a rel="help" href="http://en.wikipedia.org/wiki/HTTP_cookie">cookies</a>:
   <ul>
   <li>In Internet Explorer, use "Tools : Internet Options : Privacy"
   <li>In Firefox, use "Options : Options : Privacy"
@@ -1729,10 +1773,35 @@ This Make A Graph web page just simplifies the creation of tabledap URLs with gr
 <br>Then you don't have to use this form to get data. See the "Bypass this form" link below.</b>
 ]]></magTableHtml>
 
+
+<memoryTooMuchData>Your query produced too much data.  Try to request less data.</memoryTooMuchData>
+
+<memoryArraySize>The request needs an array size ({0}) bigger than Java ever allows ({1}).</memoryArraySize>
+
+<memoryThanCurrentlySafe>The request needs more memory ({0} MB) than is currently available in this Java setup ({1} MB).</memoryThanCurrentlySafe> 
+
+<memoryThanSafe>The request needs more memory ({0} MB) than is ever safely available in this Java setup ({1} MB).</memoryThanSafe> 
+
+
 <metadataDownload>Click to download {0} metadata.</metadataDownload>
 
 
 <moreInformation>more information</moreInformation>
+
+<!-- These MessageFormat-style messages are pushed into MustBe.xxx. -->
+<!-- This is an important error message. It indicates the request was valid,
+but the result was no data. Clients may be looking for this exact message.
+For now, it is best not to change this.
+!!! This should at least have an error number, so not reliant on specific text!!!
+But dods.dap.DODSException has no relevant exception.
+Better to return an empty file? But .nc and others don't allow 0-length data.
+-->
+<MustBeThereIsNoData>Your query produced no matching results.</MustBeThereIsNoData>
+<!-- Many file types put a limit on how much data a file can hold (e.g., 2GB). -->
+<MustBeNotNull>{0} must not be null.</MustBeNotNull>
+<MustBeNotEmpty>{0} must not be an empty string.</MustBeNotEmpty>
+<MustBeInternalError>Internal Error</MustBeInternalError>
+<MustBeOutOfMemoryError>Out of Memory Error</MustBeOutOfMemoryError>
 
 <!-- These can have HTML content -->
 <nMatching1>1 matching dataset.</nMatching1>
@@ -1760,7 +1829,7 @@ This Make A Graph web page just simplifies the creation of tabledap URLs with gr
 <noXxxBecause2>{0} isn''t available for this dataset because {1}.</noXxxBecause2>
 <noXxxNotActive>this ERDDAP''s {0} service is not active</noXxxNotActive>
 <noXxxNoAxis1>there aren't any axis variables with more than one value</noXxxNoAxis1>
-<noXxxNoCdmDataType>there is no .ncCF support for cdm_data_type={0}</noXxxNoCdmDataType>
+<noXxxNoCdmDataType>there is no .ncCF or .ncCFMA support for cdm_data_type={0}</noXxxNoCdmDataType>
 <noXxxNoColorBar>none of variables has colorBar metadata</noXxxNoColorBar>
 <noXxxNoLL>there is no longitude and/or latitude variable</noXxxNoLL>
 <noXxxNoLLGt1>the longitude and/or latitude variable has only one value</noXxxNoLLGt1>
@@ -1912,28 +1981,28 @@ Widths are in ratio 1:2:3.
 
 <requestFormatExamplesHtml><![CDATA[
 (for example,
-  <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html#sec9.3">HTTP GET</a>,
-  <a href="http://www.xml.com/pub/a/98/10/guide0.html">XML</a>,
-  <a href="http://www.w3schools.com/soap/soap_intro.asp">SOAP+XML</a>,
-  <a href="http://www.opendap.org/pdf/ESE-RFC-004v1.2.pdf">OPeNDAP</a>,
-  <a href="http://www.opengeospatial.org/standards/wcs">WCS</a>,
-  <a href="http://www.opengeospatial.org/standards/wfs">WFS</a>,
-  <a href="http://www.opengeospatial.org/standards/requests/32">SOS</a>,
+  <a rel="help" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html#sec9.3">HTTP GET</a>,
+  <a rel="help" href="http://www.xml.com/pub/a/98/10/guide0.html">XML</a>,
+  <a rel="help" href="http://www.w3schools.com/soap/soap_intro.asp">SOAP+XML</a>,
+  <a rel="help" href="http://www.opendap.org/pdf/ESE-RFC-004v1.2.pdf">OPeNDAP</a>,
+  <a rel="help" href="http://www.opengeospatial.org/standards/wcs">WCS</a>,
+  <a rel="help" href="http://www.opengeospatial.org/standards/wfs">WFS</a>,
+  <a rel="help" href="http://www.opengeospatial.org/standards/requests/32">SOS</a>,
   or an HTML form)
 ]]></requestFormatExamplesHtml>
 
 <resultsFormatExamplesHtml><![CDATA[
 (for example,
-  <a href="http://www.w3schools.com/html/html_tables.asp">.html table</a>,
-  <a href="http://www.geotools.org/ArcInfo+ASCII+Grid+format">ESRI .asc</a>,
-  <a href="http://earth.google.com/">Google Earth .kml</a>,
-  <a href="http://www.mathworks.com/">.mat</a>,
-  <a href="http://www.unidata.ucar.edu/software/netcdf/">.nc</a>,
-  <a href="http://odv.awi.de/en/documentation/">ODV .txt</a>,
-  <a href="http://www.creativyst.com/Doc/Articles/CSV/CSV01.htm">.csv</a>,
-  <a href="http://www.cs.tut.fi/~jkorpela/TSV.html">.tsv</a>,
-  <a href="http://www.json.org/">.json</a>,
-  <a href="http://www.w3schools.com/xhtml/xhtml_intro.asp">.xhtml</a>)
+  <a rel="help" href="http://www.w3schools.com/html/html_tables.asp">.html table</a>,
+  <a rel="help" href="http://www.geotools.org/ArcInfo+ASCII+Grid+format">ESRI .asc</a>,
+  <a rel="help" href="http://earth.google.com/">Google Earth .kml</a>,
+  <a rel="help" href="http://www.mathworks.com/">.mat</a>,
+  <a rel="help" href="http://www.unidata.ucar.edu/software/netcdf/">.nc</a>,
+  <a rel="help" href="http://odv.awi.de/en/documentation/">ODV .txt</a>,
+  <a rel="help" href="http://www.creativyst.com/Doc/Articles/CSV/CSV01.htm">.csv</a>,
+  <a rel="help" href="http://www.cs.tut.fi/~jkorpela/TSV.html">.tsv</a>,
+  <a rel="help" href="http://www.json.org/">.json</a>,
+  <a rel="help" href="http://www.w3schools.com/xhtml/xhtml_intro.asp">.xhtml</a>)
 ]]></resultsFormatExamplesHtml>
 
 <!-- The searched-for text appears after this label. -->
@@ -2006,7 +2075,7 @@ Widths are in ratio 1:2:3.
 
 <!-- Yes, '' is correct.  {0}=erddapUrl {1}=lowercaseProtocol {2}=uppercaseProtocol -->
 <seeProtocolDocumentation><![CDATA[
-For details, see ERDDAP''s <a href="{0}/{1}/documentation.html">{2} Documentation</a>.
+For details, see ERDDAP''s <a rel="help" href="{0}/{1}/documentation.html">{2} Documentation</a>.
 ]]></seeProtocolDocumentation>
 
 <selectNext>Select the next item.</selectNext>
@@ -2112,7 +2181,7 @@ The appearance of external links on this World Wide Web site does not constitute
 <br>&nbsp;
 <hr>
 <h2><a name="privacyPolicy">Privacy Policy</a></h2>
-ERDDAP follows <a href="http://www.noaa.gov/privacy.html">NOAA's Privacy Policy Guidelines</a>.
+ERDDAP follows <a rel="bookmark" href="http://www.noaa.gov/privacy.html">NOAA's Privacy Policy Guidelines</a>.
 ]]></standardPrivacyPolicy>
 
 <!-- Text for the Submit button on various forms. -->
@@ -2130,7 +2199,7 @@ ERDDAP follows <a href="http://www.noaa.gov/privacy.html">NOAA's Privacy Policy 
 ERDDAP has an email/URL subscription system so that you can be notified immediately whenever
 <br>a dataset changes (for example, whenever new data is added to a near-real-time dataset).
 <br>The system can send you an email or contact a URL that you specify.  
-<br>See also this <a href="{0}/information.html#subscriptions">comparison</a>
+<br>See also this <a rel="help" href="{0}/information.html#subscriptions">comparison</a>
 with ERDDAP''s RSS subscription service.
 ]]></subscriptionHtml>
 
@@ -2141,7 +2210,7 @@ with ERDDAP''s RSS subscription service.
 <li> ERDDAP will treat the information that you provide as confidential and will not release it to
   <br>anyone else.
 <li> These subscriptions have nothing to do with getting the actual data (see
-  <a href="{0}/index.html">ERDDAP''s home page</a>).
+  <a rel="start" href="{0}/index.html">ERDDAP''s home page</a>).
 <li> ERDDAP is very good at detecting changes to gridded datasets because it can detect when
   <br>the axis values (e.g., the time values) change.
 <li> ERDDAP is not very good at detecting changes to tabular datasets because there are usually
@@ -2149,7 +2218,7 @@ with ERDDAP''s RSS subscription service.
 <li> ERDDAP will detect if a dataset becomes unavailable (but perhaps not immediately).
   <br>ERDDAP will immediately detect when that dataset becomes available again.
 <li> ERDDAP makes no promises about the suitability, reliability, or correctness of this service
-  <br>(see ERDDAP''s <a href="{0}/legal.html">DISCLAIMERS</a>).
+  <br>(see ERDDAP''s <a rel="copyright" href="{0}/legal.html">DISCLAIMERS</a>).
 </ul>
 ]]></subscription2Html>
 
@@ -2214,7 +2283,7 @@ Your request for an email with a list of your subscriptions has been submitted s
 <p><b>To remove a (another) subscription, please fill out this form:</b>
 <br>Normally, you won''t fill out this form by hand.
 <br>You will click on the link in the email that ERDDAP sends you after you request a
-<br><a href="{0}/subscriptions/list.html">list of your subscriptions</a>.
+<br><a rel="bookmark" href="{0}/subscriptions/list.html">list of your subscriptions</a>.
 ]]></subscriptionRemoveHtml>
 
 <subscriptionRemove2>It includes URLs to remove each of your subscriptions.</subscriptionRemove2>
@@ -2228,7 +2297,7 @@ Your request for an email with a list of your subscriptions has been submitted s
 
 <subscriptionsNotAvailable><![CDATA[
 <p><b>Sorry.  The email/URL subscription system is not available at this ERDDAP installation.</b>
-<br>Consider using the <a href="{0}/information.html#subscriptions">RSS</a>
+<br>Consider using the <a rel="help" href="{0}/information.html#subscriptions">RSS</a>
   subscription service instead.
 ]]></subscriptionsNotAvailable>
 
@@ -2252,7 +2321,7 @@ Your request for an email with a list of your subscriptions has been submitted s
 <p><b>To validate a (another) subscription, please fill out this form:</b>
 <br>Normally, you won''t fill out this form by hand.
 <br>You will click on a link in the email that ERDDAP sends you after you request to
-  <a href="{0}/subscriptions/add.html">add a subscription</a>.
+  <a rel="bookmark" href="{0}/subscriptions/add.html">add a subscription</a>.
 ]]></subscriptionValidateHtml>
 
 <subscriptionValidateSuccess><![CDATA[
@@ -2324,11 +2393,11 @@ make it easier for you to get scientific data.-->
   <br>ERDDAP always uses the Zulu (UTC, GMT) time zone to remove the difficulties
     of working with different time zones and standard time vs. daylight saving time.
   <br>ERDDAP has
-    <a href="&erddapUrl;/convert/time.html">a service to convert a numeric time to/from a string time</a>.
+    <a rel="bookmark" href="&erddapUrl;/convert/time.html">a service to convert a numeric time to/from a string time</a>.
   <br>&nbsp;
 
 <li><b>ERDDAP has web pages (for humans with browsers) and 
-     <a href="&erddapUrl;/rest.html">RESTful&nbsp;web&nbsp;services</a> 
+     <a rel="help" href="&erddapUrl;/rest.html">RESTful&nbsp;web&nbsp;services</a> 
      (for computer programs).</b>
   <br>You can bypass ERDDAP's web pages and use ERDDAP's RESTful web services 
     (for example, for searching for datasets, for downloading data, for making maps)
@@ -2336,20 +2405,20 @@ make it easier for you to get scientific data.-->
     and even from web pages (via HTML image tags or JavaScript).  
 </ul>
 
-<p><b><a href="http://www.youtube.com/watch?v=18xZoXu1USM">For a quick introduction to ERDDAP,
+<p><b><a rel="help" href="http://www.youtube.com/watch?v=18xZoXu1USM">For a quick introduction to ERDDAP,
   watch the first half of this  
   <img align="bottom" alt="YouTube" src="&erddapUrl;/images/youtube.png" >
   video</a>.</b> <a name="video">(5 minutes)</a>
 <br>In it, a scientist downloads ocean currents forecast data from ERDDAP to model a toxic
 spill in the ocean using  
-<a href="http://response.restoration.noaa.gov/oil-and-chemical-spills/oil-spills/response-tools/gnome.html">NOAA's GNOME software</a> (in 5 minutes!).
+<a rel="bookmark" href="http://response.restoration.noaa.gov/oil-and-chemical-spills/oil-spills/response-tools/gnome.html">NOAA's GNOME software</a> (in 5 minutes!).
 Thanks to Rich Signell. (One tiny error in the video: 
 when searching for datasets, don't use <tt>AND</tt> between search terms. It is implicit.)
 
-<p><a href="&erddapUrl;/information.html"><b>Find out more about ERDDAP.</b></a>
+<p><a rel="help" href="&erddapUrl;/information.html"><b>Find out more about ERDDAP.</b></a>
 
 <p><b>Data Providers: You can
-  <a href="http://coastwatch.pfeg.noaa.gov/erddap/download/setup.html">set up your own ERDDAP server</a>
+  <a rel="help" href="http://coastwatch.pfeg.noaa.gov/erddap/download/setup.html">set up your own ERDDAP server</a>
   and serve your own data.</b>
   <br>The small effort to set up ERDDAP brings many benefits.
 If you already have a web service for distributing your data,
@@ -2547,13 +2616,13 @@ there are problems ...
 <li>Each site returns the data in a different format (for example, XML, SOAP+XML, OPeNDAP binary
   data stream, ASCII text, HDF 4, HDF 5, NetCDF, ...) and it isn't the common file format
   that you want.
-<!--  <a href="http://www.xml.com/pub/a/98/10/guide0.html">XML</a>,
-  <a href="http://www.w3schools.com/soap/soap_intro.asp">SOAP+XML</a>,
-  <a href="http://www.opendap.org/pdf/ESE-RFC-004v1.2.pdf">OPeNDAP binary data stream</a>,
-  <a href="http://www.webopedia.com/TERM/A/ASCII.html">ASCII text</a>,
-  <a href="http://hdf.ncsa.uiuc.edu/products/hdf4/index.html">HDF 4</a>,
-  <a href="http://hdf.ncsa.uiuc.edu/products/hdf5/index.html">HDF 5</a>,
-  <a href="http://www.unidata.ucar.edu/software/netcdf/">NetCDF</a>, ...) -->
+<!--  <a rel="help" href="http://www.xml.com/pub/a/98/10/guide0.html">XML</a>,
+  <a rel="help" href="http://www.w3schools.com/soap/soap_intro.asp">SOAP+XML</a>,
+  <a rel="help" href="http://www.opendap.org/pdf/ESE-RFC-004v1.2.pdf">OPeNDAP binary data stream</a>,
+  <a rel="help" href="http://www.webopedia.com/TERM/A/ASCII.html">ASCII text</a>,
+  <a rel="help" href="http://hdf.ncsa.uiuc.edu/products/hdf4/index.html">HDF 4</a>,
+  <a rel="help" href="http://hdf.ncsa.uiuc.edu/products/hdf5/index.html">HDF 5</a>,
+  <a rel="help" href="http://www.unidata.ucar.edu/software/netcdf/">NetCDF</a>, ...) -->
   <br>&nbsp;
 <li>Data from different sites is hard to compare because the dates+times are expressed in
   different formats for example, "Jan 2, 1985", "02-JAN-1985", "1/2/85", "2/1/85",
@@ -2564,12 +2633,12 @@ there are problems ...
 
 <ul>
 <li><b><a name="video">For</a> a quick introduction to ERDDAP, 
-  <a href="http://www.youtube.com/watch?v=18xZoXu1USM">watch the first half of this 
+  <a rel="help" href="http://www.youtube.com/watch?v=18xZoXu1USM">watch the first half of this 
   <img align="bottom" alt="YouTube" src="&erddapUrl;/images/youtube.png" >
   video</a>.</b> (5 minutes)
 <br>In it, a scientist downloads ocean currents forecast data from ERDDAP to model a toxic
 spill in the ocean using  
-<a href="http://response.restoration.noaa.gov/type_subtopic_entry.php?RECORD_KEY%28entry_subtopic_type%29=entry_id,subtopic_id,type_id&amp;entry_id%28entry_subtopic_type%29=292&amp;subtopic_id%28entry_subtopic_type%29=8&amp;type_id%28entry_subtopic_type%29=3">NOAA's GNOME software</a> (in 5 minutes!).
+<a rel="bookmark"  href="http://response.restoration.noaa.gov/type_subtopic_entry.php?RECORD_KEY%28entry_subtopic_type%29=entry_id,subtopic_id,type_id&amp;entry_id%28entry_subtopic_type%29=292&amp;subtopic_id%28entry_subtopic_type%29=8&amp;type_id%28entry_subtopic_type%29=3">NOAA's GNOME software</a> (in 5 minutes!).
 This video shows:
 <ul>
 <li>With ERDDAP, you can easily <a href="#search">search for datasets</a>, 
@@ -2584,9 +2653,9 @@ This video shows:
   to enable getting data into lots of other programs.
 <li>NOAA works together: The analysis uses two free software programs from NOAA, 
   ERDDAP and GNOME, and data served by NOAA's 
-  <a href="http://www.ncddc.noaa.gov/">NODC/NCDDC</a>
+  <a rel="bookmark" href="http://www.ncddc.noaa.gov/">NODC/NCDDC</a>
   (facilitated by NOAA's 
-  <a href="http://geo-ide.noaa.gov/">UAF project</a>).
+  <a rel="bookmark" href="http://geo-ide.noaa.gov/">UAF project</a>).
 <li>ERDDAP makes <a href="#scientificData">scientific data</a> more easily available 
   to help scientists (and others) do their work more efficiently.
 <li>Using ERDDAP isn't hard. (Yes, Rich Signell is really smart, but anyone can use ERDDAP.)
@@ -2600,17 +2669,17 @@ when searching for datasets, don't use <tt>AND</tt> between search terms. It is 
 <li><b><a name="localAndRemote">ERDDAP</a> can get data from local (on the server's hard drive) and
 remote (accessed via the web) data sources.</b>
   <br>See the
-    <a href="http://coastwatch.pfeg.noaa.gov/erddap/download/setupDatasetsXml.html#datasetTypes">list
+    <a rel="help" href="http://coastwatch.pfeg.noaa.gov/erddap/download/setupDatasetsXml.html#datasetTypes">list
     of types of data sources</a>
     that ERDDAP can access.
   <br>&nbsp;
 
 <li><b><a name="scientificData">ERDDAP</a> can serve many types of scientific data, not just oceanographic data.</b>
   <br>ERDDAP is a Data Access Program that was written at
-      <a title="National Oceanic and Atmospheric Administration" href="http://www.noaa.gov">NOAA</a>
-      <a title="National Marine Fisheries Service"               href="http://www.nmfs.noaa.gov">NMFS</a>
-      <a title="Southwest Fisheries Science Center"              href="http://swfsc.noaa.gov">SWFSC</a>
-      <a title="Environmental Research Division" href="http://swfsc.noaa.gov/textblock.aspx?Division=ERD&amp;id=1315&amp;ParentMenuId=200">ERD</a>.
+      <a title="National Oceanic and Atmospheric Administration" rel="bookmark" href="http://www.noaa.gov">NOAA</a>
+      <a title="National Marine Fisheries Service" rel="bookmark" href="http://www.nmfs.noaa.gov">NMFS</a>
+      <a title="Southwest Fisheries Science Center" rel="bookmark" href="http://swfsc.noaa.gov">SWFSC</a>
+      <a title="Environmental Research Division" rel="bookmark" href="http://swfsc.noaa.gov/textblock.aspx?Division=ERD&amp;id=1315&amp;ParentMenuId=200">ERD</a>.
     The ERDDAP server at ERD serves oceanographic data,
     but ERDDAP (the program) can access and serve any gridded or tabular data.
   <br>&nbsp;
@@ -2631,31 +2700,33 @@ remote (accessed via the web) data sources.</b>
   <ul>
   <li>ERDDAP makes gridded data available via griddap
     (ERDDAP's implementation of the
-      <a href="&erddapUrl;/griddap/index.html">OPeNDAP hyperslab protocol</a>)
-      and <a href="&erddapUrl;/wms/index.html">WMS</a>.
+      <a rel="help" href="&erddapUrl;/griddap/index.html">OPeNDAP hyperslab protocol</a>)
+      and <a rel="help" href="&erddapUrl;/wms/index.html">WMS</a>.
   <li>ERDDAP makes tabular data available via tabledap
     (ERDDAP's implementation of the
-      <a href="&erddapUrl;/tabledap/index.html">OPeNDAP constraint protocol</a>) and
-      <a href="http://www.opengeospatial.org/standards/sos">SOS</a>.
+      <a rel="help" href="&erddapUrl;/tabledap/index.html">OPeNDAP constraint protocol</a>) and
+      <a rel="help" href="http://www.opengeospatial.org/standards/sos">SOS</a>.
   </ul>
   ERDDAP also provides Data Access Forms (web pages) which help humans create the OPeNDAP
-  requests. <a href="http://www.opendap.org">OPeNDAP's</a>
-    <a href="http://www.opendap.org/pdf/ESE-RFC-004v1.2.pdf">Data Access Protocol (DAP)</a>
+  requests. <a rel="bookmark" href="http://www.opendap.org">OPeNDAP's</a>
+    <a rel="help" href="http://www.opendap.org/pdf/ESE-RFC-004v1.2.pdf">Data Access Protocol (DAP)</a>
     is one of the recommended
-    <a href="http://www.ioos.gov/">IOOS</a>
-    <a href="http://www.ioos.gov/dif/">DMAC</a>
+    <a rel="bookmark" href="http://www.ioos.gov/">IOOS</a>
+    <a rel="bookmark" href="http://www.ioos.gov/dif/">DMAC</a>
     data transport mechanisms and a    
-    <a href="http://www.esdswg.org/spg/">NASA EOSDIS standard</a>.
+    <a rel="bookmark" href="http://www.esdswg.org/spg/">NASA EOSDIS standard</a>.
     (OPeNDAP is great!)
   ERDDAP translates your request from the OPeNDAP, WMS, or SOS format to the data source's
   request format and converts the response to one of ERDDAP's internal data structures.
   Then ERDDAP reformats the data in the common file format of your choice (for example, as an
   .html table, ESRI .asc, Google Earth .kml, .mat, .nc, ODV .txt, .csv, .tsv, .json, .xhtml, .png, .pdf)
   and sends the file to you.
-  See the list of <a href="&erddapUrl;/griddap/documentation.html#fileType">griddap file types</a>
-    and the list of <a href="&erddapUrl;/tabledap/documentation.html#fileType">tabledap file types</a>.
+  See the list of 
+  <a rel="help" href="&erddapUrl;/griddap/documentation.html#fileType">griddap file types</a>
+  and the list of 
+  <a rel="help" href="&erddapUrl;/tabledap/documentation.html#fileType">tabledap file types</a>.
   Other protocols for requesting the data (for example,
-    <a href="http://www.opengeospatial.org/standards/wcs">WCS</a>)
+    <a rel="help" href="http://www.opengeospatial.org/standards/wcs">WCS</a>)
     may be added in the future.
   ERDDAP is structured for these additions and there don't seem to be any impediments.
   <br>&nbsp;
@@ -2664,8 +2735,8 @@ remote (accessed via the web) data sources.</b>
   <br>Although requests for gridded data in ERDDAP can be made with array indices
   (following the OPeNDAP specification), requests can also be in user units
   (for example, degrees east), using
-     <a href="&erddapUrl;/griddap/documentation.html#parentheses">a parentheses notation</a>,
-    since users think in those units,
+  <a rel="help" href="&erddapUrl;/griddap/documentation.html#parentheses">a parentheses notation</a>,
+  since users think in those units,
   not indices.
   <br>&nbsp;
 
@@ -2675,8 +2746,9 @@ remote (accessed via the web) data sources.</b>
   instead of just the original format or just the OPeNDAP transfer format (which has no
   standard file manifestation). These files are created on-the-fly.
   Since there are few internal data structures, it is easy to add additional file-type drivers.
-  See the complete list of <a href="&erddapUrl;/griddap/documentation.html#fileType">grid file types</a>
-    and <a href="&erddapUrl;/tabledap/documentation.html#fileType">table file types</a>.
+  See the complete list of 
+  <a rel="help" href="&erddapUrl;/griddap/documentation.html#fileType">grid file types</a>
+  and <a rel="help" href="&erddapUrl;/tabledap/documentation.html#fileType">table file types</a>.
   <br>&nbsp;
 
 <li><b><a name="LLAT">ERDDAP</a> standardizes the variable names and units for longitude, latitude, altitude,
@@ -2688,16 +2760,16 @@ remote (accessed via the web) data sources.</b>
   <li>latitude is always in degrees_north.
   <li>altitude is always in meters with positive=up.
   <li>time, when formatted as a number, is always in "seconds since 1970-01-01T00:00:00Z"
-    (known as <a href="http://en.wikipedia.org/wiki/Unix_time">Unix time</a> or epoch seconds,
+    (known as <a rel="help" href="http://en.wikipedia.org/wiki/Unix_time">Unix time</a> or epoch seconds,
     which is
-      <a href="http://www.unidata.ucar.edu/software/udunits/udunits-2/udunits2.html">UDUNITS</a>-compatible)
+      <a rel="bookmark"   href="http://www.unidata.ucar.edu/software/udunits/udunits-2/udunits2.html">UDUNITS</a>-compatible)
       and, when formatted as a string, is formatted according
     to the
-      <a href="http://www.iso.org/iso/date_and_time_format">ISO 8601:2004 "extended" format</a>
+      <a rel="help" href="http://www.iso.org/iso/date_and_time_format">ISO 8601:2004 "extended" format</a>
       standard <span style="white-space: nowrap;">(YYYY-MM-DDThh:mm:ssZ,</span> for example,
       <span style="white-space: nowrap;">"1985-01-02T00:00:00Z").</span>
     (You can convert numeric times to/from ISO string times with ERDDAP's
-      <a href="&erddapUrl;/convert/time.html">time converter</a>.)
+      <a rel="bookmark" href="&erddapUrl;/convert/time.html">time converter</a>.)
     Also, to avoid time zone and daylight savings time confusion, time values are always
     converted to the Zulu (UTC, GMT) time zone.
   </ul>
@@ -2707,9 +2779,10 @@ remote (accessed via the web) data sources.</b>
   "02-JAN-1985", "1/2/85", "2/1/85", "1985-01-02", or days since Jan 1, 1980).
   This makes the results from different data sources easy to compare.
 
-  <p>ERDDAP has a utility to <a href="&erddapUrl;/convert/time.html">Convert
-    a Numeric Time to/from a String Time</a>.
-  <br>For more details, see <a href="&erddapUrl;/convert/time.html#erddap">How ERDDAP Deals with Time</a>.
+  <p>ERDDAP has a utility to 
+  <a rel="bookmark" href="&erddapUrl;/convert/time.html">Convert a Numeric Time to/from a String Time</a>.
+  <br>For more details, see 
+  <a rel="help" href="&erddapUrl;/convert/time.html#erddap">How ERDDAP Deals with Time</a>.
 
   <p>Because the longitude, latitude, altitude, and time variables are specifically recognized,
   ERDDAP is aware of the geo/temporal features of each dataset.
@@ -2718,22 +2791,23 @@ remote (accessed via the web) data sources.</b>
 
   <p>Two common standards for writing units of measure are:
   <ul>
-  <li><a href="http://www.unidata.ucar.edu/software/udunits/udunits-2/udunits2.html">UDUNITS</a>
+  <li><a rel="help" href="http://www.unidata.ucar.edu/software/udunits/udunits-2/udunits2.html">UDUNITS</a>
     - from
-    <a href="http://www.unidata.ucar.edu/">Unidata</a>,
+    <a rel="bookmark" href="http://www.unidata.ucar.edu/">Unidata</a>,
     which is used in
-    <a href="http://ferret.wrc.noaa.gov/noaa_coop/coop_cdf_profile.html">COARDS</a>,
-    <a href="http://cf-pcmdi.llnl.gov/documents/cf-conventions/">CF</a>, and
-    <a href="http://www.unidata.ucar.edu/software/netcdf/">NetCDF</a> data files. For example,
+    <a rel="help" href="http://ferret.wrc.noaa.gov/noaa_coop/coop_cdf_profile.html">COARDS</a>,
+    <a rel="help" href="http://cf-pcmdi.llnl.gov/documents/cf-conventions/">CF</a>, and
+    <a rel="help" href="http://www.unidata.ucar.edu/software/netcdf/">NetCDF</a> 
+    data files. For example,
     UDUNITS has many options for degrees Celsius, including "degree_C" and "degC".
     <br>&nbsp;
-  <li><a href="http://aurora.regenstrief.org/~ucum/ucum.html">UCUM</a>
+  <li><a rel="help" href="http://aurora.regenstrief.org/~ucum/ucum.html">UCUM</a>
     - the Unified Code for Units of Measure.
-    <a href="http://www.opengeospatial.org/">OGC</a>
+    <a rel="bookmark" href="http://www.opengeospatial.org/">OGC</a>
     services such as
-    <a href="http://www.opengeospatial.org/standards/sos">SOS</a>,
-    <a href="http://www.opengeospatial.org/standards/wcs">WCS</a>, and
-    <a href="http://www.opengeospatial.org/standards/wms">WMS</a>
+    <a rel="help" href="http://www.opengeospatial.org/standards/sos">SOS</a>,
+    <a rel="help" href="http://www.opengeospatial.org/standards/wcs">WCS</a>, and
+    <a rel="help" href="http://www.opengeospatial.org/standards/wms">WMS</a>
     often refer to UCUM as UOM (Units Of Measure). For example, UCUM has just one
     case-sensitive option for degrees Celsius: "Cel".
     <br>&nbsp;
@@ -2743,24 +2817,25 @@ remote (accessed via the web) data sources.</b>
   (ERDDAP administrators: you can specify this with the <tt>&lt;units_standard&gt;</tt> 
   tag in setup.xml.)
   You can convert UDUNITS to/from UCUM units with ERDDAP's
-      <a href="&erddapUrl;/convert/units.html">units converter</a>.
+      <a rel="bookmark" href="&erddapUrl;/convert/units.html">units converter</a>.
   When you request data or a graph from a <a href="&erddapUrl;/tabledap/index.html">tabledap dataset</a>,
       you can append <tt>&amp;units("UDUNITS")</tt>
   or <tt>&amp;units("UCUM")</tt> to the end of the URL to request UDUNITS or UCUM units.
-      <a href="&erddapUrl;/tabledap/documentation.html#functions">more information</a>
+      <a rel="help" href="&erddapUrl;/tabledap/documentation.html#functions">more information</a>
   <br>&nbsp;
 
 <li><b><a name="metadata">ERDDAP</a> can add or modify metadata.</b>
   <br>Many data sources have little or no
-    <a href="http://en.wikipedia.org/wiki/Metadata">metadata</a>
-    (for example, <a href="http://cf-pcmdi.llnl.gov/">CF metadata</a>)
+    <a rel="help" href="http://en.wikipedia.org/wiki/Metadata">metadata</a>
+    (for example, 
+    <a rel="help" href="http://cf-pcmdi.llnl.gov/">CF metadata</a>)
     describing the data.
   ERDDAP lets (and encourages) the administrator to describe metadata which will be added
   to datasets and their variables on-the-fly.
   See the
-    <a href="http://coastwatch.pfeg.noaa.gov/erddap/download/setupDatasetsXml.html#addAttributes">addAttributes section</a>
+    <a rel="help" href="http://coastwatch.pfeg.noaa.gov/erddap/download/setupDatasetsXml.html#addAttributes">addAttributes section</a>
     of the
-    <a href="http://coastwatch.pfeg.noaa.gov/erddap/download/setupDatasetsXml.html">directions for administrators</a>.
+    <a rel="help" href="http://coastwatch.pfeg.noaa.gov/erddap/download/setupDatasetsXml.html">directions for administrators</a>.
   <br>&nbsp;
 
 <li><b><a name="images">ERDDAP</a> lets you request .png and .pdf image files with graphs and maps</b>
@@ -2768,22 +2843,21 @@ remote (accessed via the web) data sources.</b>
   Three special uses of these images are:
   <ul>
   <li>Web page authors can
-    <a href="http://coastwatch.pfeg.noaa.gov/erddap/images/embed.html">embed a graph with the latest data in a web page</a> using an
+    <a rel="help" href="http://coastwatch.pfeg.noaa.gov/erddap/images/embed.html">embed a graph with the latest data in a web page</a> using an
     HTML &lt;img&gt; tag.
-  <li>Anyone can use ERDDAP's <a href="&erddapUrl;/slidesorter.html">Slide Sorter</a>
+  <li>Anyone can use ERDDAP's <a rel="help" href="&erddapUrl;/slidesorter.html">Slide Sorter</a>
     to build a personal web page that displays graphs
     with the latest data (or other images or HTML content), each in its own, draggable slide.
-  <li>Anyone can use or make
-      <a href="http://coastwatch.pfeg.noaa.gov/erddap/images/gadgets/GoogleGadgets.html">Google Gadgets</a>
-      to display images with the latest data on their
-    iGoogle home page.
-    <br>&nbsp;
+  <!--li>Anyone can use or make
+      <a rel="help" href="http://coastwatch.pfeg.noaa.gov/erddap/images/gadgets/GoogleGadgets.html">Google Gadgets</a>
+      to display images with the latest data.
+    <br-->&nbsp;
   </ul>
 
 <li><b><a name="compression">Requesting Compressed Files</a></b>
   <br>ERDDAP doesn't offer results stored in compressed (e.g., .zip or .gzip) files.
   Instead, ERDDAP looks for
-  <a href="http://betterexplained.com/articles/how-to-optimize-your-site-with-gzip-compression/">accept-encoding</a>
+  <a rel="help" href="http://betterexplained.com/articles/how-to-optimize-your-site-with-gzip-compression/">accept-encoding</a>
      in the HTTP GET request header sent by the client.
   If a supported compression type ("gzip", "x-gzip", or "deflate") is found in the
   accept-encoding list, ERDDAP includes "content-encoding" in the HTTP response header
@@ -2819,15 +2893,15 @@ remote (accessed via the web) data sources.</b>
   <li>Since it is difficult for human clients and computer clients to deal with a complex set of
     possible dataset structures, ERDDAP uses just two basic data structures:
     <ul>
-    <li>a <a href="&erddapUrl;/griddap/documentation.html#dataModel">gridded data structure</a>
+    <li>a <a rel="help" href="&erddapUrl;/griddap/documentation.html#dataModel">gridded data structure</a>
       (for example, for satellite data and model data) and
-    <li>a <a href="&erddapUrl;/tabledap/documentation.html#dataModel">tabular data structure</a>
+    <li>a <a rel="help" href="&erddapUrl;/tabledap/documentation.html#dataModel">tabular data structure</a>
       (for example, for in-situ buoy, station, and trajectory data).
     </ul>
   <li>Certainly, not all data can be expressed in these structures, but much of it can.
     Tables, in particular, are very flexible data structures (look at the phenomenal success
     of
-      <a href="http://en.wikipedia.org/wiki/Relational_database_management_system">relational database</a> programs).
+      <a rel="help" href="http://en.wikipedia.org/wiki/Relational_database_management_system">relational database</a> programs).
   <li>This makes data queries easier to construct.
   <li>This makes data responses have a simple structure, which makes it easier to serve the data
     in a wider variety of standard file types (which often just support simple data structures).
@@ -2844,9 +2918,9 @@ remote (accessed via the web) data sources.</b>
     If you accept ERDDAP's approach enough to try to work with it, you may find that it has
     its advantages (notably the support for multiple file types that can hold the data responses).
     The
-    <a href="http://coastwatch.pfel.noaa.gov/erddap/images/erddapTalk/erddapTechTalk.html">ERDDAP slide show</a>
+    <a rel="help" href="http://coastwatch.pfel.noaa.gov/erddap/images/erddapTalk/erddapTechTalk.html">ERDDAP slide show</a>
     (particularly the
-    <a href="http://coastwatch.pfel.noaa.gov/erddap/images/erddapTalk/erddapTechTalk.html#dataStructures">data
+    <a rel="help" href="http://coastwatch.pfel.noaa.gov/erddap/images/erddapTalk/erddapTechTalk.html#dataStructures">data
     structures slide</a>)
     talk a lot about these issues.
   <li>And even if this approach sounds odd to you, most ERDDAP clients will never notice --
@@ -2858,8 +2932,8 @@ remote (accessed via the web) data sources.</b>
 
 
 <li><b><a name="subscriptions">ERDDAP</a> offers
-  <a href="&erddapUrl;/subscriptions/index.html">email/URL</a> and
-  <a href="http://en.wikipedia.org/wiki/RSS_(file_format)">RSS</a> subscription services,</b>
+  <a rel="help" href="&erddapUrl;/subscriptions/index.html">email/URL</a> and
+  <a rel="help" href="http://en.wikipedia.org/wiki/RSS_(file_format)">RSS</a> subscription services,</b>
   so you can be notified whenever a dataset changes.
   <ul>
   <li>ERDDAP is very good at detecting changes to gridded datasets because it can detect
@@ -2869,10 +2943,10 @@ remote (accessed via the web) data sources.</b>
   <li>ERDDAP will detect if a dataset becomes unavailable (but perhaps not immediately).
   <li>ERDDAP will detect when that dataset becomes available again.
   <li>ERDDAP makes no promises about the suitability or accuracy of these services
-    (see ERDDAP's <a href="&erddapUrl;/legal.html">DISCLAIMERS</a>).
+    (see ERDDAP's <a rel="copyright" href="&erddapUrl;/legal.html">DISCLAIMERS</a>).
   </ul>
 
-  <p><b><a href="&erddapUrl;/subscriptions/index.html">Email/URL</a> Subscriptions</b>
+  <p><b><a rel="help" href="&erddapUrl;/subscriptions/index.html">Email/URL</a> Subscriptions</b>
      (not available at some ERDDAP installations)
      Whenever a dataset changes, the email/URL subscription system will <b>immediately</b>
      send you an email or contact a URL that you specify.
@@ -2880,23 +2954,23 @@ remote (accessed via the web) data sources.</b>
      To set up an email/URL subscription, click on one of the envelope icons
        <img alt="Subscribe" align="top" title="The envelope icon." src="&erddapUrl;/images/envelope.gif" >
        that appear at the far right on ERDDAP web pages with lists of datasets
-        (<a href="&erddapUrl;/info/index.html">example</a>)
+        (<a rel="contents" href="&erddapUrl;/info/index.html">example</a>)
        and on the Data Access Forms and Make A Graph web pages for individual datasets
         (<a href="&erddapUrl;/griddap/etopo180.html">example</a>)
        if this ERDDAP installation supports email/URL subscriptions.
      (Computer programmers: if you write web services, you can use the URL system
      to have ERDDAP notify your web service immediately whenever a dataset changes.)
 
-  <p><b><a href="http://en.wikipedia.org/wiki/RSS_(file_format)">RSS</a> Subscriptions</b>
+  <p><b><a rel="help" href="http://en.wikipedia.org/wiki/RSS_(file_format)">RSS</a> Subscriptions</b>
      RSS is standard system for notifying users when the content at a web site has changed.
      Modern web browsers have an RSS client built in or you can use a separate
-       <a href="http://blogspace.com/rss/readers">RSS Reader</a>.
+       <a rel="help" href="http://blogspace.com/rss/readers">RSS Reader</a>.
      ERDDAP offers a separate RSS 2.01 feed for each dataset so that you can find out
      when interesting datasets have changed.
      To subscribe to a dataset's RSS feed, click on one of the RSS icons
        <img alt="RSS" align="top" title="The RSS icon." src="&erddapUrl;/images/rss.gif" >
        that appear at the far right on ERDDAP web pages with lists of datasets
-        (<a href="&erddapUrl;/info/index.html">example</a>)
+        (<a rel="contents" href="&erddapUrl;/info/index.html">example</a>)
        or on the Data Access Forms and Make A Graph web pages for individual datasets
         (<a href="&erddapUrl;/griddap/etopo180.html">example</a>).
 
@@ -2915,15 +2989,17 @@ remote (accessed via the web) data sources.</b>
     <br>&nbsp;
 
 <li><b><a name="diverseSources">ERDDAP</a> is a
-    <a href="http://en.wikipedia.org/wiki/Web_application">web application</a> (for humans with browsers)
+    <a rel="help" href="http://en.wikipedia.org/wiki/Web_application">web application</a> 
+    (for humans with browsers)
   <br>and a
-    <a href="http://en.wikipedia.org/wiki/Web_service">web service</a>
-    (with <a href="&erddapUrl;/rest.html">services for computer programs</a>).</b>
+    <a rel="help" href="http://en.wikipedia.org/wiki/Web_service">web service</a>
+    (with <a rel="help" href="&erddapUrl;/rest.html">services for computer programs</a>).</b>
   <br>&nbsp;
 
 <li><b><a name="rest">ERDDAP</a> has
-  <a href="http://en.wikipedia.org/wiki/Representational_State_Transfer">REST</a>- and
-  <a href="http://www.crummy.com/writing/RESTful-Web-Services/">ROA</a>-style
+  <a rel="help" href="http://en.wikipedia.org/wiki/Representational_State_Transfer">REST</a>- 
+  and
+  <a rel="help" href="http://www.crummy.com/writing/RESTful-Web-Services/">ROA</a>-style
   links to make its services available to computer programs.</b>
   <br>These features can be used to build another web service on top of ERDDAP
   (making ERDDAP do all the work!).
@@ -2932,7 +3008,7 @@ remote (accessed via the web) data sources.</b>
   So if you have an idea for a better interface to the data the ERDDAP serves,
   we encourage you to build your own web application or web service, and use ERDDAP
   as the foundation. Read more about ERDDAP's 
-    <a href="&erddapUrl;/rest.html">Services for Computer Programs</a>.
+    <a rel="help" href="&erddapUrl;/rest.html">Services for Computer Programs</a>.
   <br>&nbsp;
 
 <li><b><a name="security">Security</a></b> - By default, ERDDAP runs as an entirely public server with no login
@@ -2947,14 +3023,14 @@ remote (accessed via the web) data sources.</b>
   they are allowed access.
   ERDDAP uses http: URLs for users who aren't logged in, and https: (Secure Sockets Layer)
   URLs for users who are.
-    <a href="http://coastwatch.pfeg.noaa.gov/erddap/download/setup.html#security">more information</a>
+    <a rel="help" href="http://coastwatch.pfeg.noaa.gov/erddap/download/setup.html#security">more information</a>
   <br>&nbsp;
 
 <li><b><a name="chunks">ERDDAP</a> processes data in chunks.</b>
   <br>To save memory (a big issue) and make responses start sooner, ERDDAP processes
   data requests in chunks -- repeatedly getting a chunk of data from the source,
   cleaning it up (for example, adding
-    <a href="http://en.wikipedia.org/wiki/Metadata">metadata</a>),
+    <a rel="help" href="http://en.wikipedia.org/wiki/Metadata">metadata</a>),
     and sending that to the client.
   For many data sources, this means that the first chunk of data (for example, from the
   first sensor) gets to the client in seconds instead of minutes (for example, after data
@@ -2974,18 +3050,18 @@ remote (accessed via the web) data sources.</b>
 <li><b><a name="pushPull">Data Dissemination / Data Distribution Networks: Push and Pull Technology</a></b>
 <br>Normally, ERDDAP acts as an intermediary: it takes a request from a user;
 gets data from a remote data source; reformats the data; and sends it to the user.
-<a href="http://en.wikipedia.org/wiki/Pull_technology">Pull Technology</a>:
+<a rel="help" href="http://en.wikipedia.org/wiki/Pull_technology">Pull Technology</a>:
 But ERDDAP also has the ability to actively get all of the available data
 from a remote data source and
-<a href="http://coastwatch.pfeg.noaa.gov/erddap/download/setupDatasetsXml.html#EDDGridCopy">store
+<a rel="help" href="http://coastwatch.pfeg.noaa.gov/erddap/download/setupDatasetsXml.html#EDDGridCopy">store
 a local copy of the data</a>.
-<a href="http://en.wikipedia.org/wiki/Push_technology">Push Technology</a>:
+<a rel="help" href="http://en.wikipedia.org/wiki/Push_technology">Push Technology</a>:
 By using ERDDAP's <a href="#subscriptions">subscription services</a>,
 other data servers can be notified
 as soon as new data is available so that they can request the data (by pulling the data).
 ERDDAP's
-<a href="http://coastwatch.pfeg.noaa.gov/erddap/download/setupDatasetsXml.html#EDDGridFromErddap">EDDGridFromErddap</a> uses ERDDAP's subscription services and
-<a href="http://coastwatch.pfeg.noaa.gov/erddap/download/setup.html#flag">flag system</a>
+<a rel="help"  href="http://coastwatch.pfeg.noaa.gov/erddap/download/setupDatasetsXml.html#EDDGridFromErddap">EDDGridFromErddap</a> uses ERDDAP's subscription services and
+<a rel="help" href="http://coastwatch.pfeg.noaa.gov/erddap/download/setup.html#flag">flag system</a>
 so that it will be notified immediately when new data is available.
 You can combine these to great effect:
 if you wrap an EDDGridCopy around an EDDGridFromErddap dataset
@@ -3005,7 +3081,7 @@ A given ERDDAP can be both a source of data for some datasets and a re-distribut
 for other datasets.
 The resulting network is roughly similar to data distribution networks set up with programs
 like
-   <a href="http://www.unidata.ucar.edu/software/idd/">Unidata's IDD/IDM</a>,
+   <a rel="bookmark" href="http://www.unidata.ucar.edu/software/idd/">Unidata's IDD/IDM</a>,
    but less rigidly structured.
 <br>&nbsp;
 
@@ -3038,8 +3114,8 @@ However, those datasets are often only "understood" by the specialized software 
 
 <p>A Work-Around for Complex Datasets - ERDDAP has a way to handle complex datasets that it
 can't handle directly. Just as a
-   <a href="http://en.wikipedia.org/wiki/Relational_database_management_system">relational database</a>
-   can store a complex dataset by using just
+<a rel="help" href="http://en.wikipedia.org/wiki/Relational_database_management_system">relational database</a>
+can store a complex dataset by using just
 one simple data structure (a table), ERDDAP can serve the data from more complex datasets by
 breaking the source dataset into a few ERDDAP datasets, each with similar, simple data structures.
 For example, some gridded environmental model datasets can be stored in ERDDAP by
@@ -3066,10 +3142,10 @@ Pacific Grove, CA: NOAA/NMFS/SWFSC/ERD.</pre>
 <p><b><a name="dataDistributionSystems">Guidelines</a> for Data Distribution Systems</b>
 <br>Bob's opinions about the design
 and evaluation of data distribution systems can be found
-<a href="http://coastwatch.pfel.noaa.gov/erddap/images/erddapTalk/erdData.html">here</a>.
+<a rel="help" href="http://coastwatch.pfel.noaa.gov/erddap/images/erddapTalk/erdData.html">here</a>.
 
 <p><b><a name="setup">You</a> can</b>
-<a href="http://coastwatch.pfeg.noaa.gov/erddap/download/setup.html"><b>Set Up Your Own ERDDAP Server</b></a>
+<a rel="help" href="http://coastwatch.pfeg.noaa.gov/erddap/download/setup.html"><b>Set Up Your Own ERDDAP Server</b></a>
 and serve your own data.
 <ul>
 <li>The small effort to set up ERDDAP brings many benefits.
@@ -3093,20 +3169,6 @@ and include the ERDDAP URL directly related to your question or comment.
 </table>
 ]]></theLongDescriptionHtml>
 
-<!-- This is an important error message. It indicates the request was valid,
-but the result was no data. Clients may be looking for this exact message.
-For now, it is best not to change this.
-!!! This should at least have an error number, so not reliant on specific text!!!
-But dods.dap.DODSException has no relevant exception.
-Better to return an empty file? But .nc and others don't allow 0-length data.
-This exactly matches DataHelper.THERE_IS_NO_DATA and MustBe.THERE_IS_NO_DATA
-
--->
-<thereIsNoData>Your query produced no matching results.</thereIsNoData>
-
-<!-- Many file types put a limit on how much data a file can hold (e.g., 2GB).
-  This message is also in MustBe.-->
-<thereIsTooMuchData>Your query produced too much data.  Try to request less data.</thereIsTooMuchData>
 
 <viewAllDatasetsHtml>View a List of All Datasets</viewAllDatasetsHtml>
 
@@ -3117,8 +3179,8 @@ This exactly matches DataHelper.THERE_IS_NO_DATA and MustBe.THERE_IS_NO_DATA
 <sosLongDescriptionHtml><![CDATA[
 ERDDAP's Sensor Observation Service (SOS) lets you request data via the SOS protocol.
 <br><font class="warningColor"><b>This is an EXPERIMENTAL WORK-IN-PROGRESS.</b></font>
-<p><a href="http://www.opengeospatial.org/standards/sos">SOS</a>
-is an <a href="http://www.opengeospatial.org/">Open Geospatial Consortium (OGC)</a>
+<p><a rel="help" href="http://www.opengeospatial.org/standards/sos">SOS</a>
+is an <a rel="bookmark" href="http://www.opengeospatial.org/">Open Geospatial Consortium (OGC)</a>
 standard that "provides an API for managing deployed
 <br>sensors and retrieving sensor data and specifically 'observation' data. Whether from in-situ sensors
 <br>(e.g., water monitoring) or dynamic sensors (e.g., satellite imaging), measurements made from sensor
@@ -3126,10 +3188,10 @@ standard that "provides an API for managing deployed
 
 <p>The SOS specification is intentionally incomplete. Some parts must be specified separately.
 <br>ERDDAP's SOS service is intended to be compatible with the
-  <a href="http://sdf.ndbc.noaa.gov/sos/">IOOS DIF SOS servers</a>
+  <a rel="bookmark" href="http://sdf.ndbc.noaa.gov/sos/">IOOS DIF SOS servers</a>
   (which use the
-<br><a href="http://www.csc.noaa.gov/ioos/schema/IOOS-DIF/">IOOS DIF SOS schemas</a>)
-  and the <a href="http://www.oostethys.org/">OOSTethys SOS servers</a>.
+<br><a rel="bookmark" href="http://www.csc.noaa.gov/ioos/schema/IOOS-DIF/">IOOS DIF SOS schemas</a>)
+  and the <a rel="bookmark" href="http://www.oostethys.org/">OOSTethys SOS servers</a>.
 ]]></sosLongDescriptionHtml>
 
 <unknownDatasetID>Currently unknown datasetID={0}</unknownDatasetID>
@@ -3141,8 +3203,8 @@ standard that "provides an API for managing deployed
 <wcsLongDescriptionHtml><![CDATA[
 ERDDAP's Web Coverage Service (WCS) lets you request a data file or an image file with gridded data.
 <br><font class="warningColor"><b>This is an EXPERIMENTAL WORK-IN-PROGRESS.</b></font>
-<p><a href="http://www.opengeospatial.org/standards/wcs">WCS</a>
-is an <a href="http://www.opengeospatial.org/">Open Geospatial Consortium (OGC)</a>
+<p><a rel="help" href="http://www.opengeospatial.org/standards/wcs">WCS</a>
+is an <a rel="bookmark" href="http://www.opengeospatial.org/">Open Geospatial Consortium (OGC)</a>
 standard for "access to geospatial
 <a href="http://www.opengeospatial.org/ogc/glossary/c">coverages</a>.
 <br>The term 'grid coverages' typically refers to content such as satellite images, digital aerial photos,
@@ -3152,7 +3214,7 @@ standard for "access to geospatial
 <wmsDescriptionHtml>The Web Map Service (WMS) lets you request an image with data plotted on a map.</wmsDescriptionHtml>
 
 <wmsInstructions><![CDATA[
-This web page is using <a href="http://openlayers.org">OpenLayers</a>
+This web page is using <a rel="bookmark" href="http://openlayers.org">OpenLayers</a>
 to display maps which are created on-the-fly by ERDDAP's
 <br>Web Map Server (WMS) version &wmsVersion;.
 <br>The controls on the left of the map are for navigation.
@@ -3162,9 +3224,9 @@ The control on the right manages the layers.
 
 <wmsLongDescriptionHtml><![CDATA[
 ERDDAP's Web Map Service (WMS) lets you request an image with data plotted on a map.
-<br><a href="http://www.opengeospatial.org/standards/wms">WMS</a>
-is an <a href="http://www.opengeospatial.org/">Open Geospatial Consortium (OGC)</a>
-and <a href="http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=32546">ISO (19128)</a>
+<br><a rel="help" href="http://www.opengeospatial.org/standards/wms">WMS</a>
+is an <a rel="bookmark" href="http://www.opengeospatial.org/">Open Geospatial Consortium (OGC)</a>
+and <a rel="help" href="http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=32546">ISO (19128)</a>
 standard for "the creation
 <br>and display of registered and superimposed map-like views of information that come
 <br>simultaneously from multiple remote and heterogeneous sources."

@@ -557,10 +557,10 @@ To use https: and have users log in, see all the instructions at
     <td align="right"><font size="-1"> 
       &loginInfo; &nbsp; &nbsp;
       <br>Brought to you by 
-      <a title="National Oceanic and Atmospheric Administration" href="http://www.noaa.gov">NOAA</a>  
-      <a title="National Marine Fisheries Service"               href="http://www.nmfs.noaa.gov">NMFS</a>  
-      <a title="Southwest Fisheries Science Center"              href="http://swfsc.noaa.gov">SWFSC</a>  
-      <a title="Environmental Research Division" href="http://swfsc.noaa.gov/textblock.aspx?Division=ERD&amp;id=1315&amp;ParentMenuId=200">ERD</a>  
+      <a title="National Oceanic and Atmospheric Administration" rel="bookmark" href="http://www.noaa.gov">NOAA</a>  
+      <a title="National Marine Fisheries Service" rel="bookmark" href="http://www.nmfs.noaa.gov">NMFS</a>  
+      <a title="Southwest Fisheries Science Center" rel="bookmark" href="http://swfsc.noaa.gov">SWFSC</a>  
+      <a title="Environmental Research Division" rel="bookmark"  href="http://swfsc.noaa.gov/textblock.aspx?Division=ERD&amp;id=1315&amp;ParentMenuId=200">ERD</a>  
       &nbsp; &nbsp;
       </font></td> 
   </tr> 
@@ -582,9 +582,9 @@ these references to the Disclaimers and Privacy Policy. -->
 <br>&nbsp;
 <hr>
 ERDDAP, Version &erddapVersion;
-<br><a href="&erddapUrl;/legal.html">Disclaimers</a> | 
-    <a href="&erddapUrl;/legal.html#privacyPolicy">Privacy Policy</a> |
-    <a href="&erddapUrl;/legal.html#contact">Contact</a>
+<br><a rel="copyright" href="&erddapUrl;/legal.html">Disclaimers</a> | 
+    <a rel="bookmark" href="&erddapUrl;/legal.html#privacyPolicy">Privacy Policy</a> |
+    <a rel="bookmark" href="&erddapUrl;/legal.html#contact">Contact</a>
 </body>
 ]]></endBodyHtml>
 
