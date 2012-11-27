@@ -357,7 +357,7 @@ This web page lets you convert a time value to/from an
 <ul>
 <li><a rel="bookmark" href="http://www.unidata.ucar.edu/software/udunits/">UDUNITS-compatible Number</a>
   - for example, 473472000 "seconds since 1970-01-01T00:00:00Z", or
-<li><a rel="help" href="http://www.iso.org/iso/date_and_time_format">ISO 8601:2004 "extended" format String</a>
+<li><a rel="help" href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601:2004 "extended" format String</a>
   in the form
   <span style="white-space: nowrap;">YYYY-MM-DDThh:mm:ssZ</span> - for example,
   <span style="white-space: nowrap;">1985-01-02T00:00:00Z</span> .
@@ -436,11 +436,13 @@ time values in ERDDAP always use the Zulu (UTC, GMT) time zone.
   <br>definitions.
   <br>&nbsp;
   
-<li><a name="textRepresentation">Text Representation</a> - Currently, when formatting times as
+<li><a name="textRepresentation">Text Representation</a> - By default, when formatting times as
     text, ERDDAP uses the 
-  <br><a rel="help" href="http://www.iso.org/iso/date_and_time_format">ISO 8601:2004 "extended" format String</a>, 
+  <br><a rel="help" href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601:2004 "extended" format String</a>, 
     truncated to the second 
-  <br>(e.g., 2011-04-26T14:07:12Z).
+  <br>(e.g., 2011-04-26T14:07:12Z).  ERDDAP administrators can configure a given dataset
+  <br>to display the time data values truncated to 0.001 second, 0.01 second, 0.1 second, 
+  <br>second, minute, hour, date, or month.  
   <br>&nbsp;
   
 <li><a name="gregorianCalendar">Gregorian Calendar</a> -
@@ -2765,7 +2767,7 @@ remote (accessed via the web) data sources.</b>
       <a rel="bookmark"   href="http://www.unidata.ucar.edu/software/udunits/udunits-2/udunits2.html">UDUNITS</a>-compatible)
       and, when formatted as a string, is formatted according
     to the
-      <a rel="help" href="http://www.iso.org/iso/date_and_time_format">ISO 8601:2004 "extended" format</a>
+      <a rel="help" href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601:2004 "extended" format</a>
       standard <span style="white-space: nowrap;">(YYYY-MM-DDThh:mm:ssZ,</span> for example,
       <span style="white-space: nowrap;">"1985-01-02T00:00:00Z").</span>
     (You can convert numeric times to/from ISO string times with ERDDAP's
