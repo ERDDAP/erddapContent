@@ -234,7 +234,9 @@ By default these services are on (true). -->
 <!-- For the wms examples, pick one of your grid datasets that has longitude and latitude axes.
 The sample variable must be a variable in the sample grid dataset.
 The bounding box values are minx,miny,maxx,maxy.
+The default for wmsActive is "true".
 -->
+<wmsActive>true</wmsActive>
 <wmsSampleDatasetID>erdBAssta5day</wmsSampleDatasetID>
 <wmsSampleVariable>sst</wmsSampleVariable>
 <!-- The bounding box values are minLongitude,minLatitude,maxLongitude,maxLatitude.
@@ -267,6 +269,19 @@ Note that if you change this and restart ERDDAP, the list of subscriptions
 See also the subscriptionEmailBlacklist in datasets.xml.
 -->
 <subscriptionSystemActive>true</subscriptionSystemActive>
+
+<!-- ERDDAP has converters for time, keywords, units, FIPS codes, etc.
+([domain]/erddap/convert/index.html).
+You may make this system active ("true", the strongly-encouraged default value)
+or not ("false").
+-->
+<convertersActive>true</convertersActive>
+
+<!-- ERDDAP has a slide sorter ([domain]/erddap/slidesorter.html).
+You may make this system active ("true", the default value) or not ("false").
+-->
+<slideSorterActive>true</slideSorterActive>
+
 
 
 <!-- Every loadDatasetsNMinutes (see below), files in [bigParentDirectory]cache and 

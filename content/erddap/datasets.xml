@@ -233,7 +233,6 @@ into a public sourceUrl (http://oceanwatch.pfeg.noaa.gov/thredds/dodsC/satellite
     <outerSequenceName>bottle_data_2002</outerSequenceName>
     <innerSequenceName></innerSequenceName>
     <sourceCanConstrainStringRegex></sourceCanConstrainStringRegex>
-    <altitudeMetersPerSourceUnit>1</altitudeMetersPerSourceUnit>
     <addAttributes>
         <att name="title">GLOBEC NEP Rosette Bottle Data (2002)</att>
         <att name="cdm_data_type">TrajectoryProfile</att>
@@ -709,7 +708,6 @@ Here are some examples of EDDGridFromErddap and EDDTableFromErddap.
     <extractRegex>.*</extractRegex>
     <columnNameForExtract>station</columnNameForExtract>
     <sortedColumnSourceName>TIME</sortedColumnSourceName>
-    <altitudeMetersPerSourceUnit>-1</altitudeMetersPerSourceUnit>
     <addAttributes>
         <att name="cdm_data_type">TimeSeries</att>
         <att name="featureType">TimeSeries</att>
@@ -981,7 +979,6 @@ This dataset has both historical data (quality controlled, before
     <tableName>yourTableName</tableName>
     <orderBy>id, timestamp</orderBy>
     <reloadEveryNMinutes>10080</reloadEveryNMinutes>
-    <altitudeMetersPerSourceUnit>1</altitudeMetersPerSourceUnit>
     <addAttributes>
         <att name="cdm_data_type">Point</att>
         <att name="featureType">Point</att>

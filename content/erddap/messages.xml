@@ -351,6 +351,12 @@ The parameter values in the URL must be properly
 
 <convertTime>Convert a Numeric Time to/from a String Time</convertTime>
 
+<convertTimeReference><![CDATA[ 
+<br>ERDDAP has
+    <a rel="bookmark" href="&erddapUrl;/convert/time.html">a service to convert a numeric time to/from a string time</a>.
+]]></convertTimeReference>
+
+
 <!-- Don't change the examples (from defaultN...). -->
 <convertTimeIntro><![CDATA[
 This web page lets you convert a time value to/from an
@@ -440,15 +446,19 @@ time values in ERDDAP always use the Zulu (UTC, GMT) time zone.
     text, ERDDAP uses the 
   <br><a rel="help" href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601:2004 "extended" format String</a>, 
     truncated to the second 
-  <br>(e.g., 2011-04-26T14:07:12Z).  ERDDAP administrators can configure a given dataset
-  <br>to display the time data values truncated to 0.001 second, 0.01 second, 0.1 second, 
-  <br>second, minute, hour, date, or month.  
+  <br>(e.g., 2011-04-26T14:07:12Z).  (Related humor: <a href="http://xkcd.com/1179/">http://xkcd.com/1179/</a>)
+  <br>ERDDAP administrators can configure a given dataset to display the time data values
+  <br>truncated to 0.001 second, 0.01 second, 0.1 second, second, minute, hour, date, or month
+  <br>to indicate the precision of the time data values.  
+  <p>When reading ISO 8601 times with decimal seconds, ERDDAP accepts a period separator
+  <br>(e.g., 2011-04-26T14:07:12.059Z) or a comma separator (e.g., 2011-04-26T14:07:12,059Z).
+  <br>Currently, when writing ISO 8601 times ERDDAP always uses a period separator.
   <br>&nbsp;
   
 <li><a name="gregorianCalendar">Gregorian Calendar</a> -
   ERDDAP uses the Gregorian Calendar for times after the
   <br>discontinuity in 1582 and the Julian calendar for times before the discontinuity.
-  <br>(This behavior is counter to the ISO 8601:2004 standard.)
+  <br>(The ISO 8601:2004 standard doesn't specify how to handle times before 1582.)
   <br>See the
     <a rel="help" href="http://download.oracle.com/javase/6/docs/api/java/util/GregorianCalendar.html">Java GregorianCalendar class</a>
     (which ERDDAP uses) for details.
@@ -926,6 +936,9 @@ This Data Access Form helps you download a subset of the data from a dataset wit
 <!-- The message to be displayed if the data can't be downloaded (e.g., SeaWiFS <=14 days old). -->
 <dataAccessNotAllowed>[Sorry. That data can't be downloaded.]</dataAccessNotAllowed>
 
+
+<disabled>The "{0}" system has been disabled on this ERDDAP.</disabled>
+
 <!-- This is the tooltip on EDDTable Data Access Form and Make A Graph
      for the select widget that pushes a distinct value into Constraint #1.
      [3rd line end was: other than the first one (""), ]
@@ -939,6 +952,7 @@ This Data Access Form helps you download a subset of the data from a dataset wit
 <br>of this dataset by selecting combinations of distinct values.
 ]]></distinctValuesHtml>
 
+<!-- This uses &ssUse; and &erddpUrl; -->
 <doWithGraphs><![CDATA[
 <br>&nbsp;
 <hr>
@@ -949,14 +963,8 @@ But some things you might not have considered are:
 <li>Web page authors can
   <a rel="help" href="http://coastwatch.pfeg.noaa.gov/erddap/images/embed.html">embed a graph of the latest data in a web page</a>
   using HTML &lt;img&gt; tags.
-<li>Anyone can use <a rel="help" href="{0}/slidesorter.html">Slide Sorter</a>
-  to build a personal web page that displays graphs of the latest data, 
-  each in its own, draggable slide.
-<!-- li>Anyone can use or make
-  <a href="http://coastwatch.pfeg.noaa.gov/erddap/images/
-/GoogleGadgets.html">Google Gadgets</a>
-  to display images with the latest data.
-  <br-->&nbsp;
+&ssUse;
+<br>&nbsp;
 </ul>
 ]]></doWithGraphs>
 
@@ -1268,18 +1276,25 @@ Checking 'distinct()' tells ERDDAP to sort the results table by all of the
 
 
 <functionOrderByHtml><![CDATA[
-orderBy lets you specify how the results table will be sorted.
-<br>To use orderBy, select one or more variables.
-<br>If you don't want to use orderBy, set all of the orderBy variables to "".
+<p>The orderBy... functions let you specify how the results table will be sorted and which rows will be kept.
+<br>To use an orderBy... function, select a function at left, then select one or more variables at right.
+<br>To not use any orderBy... function, set all of the variables at right to "".
+<br>The orderBy... functions are:
+<ul>
+<li>orderBy lets you specify how the results table will be sorted and keeps all rows.
+<li>orderByMax lets you specify how the results table will be sorted and removes some rows.
+ <br>Within each group, only the row with the maximum value for the last orderByMax variable will be kept.
+ <br>For example, orderByMax("stationID, time") will sort by stationID, but only return the row with 
+ <br>the maximum time value for each stationID.
+<li>orderByMin is like orderByMax, but only keeps the row with the minimum value for the last orderByMin
+ <br>variable.
+<li>orderByMinMax is like orderByMin plus orderByMax.
+ <br>Within each group, only the row with the minimum value and the row with the maximum value for the 
+ <br>last orderByMinMax variable will be kept.
+ <br>For example, orderByMinMax("stationID, time") will return the row with the minimum time value and
+ <br>the row with the maximum time value for each stationID.
+</ul>
 ]]></functionOrderByHtml>
-
-<functionOrderByMaxHtml><![CDATA[
-orderByMax lets you specify how the results table will be sorted and removes some rows.
-<br>Within each group, only the row with the maximum value for the last orderBy variable will be kept.
-<br>For example, orderByMax("stationID, time") will return the row with the last time value for each station.
-<br>To use orderByMax, select one or more variables.
-<br>If you don't want to use orderByMax, set all of the orderByMax variables to "".
-]]></functionOrderByMaxHtml>
 
 <functionOrderBySort>This variable is the {0} important sort variable.</functionOrderBySort>
 <functionOrderBySort1>most</functionOrderBySort1>
@@ -1831,7 +1846,7 @@ Better to return an empty file? But .nc and others don't allow 0-length data.
 <noXxxBecause2>{0} isn''t available for this dataset because {1}.</noXxxBecause2>
 <noXxxNotActive>this ERDDAP''s {0} service is not active</noXxxNotActive>
 <noXxxNoAxis1>there aren't any axis variables with more than one value</noXxxNoAxis1>
-<noXxxNoCdmDataType>there is no .ncCF or .ncCFMA support for cdm_data_type={0}</noXxxNoCdmDataType>
+<noXxxNoCdmDataType>cdm_data_type={0} is not a compatible type</noXxxNoCdmDataType>
 <noXxxNoColorBar>none of variables has colorBar metadata</noXxxNoColorBar>
 <noXxxNoLL>there is no longitude and/or latitude variable</noXxxNoLL>
 <noXxxNoLLGt1>the longitude and/or latitude variable has only one value</noXxxNoLLGt1>
@@ -1840,7 +1855,7 @@ Better to return an empty file? But .nc and others don't allow 0-length data.
 <noXxxNoLonIn180>there are no longitude values within -180 to 360</noXxxNoLonIn180>
 <noXxxNoNonString>there are no non-String variables</noXxxNoNonString>
 <noXxxNo2NonString>there aren't at least two non-String variables</noXxxNo2NonString>
-<noXxxNoStation>sosOfferingType={0} isn''t "Station"</noXxxNoStation>
+<noXxxNoStation>cdmDataType={0} isn''t "TimeSeries"</noXxxNoStation>
 <noXxxNoStationID>there is no stationID-like variable</noXxxNoStationID>
 <noXxxNoMinMax>the source data server doesn't provide minimum and maximum values</noXxxNoMinMax>
 <noXxxItsGridded>it's a gridded dataset</noXxxItsGridded>
@@ -2084,6 +2099,14 @@ For details, see ERDDAP''s <a rel="help" href="{0}/{1}/documentation.html">{2} D
 <selectPrevious>Select the previous item.</selectPrevious>
 
 <!-- SlideSorter messages -->
+<ssUse><![CDATA[
+<li>Anyone can use ERDDAP's <a rel="help" href="&erddapUrl;/slidesorter.html">Slide Sorter</a>
+    to build a personal web page that displays graphs
+    with the latest data (or other images or HTML content), each in its own, draggable slide.
+]]></ssUse>
+
+<ssDisabled>The "Slide Sorter" system has been disabled on this ERDDAP.</ssDisabled>
+
 <ssBePatient>Be patient. Or, check the URL. Or, press 'Submit' again.</ssBePatient>
 
 <ssInstructionsHtml><![CDATA[
@@ -2341,7 +2364,8 @@ Test of setup.xml <style> h1, h2, h3 {line-height:130%; }
 
 <!-- This is the short description of ERDDAP, which is used on the middle of the
 left side of ERDDAP's home page.
-This can refer to &erddapUrl;, &requestFormatExamplesHtml; &resultsFormatExamplesHtml;
+This can refer to &convertTimeReference;, &erddapUrl;, 
+&requestFormatExamplesHtml; &resultsFormatExamplesHtml; &wmsManyDatasets;
 [Bob, see options in c:/content/gov/noaa/pfel/erddap/index1|2|3.html .]
 -->
 <standardShortDescriptionHtml><![CDATA[
@@ -2373,7 +2397,7 @@ make it easier for you to get scientific data.-->
   <br>&nbsp;
 
 <li><b>ERDDAP offers an easy-to-use, consistent way to request data: via the OPeNDAP standard.</b>
-  <br>Many datasets can also be accessed via the Web Map Service (WMS).
+&wmsManyDatasets;
   <br>&nbsp;
 
 <li><b>ERDDAP returns data in the common file format of your choice.</b>
@@ -2394,8 +2418,7 @@ make it easier for you to get scientific data.-->
   <br>For numeric times, ERDDAP always uses "seconds since 1970-01-01T00:00:00Z".
   <br>ERDDAP always uses the Zulu (UTC, GMT) time zone to remove the difficulties
     of working with different time zones and standard time vs. daylight saving time.
-  <br>ERDDAP has
-    <a rel="bookmark" href="&erddapUrl;/convert/time.html">a service to convert a numeric time to/from a string time</a>.
+&convertTimeReference;  
   <br>&nbsp;
 
 <li><b>ERDDAP has web pages (for humans with browsers) and 
@@ -2553,7 +2576,7 @@ This interactive web page helps you select a subset of this dataset
 
 
 <!-- This is the long description of ERDDAP, which is used on the Background Information web page.
-This can refer to &erddapUrl;, &requestFormatExamplesHtml; and &resultsFormatExamplesHtml; .
+This can refer to &erddapUrl;, &requestFormatExamplesHtml; &ssUse and &resultsFormatExamplesHtml; .
 -->
 <theLongDescriptionHtml><![CDATA[
 <table style="width:640px; border-style:outset; border-width:0px; padding:0px; " 
@@ -2842,18 +2865,16 @@ remote (accessed via the web) data sources.</b>
 
 <li><b><a name="images">ERDDAP</a> lets you request .png and .pdf image files with graphs and maps</b>
   <br>of the data in addition to the actual data. And ERDDAP's Make A Graph lets you customize the images.
-  Three special uses of these images are:
+  Some special uses of these images are:
   <ul>
   <li>Web page authors can
     <a rel="help" href="http://coastwatch.pfeg.noaa.gov/erddap/images/embed.html">embed a graph with the latest data in a web page</a> using an
     HTML &lt;img&gt; tag.
-  <li>Anyone can use ERDDAP's <a rel="help" href="&erddapUrl;/slidesorter.html">Slide Sorter</a>
-    to build a personal web page that displays graphs
-    with the latest data (or other images or HTML content), each in its own, draggable slide.
+&ssUse;
   <!--li>Anyone can use or make
       <a rel="help" href="http://coastwatch.pfeg.noaa.gov/erddap/images/gadgets/GoogleGadgets.html">Google Gadgets</a>
-      to display images with the latest data.
-    <br-->&nbsp;
+      to display images with the latest data. -->
+    <br>&nbsp;
   </ul>
 
 <li><b><a name="compression">Requesting Compressed Files</a></b>
@@ -2919,12 +2940,12 @@ remote (accessed via the web) data sources.</b>
     the files can only be written or read with special software libraries.
     If you accept ERDDAP's approach enough to try to work with it, you may find that it has
     its advantages (notably the support for multiple file types that can hold the data responses).
-    The
-    <a rel="help" href="http://coastwatch.pfel.noaa.gov/erddap/images/erddapTalk/erddapTechTalk.html">ERDDAP slide show</a>
+    The  
+    <a rel="help" href="http://coastwatch.pfel.noaa.gov/erddap/images/erddapTalk/erddapTechTalk.html">original ERDDAP slide show</a>
     (particularly the
     <a rel="help" href="http://coastwatch.pfel.noaa.gov/erddap/images/erddapTalk/erddapTechTalk.html#dataStructures">data
     structures slide</a>)
-    talk a lot about these issues.
+    talks about these issues.
   <li>And even if this approach sounds odd to you, most ERDDAP clients will never notice --
     they will simply see that all of the datasets have a nice simple structure and they will
     be thankful that they can get data from a wide variety of sources returned in a wide
@@ -3234,7 +3255,9 @@ standard for "the creation
 <br>simultaneously from multiple remote and heterogeneous sources."
 ]]></wmsLongDescriptionHtml>
 
-
+<wmsManyDatasets><![CDATA[
+<br>Many datasets can also be accessed via the Web Map Service (WMS).
+]]></wmsManyDatasets>
 
 </erddapMessages>
 
