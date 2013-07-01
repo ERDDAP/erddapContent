@@ -110,7 +110,7 @@ This is optional.
 <advancedSearchNoCriteria><![CDATA[
 To see some results, you must specify at least one search criterion above,
 then click <tt>{0}</tt>.
-<br>Or, <a rel="contents" href="{1}/search/advanced.html?page=1&itemsPerPage={2}&searchFor=all">view all of the datasets</a>.
+<br>Or, <a rel="contents" href="{1}/search/advanced.html?page=1&amp;itemsPerPage={2}&amp;searchFor=all">view all of the datasets</a>.
 ]]></advancedSearchNoCriteria>
 
 <!-- These are injected into PrimitiveArray. 
@@ -458,7 +458,7 @@ time values in ERDDAP always use the Zulu (UTC, GMT) time zone.
 <li><a name="gregorianCalendar">Gregorian Calendar</a> -
   ERDDAP uses the Gregorian Calendar for times after the
   <br>discontinuity in 1582 and the Julian calendar for times before the discontinuity.
-  <br>(The ISO 8601:2004 standard doesn't specify how to handle times before 1582.)
+  <br>(The ISO 8601:2004 standard doesn''t specify how to handle times before 1582.)
   <br>See the
     <a rel="help" href="http://download.oracle.com/javase/6/docs/api/java/util/GregorianCalendar.html">Java GregorianCalendar class</a>
     (which ERDDAP uses) for details.
@@ -619,7 +619,7 @@ For example, "seconds since 1970-01-01T00:00:00Z".
 <tr>
   <th width="8%">Issue</th>
   <th width="23%"><a rel="bookmark" href="http://www.unidata.ucar.edu/software/udunits/udunits-2/udunits2lib.html#Syntax">UDUNITS</a></th>
-  <th width="23%"><a rel="bookmark" href="http://aurora.regenstrief.org/~ucum/ucum.html#section-Grammar-of-Units-and-Unit-Terms">UCUM</a></th>
+  <th width="23%"><a rel="bookmark" href="http://unitsofmeasure.org/ucum.html#section-Grammar-of-Units-and-Unit-Terms">UCUM</a></th>
   <th width="23%">UDUNITS &rarr; UCUM Converter</th>
   <th width="23%">UCUM &rarr; UDUNITS Converter</th>
 </tr>
@@ -654,7 +654,7 @@ For example, "seconds since 1970-01-01T00:00:00Z".
     "&micro;" and ''u'' means "times 10^-6")</td>
   <td>Supported (see UDUNITS-2 udunits2-prefixes.xml)</td>
   <td>Supported (see the c/s column of the
-    <a rel="bookmark" href="http://aurora.regenstrief.org/~ucum/ucum.html#prefixes">prefix symbol table</a>)</td>
+    <a rel="bookmark" href="http://unitsofmeasure.org/ucum.html#prefixes">prefix symbol table</a>)</td>
   <td>The prefix is converted to its acronym (e.g., ''u'')</td>
   <td>The prefix is left as its acronym (e.g., ''u'')</td>
 </tr>
@@ -741,7 +741,7 @@ For most units, there is a one-to-one correspondence between units in UDUNITS an
 <tr>
   <th width="8%">Units</th>
   <th width="23%"><a rel="bookmark" href="http://www.unidata.ucar.edu/software/udunits/udunits-2/udunits2lib.html#Syntax">UDUNITS</a></th>
-  <th width="23%"><a rel="bookmark" href="http://aurora.regenstrief.org/~ucum/ucum.html#section-Grammar-of-Units-and-Unit-Terms">UCUM</a></th>
+  <th width="23%"><a rel="bookmark" href="http://unitsofmeasure.org/ucum.html#section-Grammar-of-Units-and-Unit-Terms">UCUM</a></th>
   <th width="23%">UDUNITS &rarr; UCUM Converter</th>
   <th width="23%">UCUM &rarr; UDUNITS Converter</th>
 </tr>
@@ -866,7 +866,7 @@ Two common standards for writing units of measure are:
   data files. For example,
   <br>UDUNITS has many options for degrees Celsius, including "degree_C" and "degC".
   <br>&nbsp;
-<li><a rel="help" href="http://aurora.regenstrief.org/~ucum/ucum.html">UCUM</a>
+<li><a rel="help" href="http://unitsofmeasure.org/ucum.html">UCUM</a>
   - the Unified Code for Units of Measure.
   <a rel="bookmark" href="http://www.opengeospatial.org/">OGC</a>
   services such as
@@ -1202,6 +1202,8 @@ This constraint variable has a limited number of values. They are listed here.
 <errorFileNotFound>File not found: {0}.</errorFileNotFound>
 <errorFileNotFoundImage>File not found in cache. Recreate the image and try again.</errorFileNotFoundImage>
 <errorInternal>Internal error:</errorInternal>
+<!-- Don't include the invalid (malicious?) functionName in the error message. -->
+<errorJsonpFunctionName>That jsonp functionName isn't allowed. The first character must be an ISO 8859 letter or "_".  Each optional subsequent character must be an ISO 8859 letter, "_", or a digit.</errorJsonpFunctionName>
 <errorMoreThan2GB>{1} is more than the {0} 2 GB limit.</errorMoreThan2GB>
 <errorNotFound>Error: {0} wasn''t found.</errorNotFound>
 <errorNotFoundIn>Error: {0} wasn''t found in {1}.</errorNotFoundIn>
@@ -1227,11 +1229,13 @@ This constraint variable has a limited number of values. They are listed here.
 <fileHelp_iso19115>View the data's ISO 19115-2/19139 .xml metadata.</fileHelp_iso19115>
 <fileHelp_json>View a table-like JSON file (missing value = 'null'; times are ISO 8601 strings).</fileHelp_json>
 <fileHelp_mat>Download a MATLAB binary file.</fileHelp_mat>
-<fileHelpGrid_nc>Download a NetCDF-3 binary file with COARDS/CF/THREDDS metadata.</fileHelpGrid_nc>
-<fileHelpTable_nc>Download a flat, table-like, NetCDF-3 binary file with COARDS/CF/THREDDS metadata.</fileHelpTable_nc>
-<fileHelp_ncHeader>View the header (the metadata) for the NetCDF-3 file.</fileHelp_ncHeader>
+<fileHelpGrid_nc>Download a NetCDF-3 binary file with COARDS/CF/ACDD metadata.</fileHelpGrid_nc>
+<fileHelpTable_nc>Download a flat, table-like, NetCDF-3 binary file with COARDS/CF/ACDD metadata.</fileHelpTable_nc>
+<fileHelp_ncHeader>View the header (the metadata) for the .nc file.</fileHelp_ncHeader>
 <fileHelp_ncCF>Download a NetCDF-3 CF Discrete Sampling Geometries file (Contiguous Ragged Array).</fileHelp_ncCF>
+<fileHelp_ncCFHeader>View the header (the metadata) for the .ncCF file.</fileHelp_ncCFHeader>
 <fileHelp_ncCFMA>Download a NetCDF-3 CF Discrete Sampling Geometries file (Multidimensional Array).</fileHelp_ncCFMA>
+<fileHelp_ncCFMAHeader>View the header (the metadata) for the .ncCFMA file.</fileHelp_ncCFMAHeader>
 <fileHelpGrid_odvTxt>Download time,latitude,longitude,otherVariables as an ODV Generic Spreadsheet File (.txt).</fileHelpGrid_odvTxt>
 <fileHelpTable_odvTxt>Download longitude,latitude,time,otherColumns as an ODV Generic Spreadsheet File (.txt).</fileHelpTable_odvTxt>
 <fileHelp_subset>View an HTML form which uses faceted search to simplify picking subsets of the data.</fileHelp_subset>
@@ -2114,10 +2118,13 @@ For details, see ERDDAP''s <a rel="help" href="{0}/{1}/documentation.html">{2} D
 <br>web pages, each in it's own, draggable slide.
 <br>&nbsp;
 <br><b>To add a slide:</b> Fill out the 'Add a Slide' form.
-<br>For ERDDAP grid datasets, you will usually change the date in the URL to <tt>last</tt> so the graph always
-<br>shows the latest data.
-<br>'file://' URL's won't work because of security restrictions.
-<br>&nbsp;
+<ul>
+<li>For ERDDAP grid datasets, you will usually change the time constraint in the URL to <tt>last</tt> so the
+  <br>graph always shows the latest data.
+<li>For ERDDAP tabular datasets, you will usually change the time constraint in the URL to something like
+  <br><tt>&amp;time&gt;now-7days</tt> so the graph always shows recent data.
+<li>'file://' URL's won't work because of security restrictions.
+</ul>
 <br><b>To move a slide:</b> Drag the slide with your mouse.
 <br>&nbsp;
 <br><b><font class="warningColor">WARNING!!!</font> Your slides will be lost when you close this browser window, unless you:</b><ol>
@@ -2276,15 +2283,15 @@ Your request to add a subscription has been submitted successfully.</b>
 ]]></subscriptionAddSuccess>
 
 <subscriptionEmail>Get an email immediately whenever this dataset changes...</subscriptionEmail>
-<subscriptionEmailInvalid>Your email address isn't valid.</subscriptionEmailInvalid>
-<subscriptionEmailTooLong>Your email address is too long.</subscriptionEmailTooLong>
-<subscriptionEmailUnspecified>Your email address wasn't specified.</subscriptionEmailUnspecified>
+<subscriptionEmailInvalid>The email address you submitted isn't valid.</subscriptionEmailInvalid>
+<subscriptionEmailTooLong>The email address you submitted is too long.</subscriptionEmailTooLong>
+<subscriptionEmailUnspecified>You didn't specify your email address.</subscriptionEmailUnspecified>
 <!-- ID is used for datasetID and subscriptionID. -->
-<subscriptionIDInvalid>The ID isn't valid.</subscriptionIDInvalid>
-<subscriptionIDTooLong>The ID is too long.</subscriptionIDTooLong>
-<subscriptionIDUnspecified>The ID wasn't specified.</subscriptionIDUnspecified>
-<subscriptionKeyInvalid>The key isn't valid.</subscriptionKeyInvalid>
-<subscriptionKeyUnspecified>The key wasn't specified.</subscriptionKeyUnspecified>
+<subscriptionIDInvalid>The ID you submitted isn't valid.</subscriptionIDInvalid>
+<subscriptionIDTooLong>The ID you submitted is too long.</subscriptionIDTooLong>
+<subscriptionIDUnspecified>You didn't specify the ID.</subscriptionIDUnspecified>
+<subscriptionKeyInvalid>The key you submitted isn't valid.</subscriptionKeyInvalid>
+<subscriptionKeyUnspecified>You didn't specify the key.</subscriptionKeyUnspecified>
 
 <subscriptionListError><![CDATA[
 <b>Your request for an email with a list of your subscriptions had one or more errors:</b>
@@ -2335,7 +2342,7 @@ Your request for an email with a list of your subscriptions has been submitted s
 <br><tt>http://www.yourWebSite.com?department=R%26D&amp;action=rerunTheModel</tt>
 ]]></subscriptionUrlHtml>
 
-<subscriptionUrlInvalid>The URL/action isn't valid. If present, it must start with "http://".</subscriptionUrlInvalid>
+<subscriptionUrlInvalid>The URL/action isn't valid. If present, it must start with "http://" and be percent encoded.</subscriptionUrlInvalid>
 <subscriptionUrlTooLong>The URL/action is too long.</subscriptionUrlTooLong>
 
 <subscriptionValidateError><![CDATA[
@@ -2826,7 +2833,7 @@ remote (accessed via the web) data sources.</b>
     data files. For example,
     UDUNITS has many options for degrees Celsius, including "degree_C" and "degC".
     <br>&nbsp;
-  <li><a rel="help" href="http://aurora.regenstrief.org/~ucum/ucum.html">UCUM</a>
+  <li><a rel="help" href="http://unitsofmeasure.org/ucum.html">UCUM</a>
     - the Unified Code for Units of Measure.
     <a rel="bookmark" href="http://www.opengeospatial.org/">OGC</a>
     services such as
@@ -3083,9 +3090,9 @@ By using ERDDAP's <a href="#subscriptions">subscription services</a>,
 other data servers can be notified
 as soon as new data is available so that they can request the data (by pulling the data).
 ERDDAP's
-<a rel="help"  href="http://coastwatch.pfeg.noaa.gov/erddap/download/setupDatasetsXml.html#EDDGridFromErddap">EDDGridFromErddap</a> uses ERDDAP's subscription services and
+<a rel="help"  href="http://coastwatch.pfeg.noaa.gov/erddap/download/setupDatasetsXml.html#EDDGridFromErddap">EDDGridFromErddap</a> and <a rel="help"  href="http://coastwatch.pfeg.noaa.gov/erddap/download/setupDatasetsXml.html#EDDTableFromErddap">EDDTableFromErddap</a> use ERDDAP's subscription services and
 <a rel="help" href="http://coastwatch.pfeg.noaa.gov/erddap/download/setup.html#flag">flag system</a>
-so that it will be notified immediately when new data is available.
+so that they will be notified immediately when new data is available.
 You can combine these to great effect:
 if you wrap an EDDGridCopy around an EDDGridFromErddap dataset
 (or wrap an EDDTableCopy around an EDDTableFromErddap dataset),
