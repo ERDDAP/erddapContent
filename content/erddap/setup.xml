@@ -7,8 +7,7 @@ Settings that you must change when you install ERDDAP on your server are marked 
 
 <!-- 'logLevel' determines how many diagnostic messages are sent to the log.txt file.
 It can be set to "warning" (the fewest messages), "info" (the default), or "all" (the most messages). 
-Diagnostic messages are displayed on some HTML pages if displayDiagnosticInfo (above) is 'true'.
-Diagnostic messages are always written to the [bigParentDirectory]log.txt file (see below).
+Diagnostic messages are always written to the [bigParentDirectory]/logs/log.txt file (see below).
 At ERD, we set this to 'all' for development and 'info' for releases. 
 -->
 <logLevel>info</logLevel>
@@ -22,7 +21,7 @@ see http://coastwatch.pfeg.noaa.gov/erddap/download/setup.html#secondErddap
 
 <!-- bigParentDirectory is the absolute path on the server (with slash at the end)
 to a directory on a drive with lots of space. 
-Create a new directory, outside of the tomcat directory, for this purpose.
+You must create a new directory, outside of the tomcat directory, for this purpose.
 The user that runs Tomcat must have read/write privileges for this directory.
 Subdirectories that will be created by ERDDAP are: 
 * datasetInfo (which some datasets use to cache information about the dataset
@@ -40,7 +39,7 @@ At ERD, we use '/u00/cwatch/erddap/' for releases.
 <!-- Daily status reports and all error messages are emailed to emailEverythingTo.
 Daily status reports are emailed to emailDailyReportsTo.
 Either of these can be not specified, blank (specified but with no value), 
-  a single email address ((e.g., john.doe@noaa.gov),
+  a single email address (e.g., john.doe@noaa.gov),
   or a comma-separated list of email addresses.
 The first emailEverythingTo email address is more important than the others,
   e.g., it is used for subscriptions to EDDXxxxFromErddap datasets.
@@ -48,7 +47,7 @@ See the email account settings below.
 You MUST CHANGE these to the appropriate browser administrator for your site.
 
 Whether or not you set up the email system, all potential email messages 
-are logged to an emailLogYEAR-MONTH.txt file in the bigParentDirectory.
+are logged to an emailLogYEAR-MONTH.txt file in [bigParentDirectory]/logs/.
 -->
 <emailEverythingTo>your.email@yourInstitution.edu</emailEverythingTo>
 <emailDailyReportsTo>your.boss@yourInstitution.edu</emailDailyReportsTo>
@@ -124,13 +123,6 @@ You MUST CHANGE this when you install ERDDAP on your server. For example,
 
 <!-- **************************************************************************** -->
 
-<!-- Set 'displayDiagnosticInfo' to true if you want the diagnostic info displayed 
-on almost all html pages that ERDDAP generates.
-The info is the same info that is written to the [bigParentDirectory]logs/log.txt file.
-It is best to always leave this as 'false'.
--->
-<displayDiagnosticInfo>false</displayDiagnosticInfo>
-
 <!-- ERDDAP lets you choose between two search engines for full text searches:
 * original (the default) - is the best choice if your ERDDAP has fewer 
   than about 10,000 datasets.  It is very robust and trouble free. 
@@ -154,13 +146,15 @@ emailPassword is optional; if absent, emails can't be sent to non-local addresse
 
 emailProperties is a list of additional properties in the form 
   prop1|value1|prop2|value2
-For example, gmail accounts need 
-  mail.smtp.starttls.enable|true
 The default is nothing.
-(And for gmail, use emailSmtpPort 587.)
+
+For gmail (even your.name@noaa.gov accounts which are managed by Google), 
+  for emailSmtpHost, use smtp.gmail.com
+  for emailSmtpPort, use 587
+  for emailProperties, use mail.smtp.starttls.enable|true
 
 Whether or not you set up the email system, all potential email messages 
-are logged to an emailLogYEAR-MONTH.txt file in the bigParentDirectory.
+are logged to an emailLogYEAR-MONTH.txt file in [bigParentDirectory]/logs/.
 
 If you can't get ERDDAP to send emails (error = "Connection refused")
 and you are using anti-virus software (e.g., McAfee) make sure McAfee 
@@ -169,7 +163,7 @@ Anti Virus Standard Protections :
 Prevent mass mailing worms from sending mail" is un-checked.
 -->
 <emailFromAddress>your.email@yourCompany.com</emailFromAddress>
-<emailUserName>your.email</emailUserName>
+<emailUserName>your.email@yourCompany.com</emailUserName>
 <emailPassword>yourPassword</emailPassword> 
 <emailProperties></emailProperties>
 <emailSmtpHost>your.smtp.host.edu</emailSmtpHost>
@@ -182,7 +176,7 @@ You MUST CHANGE these to describe your installation.
 <adminInstitution>Your Institution</adminInstitution>
 <adminIndividualName>Your Name</adminIndividualName>
 <adminPosition>ERDDAP administrator</adminPosition>
-<adminPhone>999-999-9999</adminPhone>
+<adminPhone>+1 999-999-9999</adminPhone>
 <adminAddress>123 Main St.</adminAddress>
 <adminCity>Some Town</adminCity>
 <adminStateOrProvince>CA</adminStateOrProvince>
@@ -284,10 +278,10 @@ You may make this system active ("true", the default value) or not ("false").
 
 
 
-<!-- Every loadDatasetsNMinutes (see below), files in [bigParentDirectory]cache and 
+<!-- Every loadDatasetsNMinutes (see below), files in [bigParentDirectory]/cache/ and 
 the public directory which are more than cacheMinutes old will be deleted.  
 At ERD, we use '60'.
-Note that when a dataset is reloaded, all files in the [bigParentDirectory]cache/[datasetID]
+Note that when a dataset is reloaded, all files in the [bigParentDirectory]/cache/[datasetID]
 directory are deleted.
 In general, only image files are cached, because the same images are often requested repeatedly.
 Removing files in the cache based on age (not Least-Recently-Used) 
@@ -497,10 +491,9 @@ HTML encoded as "&amp;", "&lt;", "&gt;".
 landmask should be drawn "over" or "under" surface data on maps. 
 "over" is recommended for primarily oceanographic data 
 (so that grid data over land is obscured by the landmask).
-"under" is recommended for all other data.
-(This used to be called 'drawLandMask' (still supported).)
+"under" is the default and is suitable for all data.
 -->
-<drawLandMask>over</drawLandMask>
+<drawLandMask>under</drawLandMask>
 
 <!-- startHeadHtml has the start of the HTML document and the 'head' tags 
 (starting at "<!DOCTYPE>", but not including "</head>") 
@@ -618,8 +611,7 @@ All of the information in [standardShortDescriptionHtml] is also contained in
 -->
 <theShortDescriptionHtml><![CDATA[ 
 <h1>ERDDAP</h1>
-ERDDAP (the Environmental Research Division's Data Access Program) 
-is a data server that gives you a simple, consistent way to download 
+ERDDAP is a data server that gives you a simple, consistent way to download 
 subsets of scientific datasets in common file formats and make graphs and maps. 
 This particular ERDDAP installation has oceanographic data
 (for example, data from satellites and buoys).
