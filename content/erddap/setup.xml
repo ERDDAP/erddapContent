@@ -225,6 +225,10 @@ By default these services are on (true). -->
 <fgdcActive>true</fgdcActive>
 <iso19115Active>true</iso19115Active>
 
+<!-- The default for filesActive is "true".
+-->
+<filesActive>true</filesActive>
+
 <!-- For the wms examples, pick one of your grid datasets that has longitude and latitude axes.
 The sample variable must be a variable in the sample grid dataset.
 The bounding box values are minx,miny,maxx,maxy.
@@ -326,6 +330,11 @@ unusualActivity, an email is sent to emailEverythingTo.
 The default is 10000.
 -->
 <unusualActivity>10000</unusualActivity>
+
+<!-- This is used to specify the directory with the unit test data files.
+     Only people that are running the ERDDAP unit tests need to specify this.
+<unitTestDataDir>/someDirectory/</unitTestDataDir> 
+-->
 
 <!-- The title for the map's legend (or nothing if you don't want a legend title).
 At ERD, we don't use these.  To use these, uncomment them.
