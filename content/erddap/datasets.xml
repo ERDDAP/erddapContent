@@ -670,6 +670,8 @@ Available Genera (and number of records): (error)
 <dataset type="EDDTableFromSOS" datasetID="ndbcSosWTemp" active="true">
     <sourceUrl>http://sdf.ndbc.noaa.gov/sos/server.php</sourceUrl>
     <reloadEveryNMinutes>1440</reloadEveryNMinutes>
+    <sosVersion>1.0.0</sosVersion>
+    <sosServerType>IOOS_NDBC</sosServerType>
     <observationOfferingIdRegex>.+</observationOfferingIdRegex>
     <requestObservedPropertiesSeparately>true</requestObservedPropertiesSeparately>
     <bboxOffering>urn:ioos:network:noaa.nws.ndbc:all</bboxOffering>
@@ -686,6 +688,7 @@ Available Genera (and number of records): (error)
         <att name="keywords_vocabulary">GCMD Science Keywords</att>
         <att name="license">[standard]</att>
         <att name="standard_name_vocabulary">CF-12</att>
+        <att name="subsetVariables">station_id, longitude, latitude, sensor_id</att>
         <att name="summary">The NOAA NDBC SOS server is part of the IOOS DIF SOS Project.  The stations in this dataset have sea_water_temperature data.
 
 Because of the nature of SOS requests, requests for data MUST include constraints for the longitude, latitude, time, and/or station_id variables.</att>
@@ -696,7 +699,7 @@ Because of the nature of SOS requests, requests for data MUST include constraint
     <altitudeSourceName>depth (m)</altitudeSourceName>
     <altitudeMetersPerSourceUnit>-1</altitudeMetersPerSourceUnit>
     <timeSourceName>date_time</timeSourceName>
-    <timeSourceFormat>yyyy-MM-dd'T'HH:mm:ss'Z'</timeSourceFormat>
+    <timeSourceFormat>yyyy-MM-dd'T'HH:mm:ssZ</timeSourceFormat>
     <dataVariable>
         <sourceName>sensor_id</sourceName>
         <dataType>String</dataType>
