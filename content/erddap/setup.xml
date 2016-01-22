@@ -1,23 +1,9 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!-- setup.xml contains setup information for ERDDAP. 
 When you install ERDDAP on your server, many of the settings can be left as is.
-Settings that you must change when you install ERDDAP on your server are marked "MUST CHANGE".
+Settings that you MUST change are in this top section.
 -->
 <erddapSetup>
-
-<!-- 'logLevel' determines how many diagnostic messages are sent to the log.txt file.
-It can be set to "warning" (the fewest messages), "info" (the default), or "all" (the most messages). 
-Diagnostic messages are always written to the [bigParentDirectory]/logs/log.txt file (see below).
-At ERD, we set this to 'all' for development and 'info' for releases. 
--->
-<logLevel>info</logLevel>
-
-<!-- warName becomes part of the public url, after baseUrl/.
-This should always be 'erddap'.   
-If you want to install a second ERDDAP for testing/development, 
-see http://coastwatch.pfeg.noaa.gov/erddap/download/setup.html#secondErddap 
--->
-<warName>erddap</warName>
 
 <!-- bigParentDirectory is the absolute path on the server (with slash at the end)
 to a directory on a drive with lots of space. 
@@ -31,10 +17,18 @@ Subdirectories that will be created by ERDDAP are:
 * cache (which ERDDAP uses to hold cached data files - ERDDAP periodically
    removes files older than cacheMinutes (see below)).
 The ERDDAP log file (log.txt) will be put in this directory.
-You MUST CHANGE this when you install ERDDAP on your server.
 At ERD, we use '/u00/cwatch/erddap/' for releases.
 -->
 <bigParentDirectory>/home/yourName/erddap/</bigParentDirectory>
+
+<!-- baseUrl is the start of the public url, to which "/erddap" is appended.
+For example,
+used for running/testing on your personal computer:
+<baseUrl>http://127.0.0.1:8080</baseUrl>              
+used for ERD releases (erddap and erddap2):
+<baseUrl>http://coastwatch.pfeg.noaa.gov</baseUrl>    
+-->
+<baseUrl>http://127.0.0.1:8080</baseUrl>
 
 <!-- Daily status reports and all error messages are emailed to emailEverythingTo.
 Daily status reports are emailed to emailDailyReportsTo.
@@ -44,105 +38,34 @@ Either of these can be not specified, blank (specified but with no value),
 The first emailEverythingTo email address is more important than the others,
   e.g., it is used for subscriptions to EDDXxxxFromErddap datasets.
 See the email account settings below.
-You MUST CHANGE these to the appropriate browser administrator for your site.
 
 Whether or not you set up the email system, all potential email messages 
 are logged to an emailLogYEAR-MONTH.txt file in [bigParentDirectory]/logs/.
 -->
 <emailEverythingTo>your.email@yourInstitution.edu</emailEverythingTo>
+<!-- optional: 
 <emailDailyReportsTo>your.boss@yourInstitution.edu</emailDailyReportsTo>
-
-<!-- This lets you specify a regular expression which determines which datasetIDs 
-in the datasets.xml file should be loaded.
-The default is ".*", which loads all datasets.
-During development or for other reasons, you might want to use a subset, e.g., 
-"(etopo.*|erdQSu101day|erdMHchla8day|erdGlobecBottle|erdBAssta5day|pmelTaoDySst)",
-so that ERDDAP quickly loads a dataset that you are interested in. 
 -->
-<datasetsRegex>.*</datasetsRegex>
-
-<!-- If true, when you start up ERDDAP, some types of datasets (e.g., 
-EDDGridFromDap) will used cached information (.dds, .das, etc.) to reload
-very quickly, without contacting the remote server.  The dataset's age 
-will be based on when the dataset was reloaded last.  Normally this 
-should be true (the default), but set it to false if you want to bypass 
-the cached information. -->
-<quickRestart>true</quickRestart>
-
-<!-- If you want to restrict access to some datasets, you need to specify
-the method used for logging on (authentication).
-See the info at http://coastwatch.pfeg.noaa.gov/erddap/download/setup.html#security
-Currently, the options are: "" (logins not supported, the default), "custom", "openid".
-Note that openid login doesn't work when testing with localhost (https://127.0.0.1:8443).
--->
-<authentication></authentication>
-
-<!-- This specifies how you have stored passwords in the roles tags in datasets.xml.
-If you aren't storing any passwords this is irrelevant.
-The options (in order of increasing security) are: 
-"plaintext", "MD5", or "UEPMD5" (MD5(UserName:ERDDAP:Password) which is the default).
-You should only use "plaintext" or "MD5" if you need to match values stored 
-that way in an external password database.
-See the info at http://coastwatch.pfeg.noaa.gov/erddap/download/setup.html#security
--->
-<passwordEncoding>UEPMD5</passwordEncoding>
-
-<!-- This determines whether datasets that the user doesn't currently have access to 
-(because he isn't logged in or because his roles don't allow access)
-should be shown on lists of data sets 
-(e.g., from full text search, categorize, view all datasets, ...).
-The options are: "true", or "false" (the default).
-If false, no information about the dataset (even its existence) is shown 
-  to users who don't have access to it.
-If true, some information about the dataset (title, summary, etc) is shown
-  to users who don't have access to it.  
-  If the user clicks on a link to a dataset he doesn't have access to,
-  he will get an error message and be prompted to log in.
--->
-<listPrivateDatasets>false</listPrivateDatasets>
-
-<!-- baseUrl is the start of the public url, to which "/[warName]" is appended.
-You MUST CHANGE this when you install ERDDAP on your server. For example,
-<baseUrl>http://127.0.0.1:8080</baseUrl>              used for running/testing on your personal computer
-<baseUrl>http://coastwatch.pfeg.noaa.gov</baseUrl>    used for ERD releases (erddap and erddap2)
--->
-<baseUrl>http://127.0.0.1:8080</baseUrl>
-
-<!-- This is a variant of <baseUrl> which is used when authentication is active and the user is logged in.
-  In general, you take the <baseUrl>, change "http" to "https", and change/add ":8443".
-  This must begin with "https://".
-  If you make a proxy so that ":8443" isn't needed, you don't need to add it here.
-  This is irrelevant if <authentication> is "".
-  See the instructions at http://coastwatch.pfeg.noaa.gov/erddap/download/setup.html#security
-  For example,
-<baseHttpsUrl>https://127.0.0.1:8443</baseHttpsUrl>                 used for running/testing on your personal computer 
-<baseHttpsUrl>https://coastwatch.pfeg.noaa.gov:8443</baseHttpsUrl>  used at ERD for releases (erddap and erddap2)
--->
-<baseHttpsUrl></baseHttpsUrl>
 
 
-<!-- **************************************************************************** -->
+<!-- Email account information is used for sending emails to the 
+'emailEverythingTo' and 'emailDailyReportsTo' email addresses above
+and for sending emails related to subscriptions. So if you don't setup the 
+email system, your ERDDAP won't support subscriptions (including allowing other
+ERDDAP's to subscribe to datasets on your ERDDAP).
 
-<!-- ERDDAP lets you choose between two search engines for full text searches:
-* original (the default) - is the best choice if your ERDDAP has fewer 
-  than about 10,000 datasets.  It is very robust and trouble free. 
-* lucene - is the best choice for more than about 10,000 datasets.
-  The advantages are that with any number of datasets it works fast 
-  and uses very little memory.
-  But there are many things that might go wrong with individual 
-  queries and with the whole system. 
-  And although its behaviour (the datasets it finds and the order that
-  it ranks them) is almost identical to the original search engine,
-  it has a few quirky, subtle, small differences.
--->
-<searchEngine>original</searchEngine>
+If you don't want your ERDDAP to send emails, change the emailSmtpHost tag 
+contents to be nothing.
 
-<!-- Email account information is used for sending emails to the 'emailEverythingTo' 
-and 'emailDailyReportsTo' email addresses above.
-You MUST CHANGE this information when you install ERDDAP on your server since you can't use Bob's account.
-If you don't actually want to send emails, change the emailSmtpHost tag contents to be nothing.
-
-emailPassword is optional; if absent, emails can't be sent to non-local addresses.
+It is a security risk to put your email password in a plain text file like this.
+To mitigate that problem, we strongly remommend that you:
+1) Set up an email account just for ERDDAP's use, e.g., 
+   erddap@yourInstitution.org 
+   That has other benefits as well: more than one ERDDAP administrator can then
+   be given access to that email account.
+2) Make the permissions of this setup.xml file rw (read+write) for the user who 
+   will run Tomcat and ERDDAP (user=tomcat?) and no permissions (not read or
+   write) for the group and other users.
 
 emailProperties is a list of additional properties in the form 
   prop1|value1|prop2|value2
@@ -170,9 +93,8 @@ Prevent mass mailing worms from sending mail" is un-checked.
 <emailSmtpPort>25</emailSmtpPort>
 
 
-<!-- Information about the ERDDAP administrator is used for the SOS and WMS servers. 
-You MUST CHANGE these to describe your installation. 
--->
+<!-- Information about the ERDDAP administrator is used for the SOS and WMS 
+servers. -->
 <adminInstitution>Your Institution</adminInstitution>
 <adminIndividualName>Your Name</adminIndividualName>
 <adminPosition>ERDDAP administrator</adminPosition>
@@ -184,6 +106,130 @@ You MUST CHANGE these to describe your installation.
 <adminCountry>USA</adminCountry>
 <adminEmail>your.email@yourCompany.com</adminEmail>
 
+<!-- The font family to be used for all of the text in images.
+"SansSerif" (the default) is always a valid and reasonable option.
+A list of valid font families is printed to the log by the SGT constructor.
+SansSerif is fine on Windows.  I think it translates to Arial.
+I didn't like any of the fonts initially available on Linux. "SansSerif" is 
+almost ok.
+At ERD, we use "Bitstream Vera Sans" 
+  (open source fonts from http://www.gnome.org/fonts/ ).
+  I think they are distinctly better than the standard Linux fonts.
+  To use them on your computer, download
+  http://coastwatch.pfeg.noaa.gov/erddap/download/BitstreamVeraSans.zip
+  and unzip the files into [javaHome]/jre/lib/fonts so Java sees them.
+-->
+<fontFamily>SansSerif</fontFamily>
+
+<!-- ERDDAP has a service that lets remote users set a flag
+to notify ERDDAP to try to reload a dataset.
+These requests use a key which is generated based
+on baseUrl/erddap, a datasetID, and flagKeyKey.
+*** CHANGE THIS ONCE, to any text (a favorite quote? random text? It doesn't matter).
+Normally, you won't ever change this again.
+But if you you think someone is abusing the flag system,
+change this text again, restart ERDDAP, and send
+all of the users of the flag system the relevant new flagKeys
+(see the list in the Daily Report). -->
+<flagKeyKey>CHANGE THIS TO YOUR FAVORITE QUOTE</flagKeyKey>
+
+
+<!-- ******** End of MUST change settings.  ******************************** -->
+
+<!-- 'logLevel' determines how many diagnostic messages are sent to the log.txt file.
+It can be set to "warning" (the fewest messages), "info" (the default), or "all" 
+(the most messages). 
+Diagnostic messages are always written to the [bigParentDirectory]/logs/log.txt
+file (see below).
+At ERD, we set this to 'all' for development and 'info' for releases. 
+-->
+<logLevel>info</logLevel>
+
+<!-- The default log file maximum size is 20 MB. When that size is reached,
+log.txt will be renamed to log.txt.previous .
+Minimum allowed is 1. Maximum allowed is 2000. -->
+<logMaxSizeMB>20</logMaxSizeMB>
+
+<!-- This lets you specify a regular expression which determines which datasetIDs 
+in the datasets.xml file should be loaded.
+The default is ".*", which loads all datasets.
+During development or for other reasons, you might want to use a subset, e.g., 
+"(etopo.*|erdQSu101day|erdMHchla8day|erdGlobecBottle|erdBAssta5day|pmelTaoDySst)",
+so that ERDDAP quickly loads a dataset that you are interested in. 
+-->
+<datasetsRegex>.*</datasetsRegex>
+
+<!-- If true, when you start up ERDDAP, some types of datasets (e.g., 
+EDDGridFromDap) will used cached information (.dds, .das, etc.) to reload
+very quickly, without contacting the remote server.  The dataset's age 
+will be based on when the dataset was reloaded last.  Normally this 
+should be true (the default), but set it to false if you want to bypass 
+the cached information. -->
+<quickRestart>true</quickRestart>
+
+<!-- If you want to restrict access to some datasets, you need to specify
+the method used for logging on (authentication).
+See the info at http://coastwatch.pfeg.noaa.gov/erddap/download/setup.html#security
+Currently, the options are: "" (logins not supported, the default), "custom", "openid".
+Note that openid login doesn't work when testing with localhost (https://127.0.0.1:8443).
+-->
+<authentication></authentication>
+
+<!-- This is a variant of <baseUrl> which is used when authentication is active 
+  and the user is logged in.
+  In general, you take the <baseUrl>, change "http" to "https", and change/add 
+  ":8443". This must begin with "https://".
+  If you make a proxy so that ":8443" isn't needed, you don't need to add it here.
+  This is irrelevant if <authentication> is "".
+  See the instructions at 
+  http://coastwatch.pfeg.noaa.gov/erddap/download/setup.html#security
+  For example,
+For running/testing on your personal computer:
+<baseHttpsUrl>https://127.0.0.1:8443</baseHttpsUrl>                  
+Used at ERD:
+<baseHttpsUrl>https://coastwatch.pfeg.noaa.gov:8443</baseHttpsUrl>  
+-->
+<baseHttpsUrl></baseHttpsUrl>
+
+<!-- This specifies how you have stored passwords in the roles tags in datasets.xml.
+If you aren't storing any passwords this is irrelevant.
+The options (in order of increasing security) are: 
+"plaintext", "MD5", or "UEPMD5" (MD5(UserName:ERDDAP:Password) which is the default).
+You should only use "plaintext" or "MD5" if you need to match values stored 
+that way in an external password database.
+See the info at http://coastwatch.pfeg.noaa.gov/erddap/download/setup.html#security
+-->
+<passwordEncoding>UEPMD5</passwordEncoding>
+
+<!-- This determines whether datasets that the user doesn't currently have access
+to (because he isn't logged in or because his roles don't allow access)
+should be shown on lists of data sets 
+(e.g., from full text search, categorize, view all datasets, ...).
+The options are: "true", or "false" (the default).
+If false, no information about the dataset (even its existence) is shown 
+  to users who don't have access to it.
+If true, some information about the dataset (title, summary, etc) is shown
+  to users who don't have access to it.  
+  If the user clicks on a link to a dataset he doesn't have access to,
+  he will get an error message and be prompted to log in.
+-->
+<listPrivateDatasets>false</listPrivateDatasets>
+
+
+<!-- ERDDAP lets you choose between two search engines for full text searches:
+* original (the default) - is the best choice if your ERDDAP has fewer 
+  than about 10,000 datasets.  It is very robust and trouble free. 
+* lucene - is the best choice for more than about 10,000 datasets.
+  The advantages are that with any number of datasets it works fast 
+  and uses very little memory.
+  But there are many things that might go wrong with individual 
+  queries and with the whole system. 
+  And although its behaviour (the datasets it finds and the order that
+  it ranks them) is almost identical to the original search engine,
+  it has a few quirky, subtle, small differences.
+-->
+<searchEngine>original</searchEngine>
+
 <!-- 
 These default accessConstraints, fees, and keywords are used by 
   ERDDAP's SOS, WCS, and WMS services.
@@ -191,7 +237,8 @@ accessConstraints and fees are the defaults for dataset's without an
   "accessibleTo" tag.
 accessRequiresAuthorization is the default "accessConstraints" for dataset's 
   with an "accessibleTo" tag.
-keywords should describe this ERDDAP's data in a general way and be comma-separated. 
+keywords should describe this ERDDAP's data in a general way and be 
+comma-separated. 
 "accessConstraints", "fees", "keywords" can be overwritten by same-named
   attributes in a dataset's global attributes in datasets.xml.
 -->
@@ -225,33 +272,24 @@ By default these services are on (true). -->
 <fgdcActive>true</fgdcActive>
 <iso19115Active>true</iso19115Active>
 
-<!-- The default for filesActive is "true".
--->
+<!-- The default for filesActive is "true". -->
 <filesActive>true</filesActive>
 
-<!-- For the wms examples, pick one of your grid datasets that has longitude and latitude axes.
+<!-- The default for dataProviderFormActive is "true". -->
+<dataProviderFormActive>true</dataProviderFormActive>
+
+<!-- For the wms examples, pick one of your grid datasets that has longitude
+and latitude axes.
 The sample variable must be a variable in the sample grid dataset.
 The bounding box values are minx,miny,maxx,maxy.
 The default for wmsActive is "true".
 -->
 <wmsActive>true</wmsActive>
-<wmsSampleDatasetID>erdBAssta5day</wmsSampleDatasetID>
-<wmsSampleVariable>sst</wmsSampleVariable>
+<wmsSampleDatasetID>jplMURSST</wmsSampleDatasetID>
+<wmsSampleVariable>analysed_sst</wmsSampleVariable>
 <!-- The bounding box values are minLongitude,minLatitude,maxLongitude,maxLatitude.
    Longitude values within -180 to 180, or 0 to 360, are now okay. -->
-<wmsSampleBBox>0,-75,360,75</wmsSampleBBox>
-
-<!-- ERDDAP has a service that lets remote users set a flag
-to notify ERDDAP to try to reload a dataset.
-These requests use a key which is generated based
-on baseUrl/warName, a datasetID, and flagKeyKey.
-*** CHANGE THIS ONCE, to any text (a favorite quote? random text? It doesn't matter).
-Normally, you won't ever change this again.
-But if you you think someone is abusing the flag system,
-change this text again, restart ERDDAP, and send
-all of the users of the flag system the relevant new flagKeys
-(see the list in the Daily Report). -->
-<flagKeyKey>CHANGE THIS TO YOUR FAVORITE QUOTE</flagKeyKey>
+<wmsSampleBBox>-179.995,-89.9945,179.995,89.9945</wmsSampleBBox>
 
 <!-- ERDDAP has an email/URL subscription system which sends a user an email
 or pings a url whenever an interesting dataset changes.
@@ -282,16 +320,17 @@ You may make this system active ("true", the default value) or not ("false").
 
 
 
-<!-- Every loadDatasetsNMinutes (see below), files in [bigParentDirectory]/cache/ and 
-the public directory which are more than cacheMinutes old will be deleted.  
+<!-- Every loadDatasetsNMinutes (see below), files in [bigParentDirectory]/cache/ 
+and the public directory which are more than cacheMinutes old will be deleted.  
 At ERD, we use '60'.
-Note that when a dataset is reloaded, all files in the [bigParentDirectory]/cache/[datasetID]
-directory are deleted.
-In general, only image files are cached, because the same images are often requested repeatedly.
+Note that when a dataset is reloaded, all files in the 
+[bigParentDirectory]/cache/[datasetID] directory are deleted.
+In general, only image files are cached, because the same images are often 
+requested repeatedly.
 Removing files in the cache based on age (not Least-Recently-Used) 
 ensures that files won't stay in the cache very long. 
-Although it might seem like a given request should always return the same response, 
-that isn't true. 
+Although it might seem like a given request should always return the same 
+response, that isn't true. 
 For example, a tabledap request which includes time>someTime will change 
 if new data arrives for the dataset. 
 And a griddap request which includes [last] for the time dimension will change 
@@ -344,7 +383,8 @@ At ERD, we don't use these.  To use these, uncomment them.
 
 <!-- The highRes and lowResImagefiles are used for map and graph legends 
 (if legendTitle1 and legendTitle2 aren't "") and
-are scaled to the desired size (highRes->80 or 40 pixels square, lowRes->20 pixels square).
+are scaled to the desired size (highRes->80 or 40 pixels square, 
+lowRes->20 pixels square).
 The googleEarthLogoFile is displayed at its original size in the lower left 
 corner of the Google Earth map if the user selects the .kml image file type.
 The highRes, lowRes and GoogleEarth images are also used by OpenSearch.
@@ -355,7 +395,8 @@ All files in this directory (and subdirectories)
 will be copied to [tomcat]/webapps/erddap/images (and subdirectories)
 and thus made available for direct downloading by any client.
 (Any text files must be stored as plain ASCII (7 bit) or with UTF-8 encoding.)
-For SGT graphics, currently, the Files designated below must be png, gif, jpg, or bmp.
+For SGT graphics, currently, the Files designated below must be png, gif, jpg, 
+or bmp.
 If you want to substitute other image files, it is best to make them 
 a similar number of pixels wide and high.
 -->
@@ -364,24 +405,23 @@ a similar number of pixels wide and high.
 <googleEarthLogoFile>nlogo.gif</googleEarthLogoFile>
 <questionMarkImageFile>QuestionMark.jpg</questionMarkImageFile>
 
-<!-- The font family to be used for all of the text in images.
-"SansSerif" (the default) is always a valid and reasonable option.
-A list of valid font families is printed to the log by the SGT constructor.
-SansSerif is fine on Windows.  I think it translates to Arial.
-I didn't like any of the fonts initially available on Linux. "SansSerif" is almost ok.
-At ERD, we use "Bitstream Vera Sans" 
-  (open source fonts from http://www.gnome.org/fonts/ ).
-  I think they are distinctly better than the standard Linux fonts.
-  To use them on your computer, download
-  http://coastwatch.pfeg.noaa.gov/erddap/download/BitstreamVeraSans.zip
-  and unzip the files into [javaHome]/jre/lib/fonts so Java sees them.
+<!-- Change and uncomment this to change the default background color on graphs.
+This affects almost all graphs. There are a few situations not affected.
+The color is specified as an 8 digit hexadecimal value in the form 0xAARRGGBB,
+where AA, RR, GG, and BB are the opacity, red, green and blue components, 
+respectively. "0x" is case sensitive, but the hexadecimal digits are not
+case sensitive. For example, a fully opaque (ff) greenish-blue color with 
+red=22, green=88, blue=ee would be 0xff2288ee. Opaque white is 0xffffffff. 
+Opaque light blue (the default) is 0xffccccff.
+<graphBackgroundColor>0xffccccff</graphBackgroundColor>
 -->
-<fontFamily>Bitstream Vera Sans</fontFamily>
 
-<!-- When possible (and it isn't always possible), ERDDAP breaks source data requests 
-into chunks to conserve memory. See the description of these tags in messages.xml.
-You can override the default chunk sizes here with 
-  For grids:  <partialRequestMaxBytes>100000000</partialRequestMaxBytes>
+<!-- When possible (and it isn't always possible), ERDDAP breaks source data 
+requests into chunks to conserve memory. See the description of these tags in 
+messages.xml.
+You can override the default chunk sizes here by changing and uncommenting
+these default values:
+  For grids:  <partialRequestMaxBytes>490000000</partialRequestMaxBytes>
   For tables: <partialRequestMaxCells>100000</partialRequestMaxCells>
 -->
 
@@ -397,7 +437,8 @@ For non-NOAA ERDDAP installations, there is no downside to setting this to "fals
 
 <!-- This is the comma-separated list (recommended: in alphabetical order) 
 of the global attribute and variable attribute names which will be
-used to categorize the datasets and shown to clients at urls like .../erddap/categorize/ioos_category/index.html 
+used to categorize the datasets and shown to clients at urls like 
+.../erddap/categorize/ioos_category/index.html 
 (ioos_category is unusual, but is used at ERD).
 If an attribute is a global attribute, identify it by prefixing it with "global:".
 "variableName" is a special case: it categorizes the dataVariable destinationNames.
@@ -412,7 +453,8 @@ you don't need to change these.
 If you don't, you MUST change these before you make your ERDDAP public; 
 otherwise, none of the examples will work!
 The new settings should be very similar to the defaults.
-If your ERDDAP won't serve any tabular datasets, use "NOT_APPLICABLE" for all of the enties.
+If your ERDDAP won't serve any tabular datasets, use "NOT_APPLICABLE" for all of
+the enties.
 In .xml files like this, ampersand, lessThan, and greaterThan have to be 
 HTML encoded as "&amp;", "&lt;", "&gt;".
 -->
@@ -422,36 +464,37 @@ HTML encoded as "&amp;", "&lt;", "&gt;".
      ('time' allows for making a time series graph. 'latitude' and 'longitude' allow for making a map.)
      The longitude values used in the examples below must not span 180 (to work with .esriAscii). 
      (It's okay if the dataset is 0 to 360 - just use the 0 to 180 (or 180 to 360) portion.) -->
-<EDDGridIdExample>erdBAssta5day</EDDGridIdExample>
+<EDDGridIdExample>jplMURSST</EDDGridIdExample>
 <!-- This is a complete query string for getting some axis data from the example grid dataset. -->
-<EDDGridDimensionExample>latitude[0:10:100]</EDDGridDimensionExample>
+<EDDGridDimensionExample>latitude[0:100:1000]</EDDGridDimensionExample>
 <!-- This is the name of a data variable in the example grid dataset. -->
-<EDDGridNoHyperExample>sst</EDDGridNoHyperExample>
+<EDDGridNoHyperExample>analysed_sst</EDDGridNoHyperExample>
 <!-- This is used to name/explain/describe all of the dimensions in the example grid dataset. -->
-<EDDGridDimNamesExample>[time][altitude][latitude][longitude]</EDDGridDimNamesExample>
+<EDDGridDimNamesExample>[time][latitude][longitude]</EDDGridDimNamesExample>
 <!-- This is an example data query using ERDDAP's () notation and ISO-formatted time. 
      It is nice (not required) that this subset be suitable for making a map (see EDDGridMapExample below). 
      The longitude values used must not span 180 (to work with .esriAscii). 
-     The use of ":100:" avoids sending the user a ton of data. 
+     The use of ":1000:" avoids sending the user a ton of data. 
      You could generate your example via your dataset's Data Access Form in ERDDAP.  -->
-<EDDGridDataTimeExample>sst[(2007-10-21T00:00:00)][0][(-75):100:(75)][(180):100:(360)]</EDDGridDataTimeExample>
+<EDDGridDataTimeExample>analysed_sst[(2015-06-09T09:00:00Z)][(-89.9945):1000:(89.9945)][(-179.995):1000:(179.995)]</EDDGridDataTimeExample>
 <!-- This is an equivalent example data query, but which specifies time as seconds-since-1970-01-01. 
-     If you need to convert a date/time to seconds-since-1970-01-01, email bob dot simons at noaa dot gov. -->
-<EDDGridDataValueExample>sst[(1192924800)][0][(-75):100:(75)][(180):100:(360)]</EDDGridDataValueExample>
+     If you need to convert a date/time to seconds-since-1970-01-01, use
+     http://coastwatch.pfeg.noaa.gov/erddap/convert/time.html . -->
+<EDDGridDataValueExample>analysed_sst[(1433840400)][(-89.9945):1000:(89.9945)][(-179.995):1000:(179.995)]</EDDGridDataValueExample>
 <!-- This is an equivalent example data query, but which uses the traditional opendap indices-style notation only. -->
-<EDDGridDataIndexExample>sst[656][0][0:100:1500][1800:100:3600]</EDDGridDataIndexExample>
+<EDDGridDataIndexExample>analysed_sst[4756][0:1000:16383][0:1000:32767]</EDDGridDataIndexExample>
 <!-- This is an example query which generates a graph. 
      You could generate your example via your dataset's Make A Graph form in ERDDAP.  -->
-<EDDGridGraphExample>sst[(2007-07-01):(2007-10-21)][0][(29)][(225)]&amp;.draw=linesAndMarkers&amp;.vars=time|sst|&amp;.marker=1|3&amp;.color=0xFF9900&amp;.colorBar=|C|Linear|||</EDDGridGraphExample>
+<EDDGridGraphExample>analysed_sst[(2015-05-01T09:00:00Z):(2015-06-01T09:00:00Z)][(29)][(-135)]&amp;.draw=linesAndMarkers&amp;.vars=time|analysed_sst|&amp;.marker=1|3&amp;.color=0xFF9900&amp;.colorBar=|C|Linear|||</EDDGridGraphExample>
 <!-- This is an example query which generates a map. 
      The "map" example must have longitude which doesn't span 180 for .esriAscii. 
-     The use of ":50:" avoids sending the user a ton of data. 
-     ":50:" is irrelevant when requesting a .png, but relevant if the user gets the actual data (e.g., .csv). -->
-<EDDGridMapExample>sst[(2007-10-21)][0][(-75):50:(75)][(180):50:(360)]&amp;.draw=surface&amp;.vars=longitude|latitude|sst&amp;.colorBar=Rainbow|C|Linear|0|32|</EDDGridMapExample>
+     The use of ":1000:" avoids sending the user a ton of data. 
+     ":1000:" is irrelevant when requesting a .png, but relevant if the user gets the actual data (e.g., .csv). -->
+<EDDGridMapExample>analysed_sst[(2015-06-09T09:00:00Z)][(-89.9945):1000:(89.9945)][(-179.995):1000:(179.995)]&amp;.draw=surface&amp;.vars=longitude|latitude|analysed_sst&amp;.colorBar=Rainbow|C|Linear|0|32|</EDDGridMapExample>
 <!-- This is a Matlab example which uses data from the EDDGridMapExample.
-     Hopefully, you can just substitute your datasetID for "erdBAssta5day"
+     Hopefully, you can just substitute your datasetID for "jplMURSST"
      and modify "[0 32]" (the data range for the color bar).  -->
-<EDDGridMatlabPlotExample>imagesc(erdBAssta5day.longitude, erdBAssta5day.latitude, squeeze(erdBAssta5day.sst), [0 32])
+<EDDGridMatlabPlotExample>imagesc(jplMURSST.longitude, jplMURSST.latitude, squeeze(jplMURSST.analysed_sst), [0 32])
 set(gca, 'YDir', 'normal')</EDDGridMatlabPlotExample>
 
 <!-- Tabledap Examples
@@ -471,30 +514,28 @@ HTML encoded as "&amp;", "&lt;", "&gt;".
      Ideally, it is a dataset that has longitude, latitude, and time variables (among others). 
      ('time' allows for making a time series graph. 'latitude' and 'longitude' allow for making a map.)
      The dataset can have longitude values -180 to 180, or 0 to 360. -->
-<EDDTableIdExample>erdGlobecBottle</EDDTableIdExample>
+<EDDTableIdExample>pmelTaoDySst</EDDTableIdExample>
 <!-- This is a comma-separated list of variables from the dataset.
      It is useful if it is "longitude,latitude,time," plus a data variable name. -->
-<EDDTableVariablesExample>longitude,latitude,time,bottle_posn,temperature1</EDDTableVariablesExample>
+<EDDTableVariablesExample>longitude,latitude,time,station,wmo_platform_code,T_25</EDDTableVariablesExample>
 <!-- This is the constraints example which is appended to EDDTableVariablesExample. -->
-<EDDTableConstraintsExample>&amp;time&gt;=2002-08-17T00:00:00Z&amp;time&lt;=2002-08-19T20:18:00Z</EDDTableConstraintsExample>
+<EDDTableConstraintsExample>&amp;time&gt;=2015-05-23T12:00:00Z&amp;time&lt;=2015-05-31T12:00:00Z</EDDTableConstraintsExample>
 <!-- This is an example data query using an ISO-formatted time. 
      You could generate your example via your dataset's Data Access Form in ERDDAP.  -->
-<EDDTableDataTimeExample>longitude,latitude,time,bottle_posn,temperature1&amp;time&gt;=2002-08-17T00:00:00Z&amp;time&lt;=2002-08-19T20:18:00Z</EDDTableDataTimeExample>
+<EDDTableDataTimeExample>longitude,latitude,time,station,wmo_platform_code,T_25&amp;time&gt;=2015-05-23T12:00:00Z&amp;time&lt;=2015-05-31T12:00:00Z</EDDTableDataTimeExample>
 <!-- This is an equivalent example data query, but which specifies time as seconds-since-1970-01-01. 
      If you need to convert a date/time to "seconds since 1970-01-01", use
      http://coastwatch.pfeg.noaa.gov/erddap/convert/time.html -->
-<EDDTableDataValueExample>longitude,latitude,time,bottle_posn,temperature1&amp;time&gt;=1029542400&amp;time&lt;=1029788280</EDDTableDataValueExample>
+<EDDTableDataValueExample>longitude,latitude,time,station,wmo_platform_code,T_25&amp;time&gt;=1432382400&amp;time&lt;=1433073600</EDDTableDataValueExample>
 <!-- This is an example query which generates a graph. 
      You could generate your example via your dataset's Make A Graph form in ERDDAP.  -->
-<EDDTableGraphExample>bottle_posn,temperature1&amp;time=2002-08-19T10:06:00Z&amp;.draw=lines</EDDTableGraphExample>
-<!-- This is an example query which generates a map. 
-     In the default mapExample, temperature1, time, bottle_posn are useful 
-     because they appear in GoogleEarth with the .kml example 
-     and are ignored by the other image file types. -->
-<EDDTableMapExample>longitude,latitude,temperature1,time,bottle_posn&amp;time&gt;=2002-08-13T00:00:00Z&amp;time&lt;=2002-08-20T00:00:00Z&amp;bottle_posn=1&amp;.draw=markers&amp;.marker=5|5</EDDTableMapExample>
+<EDDTableGraphExample>time,T_25&amp;station="0n0e"&amp;time&gt;=2015-05-23T12:00:00Z&amp;time&lt;=2015-05-31T12:00:00Z&amp;.draw=lines</EDDTableGraphExample>
+<!-- This is an example query which generates a map. -->
+<EDDTableMapExample>longitude,latitude,T_25&amp;time=2015-05-31T12:00:00Z&amp;.draw=markers&amp;.marker=5|5</EDDTableMapExample>
 <!-- This is a Matlab example which uses data from the EDDTableGraphExample.
      Note the Matlab notation datasetName.variableName.  -->
-<EDDTableMatlabPlotExample>plot(erdGlobecBottle.bottle_posn, erdGlobecBottle.temperature1)</EDDTableMatlabPlotExample>
+<EDDTableMatlabPlotExample>plot(pmelTaoDySst.time, pmelTaoDySst.T_25)</EDDTableMatlabPlotExample>
+
 
 <!-- drawLandMask specifies the default Make A Graph setting for whether the 
 landmask should be drawn "over" or "under" surface data on maps. 
@@ -515,7 +556,8 @@ If your ERDDAP allows users to log in, all referenced image files, css files,
 
 favicon.ico is the image that browsers associate with your website.
 More more information, see http://en.wikipedia.org/wiki/Favicon .
-You can use your own favicon.ico file by putting it in (tomcat)/content/erddap/images. 
+You can use your own favicon.ico file by putting it in 
+(tomcat)/content/erddap/images. 
 
 *** Optional: you can change the appearance of all of your 
 ERDDAP's HTML pages by changing the CSS <style> settings below.
@@ -547,7 +589,8 @@ information.
 </style>
 ]]></startHeadHtml>
 
-<!-- This is the start of the body of the HTML code for all HTML web pages (starting with the 'body' tag). 
+<!-- This is the start of the body of the HTML code for all HTML web pages 
+(starting with the 'body' tag). 
 This may include &erddapUrl;, which is expanded to be [baseUrl]/erddap
   (or [baseUttpsUrl]/erddap if the user is logged in).
 If your ERDDAP allows users to log in, all referenced image files, etc. 
@@ -563,9 +606,11 @@ To use https: and have users log in, see all the instructions at
 <body> 
 <table bgcolor="#128CB5" border="0" cellpadding="2" cellspacing="0" width="100%"> 
   <tr> 
-    <td align="center" style="width:100px;"> &nbsp;
-      <img src="&erddapUrl;/images/noaab.png" alt="NOAA" align="middle"> &nbsp;     
-      </td> 
+    <td align="center" style="width:80px;"><a 
+    href="http://www.noaa.gov/"><img 
+    title="National Oceanic and Atmospheric Administration" 
+    src="&erddapUrl;/images/noaab.png" alt="NOAA"
+    align="middle"></td> 
     <td align="left">
       <font color="#FFFFFF">
       <font size="+2"><b>ERDDAP</b></font>
@@ -585,7 +630,8 @@ To use https: and have users log in, see all the instructions at
 ]]></startBodyHtml>
 
 
-<!-- The end of the body of the HTML code for all HTML web pages (with "</body>" at the end). 
+<!-- The end of the body of the HTML code for all HTML web pages (with "</body>"
+at the end). 
 This may include &erddapUrl;, which is expanded to be [baseUrl]/erddap
   (or [baseUttpsUrl]/erddap if the user is logged in).
 If your ERDDAP allows users to log in, all referenced image files, etc. 
@@ -593,8 +639,8 @@ If your ERDDAP allows users to log in, all referenced image files, etc.
   and must be referenced here with &erddapUrl;/images/[fileName].
 
 Please change the email address below. 
-You can change other things, but please keep "ERDDAP, Version &erddapVersion;" and
-these references to the Disclaimers and Privacy Policy. -->
+You can change other things, but please keep "ERDDAP, Version &erddapVersion;" 
+and these references to the Disclaimers and Privacy Policy. -->
 <endBodyHtml><![CDATA[ 
 <br>&nbsp;
 <hr>
@@ -608,8 +654,8 @@ ERDDAP, Version &erddapVersion;
 
 <!-- This is the short description of ERDDAP, which is used on the middle of the 
 left side of ERDDAP's home page. 
-This can refer to &erddapUrl;, &requestFormatExamplesHtml; &resultsFormatExamplesHtml; and
-[standardShortDescriptionHtml] (from messages.xml). 
+This can refer to &erddapUrl;, &requestFormatExamplesHtml;
+&resultsFormatExamplesHtml; and [standardShortDescriptionHtml] (from messages.xml). 
 If your ERDDAP allows users to log in, all referenced image files, etc. 
   must be in [tomcat]/content/erddap/images or a subdirectory
   and must be referenced here with &erddapUrl;/images/[fileName].

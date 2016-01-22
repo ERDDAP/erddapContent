@@ -35,6 +35,20 @@ http://coastwatch.pfel.noaa.gov/erddap/download/setupDatasetsXml.html
   See your ERDDAP daily report for a list/tally of the most active requesters. -->
 <requestBlacklist></requestBlacklist>
 
+<!-- Blacklisted IP addresses often have troublesome scripts that make
+rapid-fire, repeated, bad requests.
+With this setting, you can slow down the response to blacklisted IP addresses 
+or other failed requests by some number of milliseconds. 
+Recommendations:
+* If the trouble is a Distributed Denial Of Service (DDOS) attack from 100+
+  attackers, set this to a smaller number (0? 10? 100?).
+  Slowing them all down for too long leads to too many waiting threads.
+* If the trouble is from 1-10 sources, set this to 1000 ms (the default).
+  That slows them down so they waste fewer network resources.
+  Also, 1000 ms won't annoy human users who make a bad request.
+-->
+<slowDownTroubleMillis>1000</slowDownTroubleMillis>
+
 <!-- If you want to prevent specific people from using the email/URL subscription
      system, uncomment the following tag and add their email addresses to the comma-separated list. 
 <subscriptionEmailBlacklist>some.name@company.com, another.name@company.com</subscriptionEmailBlacklist>
@@ -930,23 +944,22 @@ Because of the nature of SOS requests, requests for data MUST include constraint
 </dataset>
 
 <!-- Aquarius -->
-<dataset type="EDDGridFromErddap" datasetID="jplAquariusSSS3MonthV3" active="true">
-    <!-- Aquarius Sea Surface Salinity, Version 3, Global, 3-Month -->
-    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/jplAquariusSSS3MonthV3</sourceUrl>
+<dataset type="EDDGridFromErddap" datasetID="jplAquariusSSS3MonthV4" active="true">
+    <!-- Aquarius Sea Surface Salinity, Version 4, Global, 3-Month -->
+    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/jplAquariusSSS3MonthV4</sourceUrl>
 </dataset>
-<dataset type="EDDGridFromErddap" datasetID="jplAquariusSSS7DayV3" active="true">
-    <!-- Aquarius Sea Surface Salinity, Version 3, Global, 7-Day -->
-    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/jplAquariusSSS7DayV3</sourceUrl>
+<dataset type="EDDGridFromErddap" datasetID="jplAquariusSSS7DayV4" active="true">
+    <!-- Aquarius Sea Surface Salinity, Version 4, Global, 7-Day -->
+    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/jplAquariusSSS7DayV4</sourceUrl>
 </dataset>
-<dataset type="EDDGridFromErddap" datasetID="jplAquariusSSSDailyV3" active="true">
-    <!-- Aquarius Sea Surface Salinity, Version 3, Global, Daily -->
-    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/jplAquariusSSSDailyV3</sourceUrl>
+<dataset type="EDDGridFromErddap" datasetID="jplAquariusSSSDailyV4" active="true">
+    <!-- Aquarius Sea Surface Salinity, Version 4, Global, Daily -->
+    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/jplAquariusSSSDailyV4</sourceUrl>
 </dataset>
-<dataset type="EDDGridFromErddap" datasetID="jplAquariusSSSMonthlyV3" active="true">
-    <!-- Aquarius Sea Surface Salinity, Version 3, Global, Monthly -->
-    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/jplAquariusSSSMonthlyV3</sourceUrl>
+<dataset type="EDDGridFromErddap" datasetID="jplAquariusSSSMonthlyV4" active="true">
+    <!-- Aquarius Sea Surface Salinity, Version 4, Global, Monthly -->
+    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/jplAquariusSSSMonthlyV4</sourceUrl>
 </dataset>
-
 
 
 <!-- Here are some excellent tabular datasets that you can include in your ERDDAP
