@@ -50,12 +50,23 @@ Recommendations:
 <slowDownTroubleMillis>1000</slowDownTroubleMillis>
 
 <!-- If you want to prevent specific people from using the email/URL subscription
-     system, uncomment the following tag and add their email addresses to the comma-separated list. 
-<subscriptionEmailBlacklist>some.name@company.com, another.name@company.com</subscriptionEmailBlacklist>
+     system, add their email addresses to this comma-separated list. 
+     You can use the name "*" to blacklist an entire domain, e.g., *@example.com .
 -->
+<subscriptionEmailBlacklist>your.email@yourinstitution.edu, some.name@company.com, 
+another.name@company.com, *@example.com</subscriptionEmailBlacklist>
 
-<!-- These convert the local sourceUrl (used in dataset tags) 
-into the public sourceUrl (which appears in a dataset's globalAttributes).
+<!-- For security reasons and reasons related to the subscription system, DON'T USE THIS!
+Instead, always use the public domain name in the <sourceUrl> tag
+and use the /etc/hosts table on your server to convert local domain names 
+to IP numbers without using a DNS server. (see http://linux.die.net/man/5/hosts)
+You can test if a domain name is properly converted into an IP # by using:
+  ping some.domain.name
+
+But if you insist:
+You can use <convertToPublicSourceUrl> tags to convert the local sourceUrl 
+(used in dataset tags) into the public sourceUrl (which appears in a 
+dataset's globalAttributes).
 This is only needed if some datasets use non-public sourceUrl's
 (usually because their computer is in your DMZ or a local LAN). 
 'from' and 'to' are the start of the URLs and are case sensitive.
@@ -64,10 +75,6 @@ For example,
 <convertToPublicSourceUrl from="http://192.168.31.18/" to="http://oceanwatch.pfeg.noaa.gov/" />
 will cause a matching local sourceUrl (such as http://192.168.31.18/thredds/dodsC/satellite/BA/ssta/5day)
 into a public sourceUrl (http://oceanwatch.pfeg.noaa.gov/thredds/dodsC/satellite/BA/ssta/5day). 
--->
-<!--
-<convertToPublicSourceUrl from="http://192.168.31.18/" to="http://oceanwatch.pfeg.noaa.gov/" />
-<convertToPublicSourceUrl from="http://192.168.31.27/" to="http://thredds1.pfeg.noaa.gov/"   />
 -->
 
 <dataset type="EDDGridFromEtopo" datasetID="etopo180" />
@@ -870,77 +877,77 @@ Because of the nature of SOS requests, requests for data MUST include constraint
 </dataset>
 
 <!-- VIIRS -->
-<dataset type="EDDGridFromErddap" datasetID="erdVH2chla1day" active="true">
+<dataset type="EDDGridFromErddap" datasetID="erdVH3chla1day" active="true">
     <!-- VIIRSN, Suomi-NPP, Level-3 SMI, Global, 4km, Chlorophyll a, Evaluation Data, Daily -->
-    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/erdVH2chla1day</sourceUrl>
+    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/erdVH3chla1day</sourceUrl>
 </dataset>
-<dataset type="EDDGridFromErddap" datasetID="erdVH2chla8day" active="true">
+<dataset type="EDDGridFromErddap" datasetID="erdVH3chla8day" active="true">
     <!-- VIIRSN, Suomi-NPP, Level-3 SMI, Global, 4km, Chlorophyll a, Evaluation Data, 8-Day -->
-    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/erdVH2chla8day</sourceUrl>
+    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/erdVH3chla8day</sourceUrl>
 </dataset>
-<dataset type="EDDGridFromErddap" datasetID="erdVH2chlamday" active="true">
+<dataset type="EDDGridFromErddap" datasetID="erdVH3chlamday" active="true">
     <!-- VIIRSN, Suomi-NPP, Level-3 SMI, Global, 4km, Chlorophyll a, Evaluation Data, Monthly -->
-    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/erdVH2chlamday</sourceUrl>
+    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/erdVH3chlamday</sourceUrl>
 </dataset>
-<dataset type="EDDGridFromErddap" datasetID="erdVH2k4901day" active="true">
+<dataset type="EDDGridFromErddap" datasetID="erdVH3k4901day" active="true">
     <!-- VIIRSN, Suomi-NPP, Level-3 SMI, Global, 4km, K490, Evaluation Data, Daily -->
-    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/erdVH2k4901day</sourceUrl>
+    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/erdVH3k4901day</sourceUrl>
 </dataset>
-<dataset type="EDDGridFromErddap" datasetID="erdVH2k4908day" active="true">
+<dataset type="EDDGridFromErddap" datasetID="erdVH3k4908day" active="true">
     <!-- VIIRSN, Suomi-NPP, Level-3 SMI, Global, 4km, K490, Evaluation Data, 8-Day -->
-    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/erdVH2k4908day</sourceUrl>
+    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/erdVH3k4908day</sourceUrl>
 </dataset>
-<dataset type="EDDGridFromErddap" datasetID="erdVH2k490mday" active="true">
+<dataset type="EDDGridFromErddap" datasetID="erdVH3k490mday" active="true">
     <!-- VIIRSN, Suomi-NPP, Level-3 SMI, Global, 4km, K490, Evaluation Data, Monthly -->
-    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/erdVH2k490mday</sourceUrl>
+    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/erdVH3k490mday</sourceUrl>
 </dataset>
-<dataset type="EDDGridFromErddap" datasetID="erdVH2par1day" active="true">
+<dataset type="EDDGridFromErddap" datasetID="erdVH3par1day" active="true">
     <!-- VIIRSN, Suomi-NPP, Level-3 SMI, Global, 4km, PAR, Evaluation Data, Daily -->
-    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/erdVH2par1day</sourceUrl>
+    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/erdVH3par1day</sourceUrl>
 </dataset>
-<dataset type="EDDGridFromErddap" datasetID="erdVH2par8day" active="true">
+<dataset type="EDDGridFromErddap" datasetID="erdVH3par8day" active="true">
     <!-- VIIRSN, Suomi-NPP, Level-3 SMI, Global, 4km, PAR, Evaluation Data, 8-Day -->
-    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/erdVH2par8day</sourceUrl>
+    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/erdVH3par8day</sourceUrl>
 </dataset>
-<dataset type="EDDGridFromErddap" datasetID="erdVH2parmday" active="true">
+<dataset type="EDDGridFromErddap" datasetID="erdVH3parmday" active="true">
     <!-- VIIRSN, Suomi-NPP, Level-3 SMI, Global, 4km, PAR, Evaluation Data, Monthly -->
-    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/erdVH2parmday</sourceUrl>
+    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/erdVH3parmday</sourceUrl>
 </dataset>
-<dataset type="EDDGridFromErddap" datasetID="erdVH2pic1day" active="true">
+<dataset type="EDDGridFromErddap" datasetID="erdVH3pic1day" active="true">
     <!-- VIIRSN, Suomi-NPP, Level-3 SMI, Global, 4km, PIC, Evaluation Data, Daily -->
-    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/erdVH2pic1day</sourceUrl>
+    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/erdVH3pic1day</sourceUrl>
 </dataset>
-<dataset type="EDDGridFromErddap" datasetID="erdVH2pic8day" active="true">
+<dataset type="EDDGridFromErddap" datasetID="erdVH3pic8day" active="true">
     <!-- VIIRSN, Suomi-NPP, Level-3 SMI, Global, 4km, PIC, Evaluation Data, 8-Day -->
-    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/erdVH2pic8day</sourceUrl>
+    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/erdVH3pic8day</sourceUrl>
 </dataset>
-<dataset type="EDDGridFromErddap" datasetID="erdVH2picmday" active="true">
+<dataset type="EDDGridFromErddap" datasetID="erdVH3picmday" active="true">
     <!-- VIIRSN, Suomi-NPP, Level-3 SMI, Global, 4km, PIC, Evaluation Data, Monthly -->
-    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/erdVH2picmday</sourceUrl>
+    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/erdVH3picmday</sourceUrl>
 </dataset>
-<dataset type="EDDGridFromErddap" datasetID="erdVH2poc1day" active="true">
+<dataset type="EDDGridFromErddap" datasetID="erdVH3poc1day" active="true">
     <!-- VIIRSN, Suomi-NPP, Level-3 SMI, Global, 4km, POC, Evaluation Data, Daily -->
-    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/erdVH2poc1day</sourceUrl>
+    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/erdVH3poc1day</sourceUrl>
 </dataset>
-<dataset type="EDDGridFromErddap" datasetID="erdVH2poc8day" active="true">
+<dataset type="EDDGridFromErddap" datasetID="erdVH3poc8day" active="true">
     <!-- VIIRSN, Suomi-NPP, Level-3 SMI, Global, 4km, POC, Evaluation Data, 8-Day -->
-    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/erdVH2poc8day</sourceUrl>
+    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/erdVH3poc8day</sourceUrl>
 </dataset>
-<dataset type="EDDGridFromErddap" datasetID="erdVH2pocmday" active="true">
+<dataset type="EDDGridFromErddap" datasetID="erdVH3pocmday" active="true">
     <!-- VIIRSN, Suomi-NPP, Level-3 SMI, Global, 4km, POC, Evaluation Data, Monthly -->
-    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/erdVH2pocmday</sourceUrl>
+    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/erdVH3pocmday</sourceUrl>
 </dataset>
-<dataset type="EDDGridFromErddap" datasetID="erdVH2r6711day" active="true">
+<dataset type="EDDGridFromErddap" datasetID="erdVH3r6711day" active="true">
     <!-- VIIRSN, Suomi-NPP, Level-3 SMI, Global, 4km, Reflectance at 671 nm, Evaluation Data, Daily -->
-    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/erdVH2r6711day</sourceUrl>
+    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/erdVH3r6711day</sourceUrl>
 </dataset>
-<dataset type="EDDGridFromErddap" datasetID="erdVH2r6718day" active="true">
+<dataset type="EDDGridFromErddap" datasetID="erdVH3r6718day" active="true">
     <!-- VIIRSN, Suomi-NPP, Level-3 SMI, Global, 4km, Reflectance at 671 nm, Evaluation Data, 8-Day -->
-    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/erdVH2r6718day</sourceUrl>
+    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/erdVH3r6718day</sourceUrl>
 </dataset>
-<dataset type="EDDGridFromErddap" datasetID="erdVH2r671mday" active="true">
+<dataset type="EDDGridFromErddap" datasetID="erdVH3r671mday" active="true">
     <!-- VIIRSN, Suomi-NPP, Level-3 SMI, Global, 4km, Reflectance at 671 nm, Evaluation Data, Monthly -->
-    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/erdVH2r671mday</sourceUrl>
+    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/erdVH3r671mday</sourceUrl>
 </dataset>
 
 <!-- Aquarius -->

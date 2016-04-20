@@ -21,14 +21,17 @@ At ERD, we use '/u00/cwatch/erddap/' for releases.
 -->
 <bigParentDirectory>/home/yourName/erddap/</bigParentDirectory>
 
-<!-- baseUrl is the start of the public url, to which "/erddap" is appended.
-For example,
-used for running/testing on your personal computer:
-<baseUrl>http://127.0.0.1:8080</baseUrl>              
-used for ERD releases (erddap and erddap2):
-<baseUrl>http://coastwatch.pfeg.noaa.gov</baseUrl>    
+<!-- baseUrl is the start of the public url, to which "/erddap" 
+is appended. For example:
+For running/testing on your personal computer:
+  <baseUrl>http://localhost:8080</baseUrl>     
+  (127.0.0.1 doesn't work with authentication=google).
+For ERD releases, we use
+  <baseUrl>http://coastwatch.pfeg.noaa.gov</baseUrl>    
+If you want to encourage all users to use https (not http), 
+  make the baseUrl the same as the baseHttpsUrl (see below).
 -->
-<baseUrl>http://127.0.0.1:8080</baseUrl>
+<baseUrl>http://localhost:8080</baseUrl>
 
 <!-- Daily status reports and all error messages are emailed to emailEverythingTo.
 Daily status reports are emailed to emailDailyReportsTo.
@@ -71,6 +74,8 @@ emailProperties is a list of additional properties in the form
   prop1|value1|prop2|value2
 The default is nothing.
 
+If possible, set this up to use a secure connection (SSL / TLS) to the email server.
+
 For gmail (even your.name@noaa.gov accounts which are managed by Google), 
   for emailSmtpHost, use smtp.gmail.com
   for emailSmtpPort, use 587
@@ -105,6 +110,21 @@ servers. -->
 <adminPostalCode>99999</adminPostalCode>
 <adminCountry>USA</adminCountry>
 <adminEmail>your.email@yourCompany.com</adminEmail>
+
+<!-- Normally, if you have a EDDGridFromErddap or EDDTableFromErddap 
+dataset in your datasets.xml, it will try to subscribe to the remote 
+ERDDAP dataset so that the local dataset is kept perfectly up-to-date.
+If this ERDDAP is not publicly accessible (http://localhost), or its
+IP address will change soon, or you have some other reason, 
+you can tell this ERDDAP to not try to subscribe to the remote 
+ERDDAP datasets by setting this to false. (default=true) 
+This is the overall setting for this ERDDAP. It can be overridden by
+the same tag (with a different value) in the datasets.xml chunk for 
+a given EDD...FromErddap dataset. 
+For each fromErddap dataset that doesn't subscribe to the remote 
+ERDDAP dataset, you should set <reloadEveryNMinutes> to a smaller 
+number so that the local dataset stays reasonably up-to-date. -->
+<subscribeToRemoteErddapDataset>true</subscribeToRemoteErddapDataset>
 
 <!-- The font family to be used for all of the text in images.
 "SansSerif" (the default) is always a valid and reasonable option.
@@ -167,39 +187,61 @@ should be true (the default), but set it to false if you want to bypass
 the cached information. -->
 <quickRestart>true</quickRestart>
 
-<!-- If you want to restrict access to some datasets, you need to specify
-the method used for logging on (authentication).
-See the info at http://coastwatch.pfeg.noaa.gov/erddap/download/setup.html#security
-Currently, the options are: "" (logins not supported, the default), "custom", "openid".
-Note that openid login doesn't work when testing with localhost (https://127.0.0.1:8443).
+<!-- If you want to restrict access to some datasets, 
+you need to specify the method used for logging on (authentication).
+See the info at 
+http://coastwatch.pfeg.noaa.gov/erddap/download/setup.html#security
+Currently, the options are: "" (logins not supported, the default), 
+"custom", "email", and "google" (recommended).  
+[No longer supported: "basic", "openid"]
 -->
 <authentication></authentication>
 
-<!-- This is a variant of <baseUrl> which is used when authentication is active 
-  and the user is logged in.
-  In general, you take the <baseUrl>, change "http" to "https", and change/add 
-  ":8443". This must begin with "https://".
-  If you make a proxy so that ":8443" isn't needed, you don't need to add it here.
-  This is irrelevant if <authentication> is "".
-  See the instructions at 
-  http://coastwatch.pfeg.noaa.gov/erddap/download/setup.html#security
-  For example,
+<!-- If authentication=google, you must supply your Google Client ID. 
+See
+https://developers.google.com/identity/sign-in/web/devconsole-project
+When setting this up, for Authorized JavaScript origins, 
+for testing on your computer, use the domain "localhost" 
+(e.g., origin=https://localhost:8443), 
+not "127.0.0.1" (because Google Sign-In doesn't work with anything 
+at that domain).
+This will be a string of about 75 characters, probably starting with
+several digits and ending with .apps.googleusercontent.com .
+-->
+<googleClientID></googleClientID>
+
+<!-- For "custom" authentication, this specifies how you have 
+stored passwords in the roles tags in datasets.xml.
+If you aren't storing any passwords, this is irrelevant.
+The options (in order of increasing security) are: 
+"MD5", "UEPMD5" (MD5(UserName:ERDDAP:Password)), 
+"SHA256", "UEPSHA256" (SHA256(UserName:ERDDAP:Password), 
+the default).
+You should only use "MD5" or "SHA256" if you need to match 
+values stored that way in an external password database.
+See the info at 
+http://coastwatch.pfeg.noaa.gov/erddap/download/setup.html#security
+-->
+<passwordEncoding>UEPSHA256</passwordEncoding>
+
+<!-- This is a variant of <baseUrl> which is used when 
+authentication is active and the user is logged in.
+In general, you take the <baseUrl>, change "http" to "https", 
+and change/add ":8443". This must begin with "https://".
+If you make a proxy so that ":8443" isn't needed, 
+then don't use ":8443" here.
+This is relevant even if <authentication> is "".
+See the instructions at 
+http://coastwatch.pfeg.noaa.gov/erddap/download/setup.html#security
+For example:
 For running/testing on your personal computer:
-<baseHttpsUrl>https://127.0.0.1:8443</baseHttpsUrl>                  
-Used at ERD:
-<baseHttpsUrl>https://coastwatch.pfeg.noaa.gov:8443</baseHttpsUrl>  
+  <baseHttpsUrl>https://localhost:8443</baseHttpsUrl>                  
+For releases at ERD, we use:
+  <baseHttpsUrl>https://coastwatch.pfeg.noaa.gov</baseHttpsUrl>  
+If you want to encourage all users to use https (not http), 
+  make the baseUrl (see above) the same as the baseHttpsUrl.
 -->
 <baseHttpsUrl></baseHttpsUrl>
-
-<!-- This specifies how you have stored passwords in the roles tags in datasets.xml.
-If you aren't storing any passwords this is irrelevant.
-The options (in order of increasing security) are: 
-"plaintext", "MD5", or "UEPMD5" (MD5(UserName:ERDDAP:Password) which is the default).
-You should only use "plaintext" or "MD5" if you need to match values stored 
-that way in an external password database.
-See the info at http://coastwatch.pfeg.noaa.gov/erddap/download/setup.html#security
--->
-<passwordEncoding>UEPMD5</passwordEncoding>
 
 <!-- This determines whether datasets that the user doesn't currently have access
 to (because he isn't logged in or because his roles don't allow access)
