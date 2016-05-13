@@ -136,7 +136,7 @@ At ERD, we use "Bitstream Vera Sans"
   (open source fonts from http://www.gnome.org/fonts/ ).
   I think they are distinctly better than the standard Linux fonts.
   To use them on your computer, download
-  http://coastwatch.pfeg.noaa.gov/erddap/download/BitstreamVeraSans.zip
+  https://coastwatch.pfeg.noaa.gov/erddap/download/BitstreamVeraSans.zip
   and unzip the files into [javaHome]/jre/lib/fonts so Java sees them.
 -->
 <fontFamily>SansSerif</fontFamily>
@@ -190,7 +190,7 @@ the cached information. -->
 <!-- If you want to restrict access to some datasets, 
 you need to specify the method used for logging on (authentication).
 See the info at 
-http://coastwatch.pfeg.noaa.gov/erddap/download/setup.html#security
+https://coastwatch.pfeg.noaa.gov/erddap/download/setup.html#security
 Currently, the options are: "" (logins not supported, the default), 
 "custom", "email", and "google" (recommended).  
 [No longer supported: "basic", "openid"]
@@ -220,7 +220,7 @@ the default).
 You should only use "MD5" or "SHA256" if you need to match 
 values stored that way in an external password database.
 See the info at 
-http://coastwatch.pfeg.noaa.gov/erddap/download/setup.html#security
+https://coastwatch.pfeg.noaa.gov/erddap/download/setup.html#security
 -->
 <passwordEncoding>UEPSHA256</passwordEncoding>
 
@@ -232,7 +232,7 @@ If you make a proxy so that ":8443" isn't needed,
 then don't use ":8443" here.
 This is relevant even if <authentication> is "".
 See the instructions at 
-http://coastwatch.pfeg.noaa.gov/erddap/download/setup.html#security
+https://coastwatch.pfeg.noaa.gov/erddap/download/setup.html#security
 For example:
 For running/testing on your personal computer:
   <baseHttpsUrl>https://localhost:8443</baseHttpsUrl>                  
@@ -521,7 +521,7 @@ HTML encoded as "&amp;", "&lt;", "&gt;".
 <EDDGridDataTimeExample>analysed_sst[(2015-06-09T09:00:00Z)][(-89.9945):1000:(89.9945)][(-179.995):1000:(179.995)]</EDDGridDataTimeExample>
 <!-- This is an equivalent example data query, but which specifies time as seconds-since-1970-01-01. 
      If you need to convert a date/time to seconds-since-1970-01-01, use
-     http://coastwatch.pfeg.noaa.gov/erddap/convert/time.html . -->
+     https://coastwatch.pfeg.noaa.gov/erddap/convert/time.html . -->
 <EDDGridDataValueExample>analysed_sst[(1433840400)][(-89.9945):1000:(89.9945)][(-179.995):1000:(179.995)]</EDDGridDataValueExample>
 <!-- This is an equivalent example data query, but which uses the traditional opendap indices-style notation only. -->
 <EDDGridDataIndexExample>analysed_sst[4756][0:1000:16383][0:1000:32767]</EDDGridDataIndexExample>
@@ -567,7 +567,7 @@ HTML encoded as "&amp;", "&lt;", "&gt;".
 <EDDTableDataTimeExample>longitude,latitude,time,station,wmo_platform_code,T_25&amp;time&gt;=2015-05-23T12:00:00Z&amp;time&lt;=2015-05-31T12:00:00Z</EDDTableDataTimeExample>
 <!-- This is an equivalent example data query, but which specifies time as seconds-since-1970-01-01. 
      If you need to convert a date/time to "seconds since 1970-01-01", use
-     http://coastwatch.pfeg.noaa.gov/erddap/convert/time.html -->
+     https://coastwatch.pfeg.noaa.gov/erddap/convert/time.html -->
 <EDDTableDataValueExample>longitude,latitude,time,station,wmo_platform_code,T_25&amp;time&gt;=1432382400&amp;time&lt;=1433073600</EDDTableDataValueExample>
 <!-- This is an example query which generates a graph. 
      You could generate your example via your dataset's Make A Graph form in ERDDAP.  -->
@@ -597,7 +597,7 @@ If your ERDDAP allows users to log in, all referenced image files, css files,
   and must be referenced here with &erddapUrl;/images/[fileName].
 
 favicon.ico is the image that browsers associate with your website.
-More more information, see http://en.wikipedia.org/wiki/Favicon .
+More more information, see https://en.wikipedia.org/wiki/Favicon .
 You can use your own favicon.ico file by putting it in 
 (tomcat)/content/erddap/images. 
 
@@ -639,7 +639,7 @@ If your ERDDAP allows users to log in, all referenced image files, etc.
   must be in [tomcat]/content/erddap/images or a subdirectory
   and must be referenced here with &erddapUrl;/images/[fileName].
 To use https: and have users log in, see all the instructions at
-  http://coastwatch.pfeg.noaa.gov/erddap/download/setup.html#security
+  https://coastwatch.pfeg.noaa.gov/erddap/download/setup.html#security
   and include "&loginInfo;" in startBodyHtml to include the user's login status 
   (and a link to log in/out).
   If authentication="", &loginInfo; disappears.
@@ -663,8 +663,8 @@ To use https: and have users log in, see all the instructions at
       <br>Brought to you by 
       <a title="National Oceanic and Atmospheric Administration" rel="bookmark" href="http://www.noaa.gov">NOAA</a>  
       <a title="National Marine Fisheries Service" rel="bookmark" href="http://www.nmfs.noaa.gov">NMFS</a>  
-      <a title="Southwest Fisheries Science Center" rel="bookmark" href="http://swfsc.noaa.gov">SWFSC</a>  
-      <a title="Environmental Research Division" rel="bookmark"  href="http://swfsc.noaa.gov/textblock.aspx?Division=ERD&amp;id=1315&amp;ParentMenuId=200">ERD</a>  
+      <a title="Southwest Fisheries Science Center" rel="bookmark" href="https://swfsc.noaa.gov">SWFSC</a>  
+      <a title="Environmental Research Division" rel="bookmark"  href="https://swfsc.noaa.gov/textblock.aspx?Division=ERD&amp;id=1315&amp;ParentMenuId=200">ERD</a>  
       &nbsp; &nbsp;
       </font></td> 
   </tr> 
