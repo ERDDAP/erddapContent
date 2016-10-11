@@ -327,11 +327,11 @@ The bounding box values are minx,miny,maxx,maxy.
 The default for wmsActive is "true".
 -->
 <wmsActive>true</wmsActive>
-<wmsSampleDatasetID>jplMURSST</wmsSampleDatasetID>
+<wmsSampleDatasetID>jplMURSST41</wmsSampleDatasetID>
 <wmsSampleVariable>analysed_sst</wmsSampleVariable>
 <!-- The bounding box values are minLongitude,minLatitude,maxLongitude,maxLatitude.
    Longitude values within -180 to 180, or 0 to 360, are now okay. -->
-<wmsSampleBBox>-179.995,-89.9945,179.995,89.9945</wmsSampleBBox>
+<wmsSampleBBox>-179.99,-89.99,180.0,89.99</wmsSampleBBox>
 
 <!-- ERDDAP has an email/URL subscription system which sends a user an email
 or pings a url whenever an interesting dataset changes.
@@ -412,9 +412,10 @@ The default is 10000.
 -->
 <unusualActivity>10000</unusualActivity>
 
-<!-- This is used to specify the directory with the unit test data files.
+<!-- This is used to specify the directories with the unit test data files.
      Only people that are running the ERDDAP unit tests need to specify this.
 <unitTestDataDir>/someDirectory/</unitTestDataDir> 
+<unitTestBigDataDir>/someBigDirectory/</unitTestBigDataDir> 
 -->
 
 <!-- The title for the map's legend (or nothing if you don't want a legend title).
@@ -506,7 +507,7 @@ HTML encoded as "&amp;", "&lt;", "&gt;".
      ('time' allows for making a time series graph. 'latitude' and 'longitude' allow for making a map.)
      The longitude values used in the examples below must not span 180 (to work with .esriAscii). 
      (It's okay if the dataset is 0 to 360 - just use the 0 to 180 (or 180 to 360) portion.) -->
-<EDDGridIdExample>jplMURSST</EDDGridIdExample>
+<EDDGridIdExample>jplMURSST41</EDDGridIdExample>
 <!-- This is a complete query string for getting some axis data from the example grid dataset. -->
 <EDDGridDimensionExample>latitude[0:100:1000]</EDDGridDimensionExample>
 <!-- This is the name of a data variable in the example grid dataset. -->
@@ -518,11 +519,11 @@ HTML encoded as "&amp;", "&lt;", "&gt;".
      The longitude values used must not span 180 (to work with .esriAscii). 
      The use of ":1000:" avoids sending the user a ton of data. 
      You could generate your example via your dataset's Data Access Form in ERDDAP.  -->
-<EDDGridDataTimeExample>analysed_sst[(2015-06-09T09:00:00Z)][(-89.9945):1000:(89.9945)][(-179.995):1000:(179.995)]</EDDGridDataTimeExample>
+<EDDGridDataTimeExample>analysed_sst[(2015-06-09T09:00:00Z)][(-89.99):1000:(89.99)][(-179.99):1000:(180.0)]</EDDGridDataTimeExample>
 <!-- This is an equivalent example data query, but which specifies time as seconds-since-1970-01-01. 
      If you need to convert a date/time to seconds-since-1970-01-01, use
      https://coastwatch.pfeg.noaa.gov/erddap/convert/time.html . -->
-<EDDGridDataValueExample>analysed_sst[(1433840400)][(-89.9945):1000:(89.9945)][(-179.995):1000:(179.995)]</EDDGridDataValueExample>
+<EDDGridDataValueExample>analysed_sst[(1433840400)][(-89.99):1000:(89.99)][(-179.99):1000:(180.0)]</EDDGridDataValueExample>
 <!-- This is an equivalent example data query, but which uses the traditional opendap indices-style notation only. -->
 <EDDGridDataIndexExample>analysed_sst[4756][0:1000:16383][0:1000:32767]</EDDGridDataIndexExample>
 <!-- This is an example query which generates a graph. 
@@ -532,11 +533,11 @@ HTML encoded as "&amp;", "&lt;", "&gt;".
      The "map" example must have longitude which doesn't span 180 for .esriAscii. 
      The use of ":1000:" avoids sending the user a ton of data. 
      ":1000:" is irrelevant when requesting a .png, but relevant if the user gets the actual data (e.g., .csv). -->
-<EDDGridMapExample>analysed_sst[(2015-06-09T09:00:00Z)][(-89.9945):1000:(89.9945)][(-179.995):1000:(179.995)]&amp;.draw=surface&amp;.vars=longitude|latitude|analysed_sst&amp;.colorBar=Rainbow|C|Linear|0|32|</EDDGridMapExample>
+<EDDGridMapExample>analysed_sst[(2015-06-09T09:00:00Z)][(-89.99):1000:(89.99)][(-179.99):1000:(180.0)]&amp;.draw=surface&amp;.vars=longitude|latitude|analysed_sst&amp;.colorBar=Rainbow|C|Linear|0|32|</EDDGridMapExample>
 <!-- This is a Matlab example which uses data from the EDDGridMapExample.
-     Hopefully, you can just substitute your datasetID for "jplMURSST"
+     Hopefully, you can just substitute your datasetID for "jplMURSST41"
      and modify "[0 32]" (the data range for the color bar).  -->
-<EDDGridMatlabPlotExample>imagesc(jplMURSST.longitude, jplMURSST.latitude, squeeze(jplMURSST.analysed_sst), [0 32])
+<EDDGridMatlabPlotExample>imagesc(jplMURSST41.longitude, jplMURSST41.latitude, squeeze(jplMURSST41.analysed_sst), [0 32])
 set(gca, 'YDir', 'normal')</EDDGridMatlabPlotExample>
 
 <!-- Tabledap Examples

@@ -765,47 +765,47 @@ Because of the nature of SOS requests, requests for data MUST include constraint
 </dataset>
 
 <!-- NAVGEM -->
-<dataset type="EDDGridFromErddap" datasetID="erdNavgem05D10mWind" active="true">
+<dataset type="EDDGridFromErddap" datasetID="erdNavgem05D10mWind_LonPM180" active="true">
     <!-- Navy Global Environmental Model (NAVGEM), 0.5 degree, 10 m Wind -->
-    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/erdNavgem05D10mWind</sourceUrl>
+    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/erdNavgem05D10mWind_LonPM180</sourceUrl>
 </dataset>
-<dataset type="EDDGridFromErddap" datasetID="erdNavgem05D20mWind" active="true">
+<dataset type="EDDGridFromErddap" datasetID="erdNavgem05D20mWind_LonPM180" active="true">
     <!-- Navy Global Environmental Model (NAVGEM), 0.5 degree, 20 m Wind -->
-    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/erdNavgem05D20mWind</sourceUrl>
+    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/erdNavgem05D20mWind_LonPM180</sourceUrl>
 </dataset>
-<dataset type="EDDGridFromErddap" datasetID="erdNavgem05D500mb" active="true">
+<dataset type="EDDGridFromErddap" datasetID="erdNavgem05D500mb_LonPM180" active="true">
     <!-- Navy Global Environmental Model (NAVGEM), 0.5 degree, 500 hPa Height -->
-    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/erdNavgem05D500mb</sourceUrl>
+    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/erdNavgem05D500mb_LonPM180</sourceUrl>
 </dataset>
-<dataset type="EDDGridFromErddap" datasetID="erdNavgem05DPres" active="true">
+<dataset type="EDDGridFromErddap" datasetID="erdNavgem05DPres_LonPM180" active="true">
     <!-- Navy Global Environmental Model (NAVGEM), 0.5 degree, Pressure MSL -->
-    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/erdNavgem05DPres</sourceUrl>
+    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/erdNavgem05DPres_LonPM180</sourceUrl>
 </dataset>
 
 <!-- NCDC Ocean Winds -->
-<dataset type="EDDGridFromErddap" datasetID="ncdcOw6hr" active="true">
+<dataset type="EDDGridFromErddap" datasetID="ncdcOw6hr_LonPM180" active="true">
     <!-- NOAA/NCDC Blended 6-Hourly 0.25-degree Sea Surface Winds -->
-    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/ncdcOw6hr</sourceUrl>
+    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/ncdcOw6hr_LonPM180</sourceUrl>
 </dataset>
-<dataset type="EDDGridFromErddap" datasetID="ncdcOwClm9505" active="true">
+<dataset type="EDDGridFromErddap" datasetID="ncdcOwClm9505_LonPM180" active="true">
     <!-- NOAA/NCDC Blended 0.25-degree Sea Winds, Climatological Monthly Means -->
-    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/ncdcOwClm9505</sourceUrl>
+    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/ncdcOwClm9505_LonPM180</sourceUrl>
 </dataset>
-<dataset type="EDDGridFromErddap" datasetID="ncdcOwDly" active="true">
+<dataset type="EDDGridFromErddap" datasetID="ncdcOwDly_LonPM180" active="true">
     <!-- NOAA/NCDC Blended Daily 0.25-degree Sea Surface Winds -->
-    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/ncdcOwDly</sourceUrl>
+    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/ncdcOwDly_LonPM180</sourceUrl>
 </dataset>
-<dataset type="EDDGridFromErddap" datasetID="ncdcOwDlyStrs" active="true">
-    <!-- NOAA/NCDC Blended Daily 0.25-degree Sea Surface Wind Stress -->
-    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/ncdcOwDlyStrs</sourceUrl>
-</dataset>
-<dataset type="EDDGridFromErddap" datasetID="ncdcOwMon" active="true">
+<dataset type="EDDGridFromErddap" datasetID="ncdcOwMon_LonPM180" active="true">
     <!-- NOAA/NCDC Blended Monthly 0.25-degree Sea Surface Winds -->
-    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/ncdcOwMon</sourceUrl>
+    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/ncdcOwMon_LonPM180</sourceUrl>
 </dataset>
-<dataset type="EDDGridFromErddap" datasetID="ncdcOwMonStrs" active="true">
+<dataset type="EDDGridFromErddap" datasetID="ncdcOwDlyStrs_LonPM180" active="true">
+    <!-- NOAA/NCDC Blended Daily 0.25-degree Sea Surface Wind Stress -->
+    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/ncdcOwDlyStrs_LonPM180</sourceUrl>
+</dataset>
+<dataset type="EDDGridFromErddap" datasetID="ncdcOwMonStrs_LonPM180" active="true">
     <!-- NOAA/NCDC Blended Monthly 0.25-degree Sea Surface Wind Stress -->
-    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/ncdcOwMonStrs</sourceUrl>
+    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/ncdcOwMonStrs_LonPM180</sourceUrl>
 </dataset>
 
 <!-- Miami Currents -->
@@ -815,18 +815,6 @@ Because of the nature of SOS requests, requests for data MUST include constraint
 </dataset>
 
 <!-- Aqua MODIS -->
-<dataset type="EDDGridFromErddap" datasetID="erdMH1cdom1day" active="true">
-    <!-- Chromophoric Dissolved Organic Material, Aqua MODIS, NPP, L3SMI, Global, Science Quality (1 Day Composite) -->
-    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/erdMH1cdom1day</sourceUrl>
-</dataset>
-<dataset type="EDDGridFromErddap" datasetID="erdMH1cdom8day" active="true">
-    <!-- Chromophoric Dissolved Organic Material, Aqua MODIS, NPP, L3SMI, Global, Science Quality (8 Day Composite) -->
-    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/erdMH1cdom8day</sourceUrl>
-</dataset>
-<dataset type="EDDGridFromErddap" datasetID="erdMH1cdommday" active="true">
-    <!-- Chromophoric Dissolved Organic Material, Aqua MODIS, NPP, L3SMI, Global, Science Quality (Monthly Composite) -->
-    <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/erdMH1cdommday</sourceUrl>
-</dataset>
 <dataset type="EDDGridFromErddap" datasetID="erdMH1cflh1day" active="true">
     <!-- Fluorescense Line Height, Aqua MODIS, NPP, L3SMI, Global, Science Quality (1 Day Composite) -->
     <sourceUrl>http://coastwatch.pfeg.noaa.gov/erddap/griddap/erdMH1cflh1day</sourceUrl>
