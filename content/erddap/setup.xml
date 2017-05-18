@@ -133,7 +133,7 @@ SansSerif is fine on Windows.  I think it translates to Arial.
 I didn't like any of the fonts initially available on Linux. "SansSerif" is 
 almost ok.
 At ERD, we use "Bitstream Vera Sans" 
-  (open source fonts from http://www.gnome.org/fonts/ ).
+  (open source fonts from https://www.gnome.org/fonts/ ).
   I think they are distinctly better than the standard Linux fonts.
   To use them on your computer, download
   https://coastwatch.pfeg.noaa.gov/erddap/download/BitstreamVeraSans.zip
@@ -528,12 +528,12 @@ HTML encoded as "&amp;", "&lt;", "&gt;".
 <EDDGridDataIndexExample>analysed_sst[4756][0:1000:16383][0:1000:32767]</EDDGridDataIndexExample>
 <!-- This is an example query which generates a graph. 
      You could generate your example via your dataset's Make A Graph form in ERDDAP.  -->
-<EDDGridGraphExample>analysed_sst[(2015-05-01T09:00:00Z):(2015-06-01T09:00:00Z)][(29)][(-135)]&amp;.draw=linesAndMarkers&amp;.vars=time|analysed_sst|&amp;.marker=1|3&amp;.color=0xFF9900&amp;.colorBar=|C|Linear|||</EDDGridGraphExample>
+<EDDGridGraphExample>analysed_sst[(2015-05-01T09:00:00Z):(2015-06-01T09:00:00Z)][(29)][(-135)]&amp;.draw=linesAndMarkers&amp;.vars=time%7Canalysed_sst%7C&amp;.marker=1%7C3&amp;.color=0xFF9900&amp;.colorBar=%7CC%7CLinear%7C%7C%7C</EDDGridGraphExample>
 <!-- This is an example query which generates a map. 
      The "map" example must have longitude which doesn't span 180 for .esriAscii. 
      The use of ":1000:" avoids sending the user a ton of data. 
      ":1000:" is irrelevant when requesting a .png, but relevant if the user gets the actual data (e.g., .csv). -->
-<EDDGridMapExample>analysed_sst[(2015-06-09T09:00:00Z)][(-89.99):1000:(89.99)][(-179.99):1000:(180.0)]&amp;.draw=surface&amp;.vars=longitude|latitude|analysed_sst&amp;.colorBar=Rainbow|C|Linear|0|32|</EDDGridMapExample>
+<EDDGridMapExample>analysed_sst[(2015-06-09T09:00:00Z)][(-89.99):1000:(89.99)][(-179.99):1000:(180.0)]&amp;.draw=surface&amp;.vars=longitude%7Clatitude%7Canalysed_sst&amp;.colorBar=Rainbow%7CC%7CLinear%7C0%7C32%7C</EDDGridMapExample>
 <!-- This is a Matlab example which uses data from the EDDGridMapExample.
      Hopefully, you can just substitute your datasetID for "jplMURSST41"
      and modify "[0 32]" (the data range for the color bar).  -->
@@ -574,7 +574,7 @@ HTML encoded as "&amp;", "&lt;", "&gt;".
      You could generate your example via your dataset's Make A Graph form in ERDDAP.  -->
 <EDDTableGraphExample>time,T_25&amp;station="0n0e"&amp;time&gt;=2015-05-23T12:00:00Z&amp;time&lt;=2015-05-31T12:00:00Z&amp;.draw=lines</EDDTableGraphExample>
 <!-- This is an example query which generates a map. -->
-<EDDTableMapExample>longitude,latitude,T_25&amp;time=2015-05-31T12:00:00Z&amp;.draw=markers&amp;.marker=5|5</EDDTableMapExample>
+<EDDTableMapExample>longitude,latitude,T_25&amp;time=2015-05-31T12:00:00Z&amp;.draw=markers&amp;.marker=5%7C5</EDDTableMapExample>
 <!-- This is a Matlab example which uses data from the EDDTableGraphExample.
      Note the Matlab notation datasetName.variableName.  -->
 <EDDTableMatlabPlotExample>plot(pmelTaoDySst.time, pmelTaoDySst.T_25)</EDDTableMatlabPlotExample>
