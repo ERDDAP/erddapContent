@@ -15,7 +15,7 @@ Subdirectories that will be created by ERDDAP are:
 * flag (where you can put a file with a datasetID's name to force reloading of 
    that dataset) and 
 * cache (which ERDDAP uses to hold cached data files - ERDDAP periodically
-   removes files older than cacheMinutes (see below)).
+   removes files older than cacheMinutes).
 The ERDDAP log file (log.txt) will be put in this directory.
 At ERD, we use '/u00/cwatch/erddap/' for releases.
 -->
@@ -32,6 +32,25 @@ If you want to encourage all users to use https (not http),
   make the baseUrl the same as the baseHttpsUrl (see below).
 -->
 <baseUrl>http://localhost:8080</baseUrl>
+
+<!-- This is a variant of <baseUrl> which is used when 
+authentication is active and the user is logged in.
+In general, you take the <baseUrl>, change "http" to "https", 
+and change/add ":8443". This must begin with "https://".
+If you make a proxy so that ":8443" isn't needed, 
+then don't use ":8443" here.
+This is relevant even if <authentication> is "".
+See the instructions at 
+https://coastwatch.pfeg.noaa.gov/erddap/download/setup.html#security
+For example:
+For running/testing on your personal computer:
+  <baseHttpsUrl>https://localhost:8443</baseHttpsUrl>                  
+For releases at ERD, we use:
+  <baseHttpsUrl>https://coastwatch.pfeg.noaa.gov</baseHttpsUrl>  
+If you want to encourage all users to use https (not http), 
+  make the baseUrl (see above) the same as the baseHttpsUrl.
+-->
+<baseHttpsUrl></baseHttpsUrl>
 
 <!-- Daily status reports and all error messages are emailed to emailEverythingTo.
 Daily status reports are emailed to emailDailyReportsTo.
@@ -128,25 +147,14 @@ number so that the local dataset stays reasonably up-to-date. -->
 <subscribeToRemoteErddapDataset>true</subscribeToRemoteErddapDataset>
 
 <!-- The font family to be used for all of the text in images.
-"SansSerif" (the default) is always a valid and reasonable option.
-A list of valid font families is printed to the log by the SGT constructor.
-SansSerif is fine on Windows.  I think it translates to Arial.
-I didn't like any of the fonts initially available on Linux. "SansSerif" is 
-almost ok.
-At ERD, we use "Bitstream Vera Sans" 
-  (open source fonts from https://www.gnome.org/fonts/ ).
-  I think they are distinctly better than the standard Linux fonts.
-  To use them on your computer, download
-  https://coastwatch.pfeg.noaa.gov/erddap/download/BitstreamVeraSans.zip
-  and unzip the files into [javaHome]/jre/lib/fonts so Java sees them.
--->
-<fontFamily>SansSerif</fontFamily>
+See the fontFamily documentation on the ERDDAP setup.html#fonts web page. -->
+<fontFamily>DejaVu Sans</fontFamily>
 
 <!-- ERDDAP has a service that lets remote users set a flag
 to notify ERDDAP to try to reload a dataset.
 These requests use a key which is generated based
 on baseUrl/erddap, a datasetID, and flagKeyKey.
-*** CHANGE THIS ONCE, to any text (a favorite quote? random text? It doesn't matter).
+*** CHANGE THIS ONCE, to any text (a favorite quote? random text? Whatever you want.).
 Normally, you won't ever change this again.
 But if you you think someone is abusing the flag system,
 change this text again, restart ERDDAP, and send
@@ -157,14 +165,6 @@ all of the users of the flag system the relevant new flagKeys
 
 <!-- ******** End of MUST change settings.  ******************************** -->
 
-<!-- 'logLevel' determines how many diagnostic messages are sent to the log.txt file.
-It can be set to "warning" (the fewest messages), "info" (the default), or "all" 
-(the most messages). 
-Diagnostic messages are always written to the [bigParentDirectory]/logs/log.txt
-file (see below).
-At ERD, we set this to 'all' for development and 'info' for releases. 
--->
-<logLevel>info</logLevel>
 
 <!-- The default log file maximum size is 20 MB. When that size is reached,
 log.txt will be renamed to log.txt.previous .
@@ -193,7 +193,8 @@ you need to specify the method used for logging on (authentication).
 See the info at 
 https://coastwatch.pfeg.noaa.gov/erddap/download/setup.html#security
 Currently, the options are: "" (logins not supported, the default), 
-"custom", "email", and "google" (recommended).  
+"custom" (discouraged), "email" (discouraged), "google" (recommended),
+"orcid" (recommended), and "oauth2" (recommended).  
 [No longer supported: "basic", "openid"]
 -->
 <authentication></authentication>
@@ -211,6 +212,20 @@ several digits and ending with .apps.googleusercontent.com .
 -->
 <googleClientID></googleClientID>
 
+<!-- If authentication=orcid or oath2, you must supply your ORCID APP Client ID
+  (which will start with "APP-") and ORCID Client Secret (a hex number with hyphens). 
+  Get these by logging into Orcid at https://orcid.org/signin.
+  Then click on "Developer Tools" (under "For Researchers" at the top).
+  Then click on "Register for the free ORCID public API". 
+    Name: ERDDAP at [your organization] 
+    Website: [your ERDDAP's domain]
+    Description: ERDDAP is a scientific data server. Users need to authenticate with Google or Orcid to access non-public datasets. 
+    Redirect URIs: [your ERDDAP's domain]/erddap/loginOrcid.html 
+  Then click on the Save icon (looks like a 3.5" disk!).
+    -->                     
+<orcidClientID>APP-A740XPVXCUAC73PA</orcidClientID>
+<orcidClientSecret>d4fd1985-18c2-4c59-a1fa-5ec3cc046f07</orcidClientSecret>
+
 <!-- For "custom" authentication, this specifies how you have 
 stored passwords in the roles tags in datasets.xml.
 If you aren't storing any passwords, this is irrelevant.
@@ -224,25 +239,6 @@ See the info at
 https://coastwatch.pfeg.noaa.gov/erddap/download/setup.html#security
 -->
 <passwordEncoding>UEPSHA256</passwordEncoding>
-
-<!-- This is a variant of <baseUrl> which is used when 
-authentication is active and the user is logged in.
-In general, you take the <baseUrl>, change "http" to "https", 
-and change/add ":8443". This must begin with "https://".
-If you make a proxy so that ":8443" isn't needed, 
-then don't use ":8443" here.
-This is relevant even if <authentication> is "".
-See the instructions at 
-https://coastwatch.pfeg.noaa.gov/erddap/download/setup.html#security
-For example:
-For running/testing on your personal computer:
-  <baseHttpsUrl>https://localhost:8443</baseHttpsUrl>                  
-For releases at ERD, we use:
-  <baseHttpsUrl>https://coastwatch.pfeg.noaa.gov</baseHttpsUrl>  
-If you want to encourage all users to use https (not http), 
-  make the baseUrl (see above) the same as the baseHttpsUrl.
--->
-<baseHttpsUrl></baseHttpsUrl>
 
 <!-- This determines whether datasets that the user doesn't currently have access
 to (because he isn't logged in or because his roles don't allow access)
@@ -269,7 +265,7 @@ If true, some information about the dataset (title, summary, etc) is shown
   queries and with the whole system. 
   And although its behaviour (the datasets it finds and the order that
   it ranks them) is almost identical to the original search engine,
-  it has a few quirky, subtle, small differences.
+  it has a few quirky, subtle, small, disadvantageous differences.
 -->
 <searchEngine>original</searchEngine>
 
@@ -289,17 +285,6 @@ comma-separated.
 <accessRequiresAuthorization>only accessible to authorized users</accessRequiresAuthorization>
 <fees>NONE</fees>
 <keywords>earth science, atmosphere, ocean, biosphere, biology, environment</keywords> 
-
-<!-- This appears on the erddap/legal.html web page after the General Disclaimer. 
-You can replace any of the [standardParts] with your own HTML. 
-[standardContact] references the adminEmail specified above. -->
-<legal><![CDATA[
-[standardDisclaimerOfEndorsement]
-[standardDisclaimerOfExternalLinks]
-[standardPrivacyPolicy]
-[standardDataLicenses]
-[standardContact]
-]]></legal>
 
 <!-- Specify the default units standard (e.g., "UDUNITS" (the default) or "UCUM")
   that you (the ERDDAP admin) are using to specify units.  
@@ -322,7 +307,7 @@ By default these services are on (true). -->
 <dataProviderFormActive>true</dataProviderFormActive>
 
 <!-- ERDDAP has an email/URL subscription system which sends a user an email
-or pings a url whenever an interesting dataset changes.
+or pings a URL whenever an interesting dataset changes.
 (This is different from the RSS system, which is always active.)
 The system relies on the server being able to send out 
 emails to people to validate their subscription requests.
@@ -350,77 +335,19 @@ You may make this system active ("true", the default value) or not ("false").
 
 
 
-<!-- Every loadDatasetsNMinutes (see below), files in [bigParentDirectory]/cache/ 
-and the public directory which are more than cacheMinutes old will be deleted.  
-At ERD, we use '60'.
-Note that when a dataset is reloaded, all files in the 
-[bigParentDirectory]/cache/[datasetID] directory are deleted.
-In general, only image files are cached, because the same images are often 
-requested repeatedly.
-Removing files in the cache based on age (not Least-Recently-Used) 
-ensures that files won't stay in the cache very long. 
-Although it might seem like a given request should always return the same 
-response, that isn't true. 
-For example, a tabledap request which includes time>someTime will change 
-if new data arrives for the dataset. 
-And a griddap request which includes [last] for the time dimension will change 
-if new data arrives for the dataset.
--->
-<cacheMinutes>60</cacheMinutes>
-
-<!-- This specifies the fewest minutes between checks if the datasets 
-need to be reloaded.
-If a given run of loadDatasets takes less than this time,
-the loader just looks at the flag directory and/or sleeps 
-until the remaining time has passed.
-The default is 15 minutes, which should be fine for almost everyone.
-No matter what, each dataset won't be reloaded more often than its 
-reloadEveryNMinutes value as specified in datasets.xml.
-
-The only disadvantage to setting this to a smaller number is that 
-it will increase the frequency that ERDDAP retries datasets that aren't
-loading. If there are lots of such datasets and they are retested frequently,
-the data source might consider it pestering/aggressive behaviour.
--->
-<loadDatasetsMinMinutes>15</loadDatasetsMinMinutes> 
-
-<!-- This specifies the most minutes that reloading datasets is allowed to take
-(before the loadDatasets thread treated as "stalled" and is interrupted).
-In general, this should be set to at least twice as long as you reasonably
-think that reloading all of the datasets (cumulatively) should take
-(since computers and networks sometimes are slower than expected)
-This should always be much longer than loadDatasetsMinMinutes.
-The default is 60 minutes.  Some people will set this to longer.
--->
-<loadDatasetsMaxMinutes>60</loadDatasetsMaxMinutes>
-
-<!-- If the number of requests between two runs of LoadDatasets exceeds 
-unusualActivity, an email is sent to emailEverythingTo.
-The default is 10000.
--->
-<unusualActivity>10000</unusualActivity>
-
 <!-- This is used to specify the directories with the unit test data files.
      Only people that are running the ERDDAP unit tests need to specify this.
 <unitTestDataDir>/someDirectory/</unitTestDataDir> 
 <unitTestBigDataDir>/someBigDirectory/</unitTestBigDataDir> 
 -->
 
-<!-- The title for the map's legend (or nothing if you don't want a legend title).
-At ERD, we don't use these.  To use these, uncomment them.
-<legendTitle1>NOAA ERD's</legendTitle1>
-<legendTitle2>ERDDAP</legendTitle2>
--->
 
 <!-- The highRes and lowResImagefiles are used for map and graph legends 
-(if legendTitle1 and legendTitle2 aren't "") and
-are scaled to the desired size (highRes->80 or 40 pixels square, 
+and are scaled to the desired size (highRes->80 or 40 pixels square, 
 lowRes->20 pixels square).
 The googleEarthLogoFile is displayed at its original size in the lower left 
 corner of the Google Earth map if the user selects the .kml image file type.
 The highRes, lowRes and GoogleEarth images are also used by OpenSearch.
-The questionMarkImage identifies the places on HTML pages where a user can 
-mouseOver to get more information.
 These files must be in [tomcat]/content/erddap/images/ directory.
 All files in this directory (and subdirectories) 
 will be copied to [tomcat]/webapps/erddap/images (and subdirectories)
@@ -434,27 +361,7 @@ a similar number of pixels wide and high.
 <highResLogoImageFile>noaa_simple.gif</highResLogoImageFile>
 <lowResLogoImageFile>noaa20.gif</lowResLogoImageFile>
 <googleEarthLogoFile>nlogo.gif</googleEarthLogoFile>
-<questionMarkImageFile>QuestionMark.jpg</questionMarkImageFile>
 
-<!-- Change and uncomment this to change the default background color on graphs.
-This affects almost all graphs. There are a few situations not affected.
-The color is specified as an 8 digit hexadecimal value in the form 0xAARRGGBB,
-where AA, RR, GG, and BB are the opacity, red, green and blue components, 
-respectively. "0x" is case sensitive, but the hexadecimal digits are not
-case sensitive. For example, a fully opaque (ff) greenish-blue color with 
-red=22, green=88, blue=ee would be 0xff2288ee. Opaque white is 0xffffffff. 
-Opaque light blue (the default) is 0xffccccff.
-<graphBackgroundColor>0xffccccff</graphBackgroundColor>
--->
-
-<!-- When possible (and it isn't always possible), ERDDAP breaks source data 
-requests into chunks to conserve memory. See the description of these tags in 
-[tomcat]/webapps/erddap/WEB-INF/classes/gov/noaa/pfel/erddap/util/messages.xml .
-You can override the default chunk sizes here by changing and uncommenting
-these default values:
-  For grids:  <partialRequestMaxBytes>490000000</partialRequestMaxBytes>
-  For tables: <partialRequestMaxCells>100000</partialRequestMaxCells>
--->
 
 <!-- If variablesRequireIoosCategory is true, all variables for all datasets must
 have an "ioos_category" attribute defined (in sourceAttributes or addAttributes)
@@ -476,44 +383,6 @@ If an attribute is a global attribute, identify it by prefixing it with "global:
 -->
 <categoryAttributes>global:cdm_data_type, global:institution, ioos_category, global:keywords, long_name, standard_name, variableName</categoryAttributes>
 
-
-<!-- drawLandMask specifies the default Make A Graph setting for whether the 
-landmask should be drawn "over" or "under" surface data on maps. 
-"over" is recommended for primarily oceanographic data 
-(so that grid data over land is obscured by the landmask).
-"under" is the default and is suitable for all data.
--->
-<drawLandMask>under</drawLandMask>
-
-<!-- You can customize your ERDDAP's web pages by specifying
-an startBodyHtml5 tag. Copy the default from 
-[tomcat]/webapps/erddap/WEB-INF/classes/gov/noaa/pfel/erddap/util/messages.xml 
-to here, then modify it.
--->
-
-<!-- This is the short description of ERDDAP, which is used on the middle of the 
-left side of ERDDAP's home page. 
-This can refer to &erddapUrl;, &requestFormatExamplesHtml;
-&resultsFormatExamplesHtml; and [standardShortDescriptionHtml] (from 
-[tomcat]/webapps/erddap/WEB-INF/classes/gov/noaa/pfel/erddap/util/messages.xml ). 
-If your ERDDAP allows users to log in, all referenced image files, etc. 
-  must be in [tomcat]/content/erddap/images or a subdirectory
-  and must be referenced here with &erddapUrl;/images/[fileName].
-If you don't use [standardShortDescriptionHtml], at least include a link like:
-(<a href="&erddapUrl;/information.html">More detailed information about ERDDAP</a>)
-All of the information in [standardShortDescriptionHtml] is also contained in 
-<theLongDescriptionHtml> in messages.xml.
--->
-<theShortDescriptionHtml><![CDATA[ 
-<h1>ERDDAP</h1>
-ERDDAP is a data server that gives you a simple, consistent way to download 
-subsets of scientific datasets in common file formats and make graphs and maps. 
-This particular ERDDAP installation has oceanographic data
-(for example, data from satellites and buoys).
-
-[standardShortDescriptionHtml]
-
-]]></theShortDescriptionHtml>
 
 
 </erddapSetup>

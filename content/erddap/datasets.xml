@@ -8,7 +8,7 @@ you should replace them with information for your datasets.
 
 You can change this document (e.g., add datasets, change metadata) while ERDDAP is running. 
 The changes will be detected the next time this document is read
-(as often as setup.xml loadDatasetsMinMinutes).
+(as often as loadDatasetsMinMinutes).
 
 Each dataset has a reloadEveryNMinutes value (default = 10080 (one week)).
 When this document is reread, datasets that haven't been been reloaded in 
@@ -28,6 +28,82 @@ For more information, see
 https://coastwatch.pfel.noaa.gov/erddap/download/setupDatasetsXml.html
 -->
 
+<!-- The tags below are described in setupDatasetsXml.html.
+     The defaults listed below are as of ERDDAP v2.00. -->
+<cacheMinutes></cacheMinutes>                                     <!-- default=60 --> 
+<decompressedCacheMaxGB></decompressedCacheMaxGB>                 <!-- default=10 --> 
+<decompressedCacheMaxMinutesOld></decompressedCacheMaxMinutesOld> <!-- default=15 --> 
+<drawLandMask></drawLandMask>                                     <!-- "over" or "under" (default) -->
+<graphBackgroundColor></graphBackgroundColor>                     <!-- 0xAARRGGBB, default is 0xffccccff -->
+<loadDatasetsMinMinutes></loadDatasetsMinMinutes>                 <!-- usually=default=15 -->
+<loadDatasetsMaxMinutes></loadDatasetsMaxMinutes>                 <!-- default=60 -->
+<logLevel></logLevel> <!-- "warning" (fewest messages), "info" (default), or "all" (most messages) -->
+<nGridThreads></nGridThreads>                                     <!-- default=1 -->
+<nTableThreads></nTableThreads>                                   <!-- default=1 -->
+<partialRequestMaxBytes></partialRequestMaxBytes>                 <!-- default=490000000 -->
+<partialRequestMaxCells></partialRequestMaxCells>                 <!-- default=10000000 -->
+<slowDownTroubleMillis></slowDownTroubleMillis>                   <!-- default=1000 -->
+<unusualActivity></unusualActivity>                               <!-- default=10000 -->
+<!-- The defaults for the following tags are in messages.xml. -->
+<startHeadHtml5></startHeadHtml5>                                
+<endBodyHtml5></endBodyHtml5>
+<standardLicense></standardLicense>
+<standardContact></standardContact>
+<standardDataLicenses></standardDataLicenses>
+<standardDisclaimerOfEndorsement></standardDisclaimerOfEndorsement>
+<standardDisclaimerOfExternalLinks></standardDisclaimerOfExternalLinks>
+<standardGeneralDisclaimer></standardGeneralDisclaimer>
+
+<standardPrivacyPolicy><![CDATA[
+<br>&nbsp;
+<hr>
+<h2><a class="selfLink" id="privacyPolicy" href="#privacyPolicy" rel="help">Privacy Policy</a></h2>
+ERDDAP follows 
+<a rel="bookmark" href="https://www.noaa.gov/protecting-your-privacy"
+  >NOAA's Privacy Policy Guidelines</a>.
+]]></standardPrivacyPolicy>
+
+<startBodyHtml5><![CDATA[ 
+<body>
+<table class="compact nowrap" style="width:100%; background-color:#128CB5;"> 
+  <tr> 
+    <td style="text-align:center; width:80px;"><a rel="bookmark"
+      href="https://www.noaa.gov/"><img 
+      title="National Oceanic and Atmospheric Administration" 
+      src="&erddapUrl;/images/noaab.png" alt="NOAA"
+      style="vertical-align:middle;"></a></td> 
+    <td style="text-align:left; font-size:x-large; color:#FFFFFF; ">
+      <strong>ERDDAP</strong>
+      <br><small><small><small>Easier access to scientific data</small></small></small>
+      </td> 
+    <td style="text-align:right; font-size:small;"> 
+      &loginInfo; &nbsp; &nbsp;
+      <br>Brought to you by 
+      <a title="National Oceanic and Atmospheric Administration" rel="bookmark"
+      href="https://www.noaa.gov">NOAA</a>  
+      <a title="National Marine Fisheries Service" rel="bookmark"
+      href="https://www.fisheries.noaa.gov">NMFS</a>  
+      <a title="Southwest Fisheries Science Center" rel="bookmark"
+      href="https://swfsc.noaa.gov">SWFSC</a> 
+      <a title="Environmental Research Division" rel="bookmark"
+      href="https://swfsc.noaa.gov/textblock.aspx?Division=ERD&amp;id=1315&amp;ParentMenuId=200">ERD</a>  
+      &nbsp; &nbsp;
+      </td> 
+  </tr> 
+</table>
+]]></startBodyHtml5>
+
+<theShortDescriptionHtml><![CDATA[ 
+<h1>ERDDAP</h1>
+ERDDAP is a data server that gives you a simple, consistent way to download 
+subsets of scientific datasets in common file formats and make graphs and maps. 
+This particular ERDDAP installation has oceanographic data
+(for example, data from satellites and buoys).
+
+[standardShortDescriptionHtml]
+
+]]></theShortDescriptionHtml>
+
 <!-- If you want to refuse requests from certain clients
   (e.g., to fend off a Denial of Service attack or an overly zealous web robot), 
   add their numeric IP address (e.g., 123.45.67.89) to this comma-separated list. 
@@ -35,19 +111,6 @@ https://coastwatch.pfel.noaa.gov/erddap/download/setupDatasetsXml.html
   See your ERDDAP daily report for a list/tally of the most active requesters. -->
 <requestBlacklist></requestBlacklist>
 
-<!-- Blacklisted IP addresses often have troublesome scripts that make
-rapid-fire, repeated, bad requests.
-With this setting, you can slow down the response to blacklisted IP addresses 
-or other failed requests by some number of milliseconds. 
-Recommendations:
-* If the trouble is a Distributed Denial Of Service (DDOS) attack from 100+
-  attackers, set this to a smaller number (0? 10? 100?).
-  Slowing them all down for too long leads to too many waiting threads.
-* If the trouble is from 1-10 sources, set this to 1000 ms (the default).
-  That slows them down so they waste fewer network resources.
-  Also, 1000 ms won't annoy human users who make a bad request.
--->
-<slowDownTroubleMillis>1000</slowDownTroubleMillis>
 
 <!-- If you want to prevent specific people from using the email/URL subscription
      system, add their email addresses to this comma-separated list. 
@@ -56,27 +119,6 @@ Recommendations:
 <subscriptionEmailBlacklist>your.email@yourinstitution.edu, some.name@company.com, 
 another.name@company.com, *@example.com</subscriptionEmailBlacklist>
 
-<!-- For security reasons and reasons related to the subscription system, DON'T USE THIS!
-Instead, always use the public domain name in the <sourceUrl> tag
-and use the /etc/hosts table on your server to convert local domain names 
-to IP numbers without using a DNS server. 
-(see http://man7.org/linux/man-pages/man5/hosts.5.html )
-You can test if a domain name is properly converted into an IP # by using:
-  ping some.domain.name
-
-But if you insist:
-You can use <convertToPublicSourceUrl> tags to convert the local sourceUrl 
-(used in dataset tags) into the public sourceUrl (which appears in a 
-dataset's globalAttributes).
-This is only needed if some datasets use non-public sourceUrl's
-(usually because their computer is in your DMZ or a local LAN). 
-'from' and 'to' are the start of the URLs and are case sensitive.
-'from' must be '[something]//[something]/' . 
-For example,
-<convertToPublicSourceUrl from="http://192.168.31.18/" to="http://oceanwatch.pfeg.noaa.gov/" />
-will cause a matching local sourceUrl (such as http://192.168.31.18/thredds/dodsC/satellite/BA/ssta/5day)
-into a public sourceUrl (http://oceanwatch.pfeg.noaa.gov/thredds/dodsC/satellite/BA/ssta/5day). 
--->
 
 <dataset type="EDDGridFromEtopo" datasetID="etopo180" />
 
