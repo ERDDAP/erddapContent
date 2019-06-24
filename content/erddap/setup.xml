@@ -212,7 +212,7 @@ several digits and ending with .apps.googleusercontent.com .
 -->
 <googleClientID></googleClientID>
 
-<!-- If authentication=orcid or oath2, you must supply your ORCID APP Client ID
+<!-- If authentication=orcid or oauth2, you must supply your ORCID APP Client ID
   (which will start with "APP-") and ORCID Client Secret (a hex number with hyphens). 
   Get these by logging into Orcid at https://orcid.org/signin.
   Then click on "Developer Tools" (under "For Researchers" at the top).
@@ -223,8 +223,8 @@ several digits and ending with .apps.googleusercontent.com .
     Redirect URIs: [your ERDDAP's domain]/erddap/loginOrcid.html 
   Then click on the Save icon (looks like a 3.5" disk!).
     -->                     
-<orcidClientID>APP-A740XPVXCUAC73PA</orcidClientID>
-<orcidClientSecret>d4fd1985-18c2-4c59-a1fa-5ec3cc046f07</orcidClientSecret>
+<orcidClientID></orcidClientID>
+<orcidClientSecret></orcidClientSecret>
 
 <!-- For "custom" authentication, this specifies how you have 
 stored passwords in the roles tags in datasets.xml.
