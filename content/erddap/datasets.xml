@@ -33,7 +33,7 @@ https://coastwatch.pfel.noaa.gov/erddap/download/setupDatasetsXml.html
 <cacheMinutes></cacheMinutes>                                     <!-- default=60 --> 
 <decompressedCacheMaxGB></decompressedCacheMaxGB>                 <!-- default=10 --> 
 <decompressedCacheMaxMinutesOld></decompressedCacheMaxMinutesOld> <!-- default=15 --> 
-<drawLandMask></drawLandMask>                                     <!-- "over" or "under" (default) -->
+<drawLandMask></drawLandMask>                                     <!-- "over", "under" (default), "outline", or "off" -->
 <graphBackgroundColor></graphBackgroundColor>                     <!-- 0xAARRGGBB, default is 0xffccccff -->
 <loadDatasetsMinMinutes></loadDatasetsMinMinutes>                 <!-- usually=default=15 -->
 <loadDatasetsMaxMinutes></loadDatasetsMaxMinutes>                 <!-- default=60 -->
