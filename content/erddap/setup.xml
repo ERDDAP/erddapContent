@@ -303,7 +303,7 @@ By default these services are on (true). -->
 <!-- The default for filesActive is "true". -->
 <filesActive>true</filesActive>
 <!-- This sets the default <accessibleViaFiles> for all of the datasets. 
-     Before ERDDAP v.2.03, this tag didn't exist and the hard-coded setting was 'false'. -->
+     Before ERDDAP v.2.10, this tag didn't exist and the hard-coded setting was 'false'. -->
 <defaultAccessibleViaFiles>true</defaultAccessibleViaFiles>
 
 <!-- The default for dataProviderFormActive is "true". -->
