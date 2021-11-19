@@ -67,9 +67,9 @@ ERDDAP follows
   >NOAA's Privacy Policy Guidelines</a>.
 ]]></standardPrivacyPolicy>
 
-<startBodyHtml5><![CDATA[ 
+<startBodyHtml5><![CDATA[
 <body>
-<table class="compact nowrap" style="width:100%; background-color:#128CB5;"> 
+<table class="compact nowrap" style="width:100%; background-color:#128CB5;">
   <tr> 
     <td style="text-align:center; width:80px;"><a rel="bookmark"
       href="https://www.noaa.gov/"><img 
@@ -78,17 +78,17 @@ ERDDAP follows
       style="vertical-align:middle;"></a></td> 
     <td style="text-align:left; font-size:x-large; color:#FFFFFF; ">
       <strong>ERDDAP</strong>
-      <br><small><small><small>Easier access to scientific data</small></small></small>
+      <br><small><small><small>&EasierAccessToScientificData;</small></small></small>
       </td> 
     <td style="text-align:right; font-size:small;"> 
-      &loginInfo; &nbsp; &nbsp;
-      <br>Brought to you by 
+      &loginInfo; | &language; &nbsp; &nbsp;
+      <br>&BroughtToYouBy; 
       <a title="National Oceanic and Atmospheric Administration" rel="bookmark"
       href="https://www.noaa.gov">NOAA</a>  
       <a title="National Marine Fisheries Service" rel="bookmark"
       href="https://www.fisheries.noaa.gov">NMFS</a>  
       <a title="Southwest Fisheries Science Center" rel="bookmark"
-      href="https://swfsc.noaa.gov">SWFSC</a> 
+      href="https://www.fisheries.noaa.gov/about/southwest-fisheries-science-center">SWFSC</a> 
       <a title="Environmental Research Division" rel="bookmark"
       href="https://www.fisheries.noaa.gov/about/environmental-research-division-southwest-fisheries-science-center">ERD</a>  
       &nbsp; &nbsp;
@@ -99,14 +99,11 @@ ERDDAP follows
 
 <theShortDescriptionHtml><![CDATA[ 
 <h1>ERDDAP</h1>
-ERDDAP is a data server that gives you a simple, consistent way to download 
-subsets of scientific datasets in common file formats and make graphs and maps. 
-This particular ERDDAP installation has oceanographic data
-(for example, data from satellites and buoys).
-
+&erddapIs;
+&thisParticularErddap;
 [standardShortDescriptionHtml]
-
 ]]></theShortDescriptionHtml>
+
 
 <!-- If you want to refuse requests from certain clients
   (e.g., to fend off a Denial of Service attack or an overly zealous web robot), 
