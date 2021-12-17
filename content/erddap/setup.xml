@@ -256,9 +256,10 @@ If true, some information about the dataset (title, summary, etc) is shown
 
 
 <!-- ERDDAP lets you choose between two search engines for full text searches:
-* original (the default) - is the best choice if your ERDDAP has fewer 
-  than about 10,000 datasets.  It is very robust and trouble free. 
-* lucene - is the best choice for more than about 10,000 datasets.
+* original (the default) - is the best choice in almost all cases.  
+  It is very robust, trouble-free, and gives the results users expect. 
+* lucene - is an option if you have >10,000 datasets and find 'original' to be too slow;
+  otherwise, 'original' is strongly preferred.
   The advantages are that with any number of datasets it works fast 
   and uses very little memory.
   But there are many things that might go wrong with individual 
