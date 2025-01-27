@@ -801,6 +801,77 @@ the current year using available altimetry).</att>
     </dataset>
 </dataset>
 
+<dataset type="EDDTableFromSOS" datasetID="nosSosATemp" active="true">
+    <!-- web page/enter parameters: https://opendap.co-ops.nos.noaa.gov/ioos-dif-sos/  -->
+    <sourceUrl>https://opendap.co-ops.nos.noaa.gov/ioos-dif-sos/SOS</sourceUrl>
+    <sosVersion>1.0.0</sosVersion>
+    <sosServerType>IOOS_NOS</sosServerType>
+    <reloadEveryNMinutes>1440</reloadEveryNMinutes>
+    <observationOfferingIdRegex>.+</observationOfferingIdRegex>
+    <requestObservedPropertiesSeparately>true</requestObservedPropertiesSeparately>
+    <bboxOffering></bboxOffering>
+    <bboxParameter></bboxParameter>
+    <addAttributes>
+        <att name="cdm_data_type">TimeSeries</att>
+        <att name="cdm_timeseries_variables">station_id, longitude, latitude, sensor_id</att>
+        <att name="Conventions">COARDS, CF-1.6, ACDD-1.3</att>
+        <att name="Metadata_Conventions">null</att>
+        <att name="infoUrl">https://opendap.co-ops.nos.noaa.gov/ioos-dif-sos/</att>
+        <att name="institution">NOAA NOS</att>
+        <att name="keywords">
+Earth Science &gt; Atmosphere &gt; Altitude &gt; Station Height,
+Earth Science &gt; Atmosphere &gt; Atmospheric Temperature &gt; Air Temperature,
+air, air_temperature, altitude, atmosphere, atmospheric, experimental, height, identifier, noaa, nos, sensor, sos, station, temperature, time</att>
+        <att name="keywords_vocabulary">GCMD Science Keywords</att>
+        <att name="license">[standard]</att>
+        <att name="standard_name_vocabulary">CF Standard Name Table v70</att>
+        <att name="summary">The NOAA NOS SOS server is part of the IOOS DIF SOS Project.  The stations in this dataset have air temperature data.  ****These services are for testing and evaluation use only****
+
+Because of the nature of SOS requests, requests for data MUST include constraints for the longitude, latitude, time, and/or station_id variables.</att>
+        <att name="title">NOAA NOS SOS, EXPERIMENTAL, 1853-present, Air Temperature</att>
+    </addAttributes>
+    <longitudeSourceName>longitude (degree)</longitudeSourceName>
+    <latitudeSourceName>latitude (degree)</latitudeSourceName>
+    <altitudeSourceName>ioos:VerticalPosition</altitudeSourceName>
+    <timeSourceName>date_time</timeSourceName>
+    <timeSourceFormat>yyyy-MM-dd'T'HH:mm:ssZ</timeSourceFormat>
+    <dataVariable>
+        <sourceName>sensor_id</sourceName>
+        <dataType>String</dataType>
+        <!-- sourceAttributes>
+        </sourceAttributes -->
+        <addAttributes>
+            <att name="ioos_category">Identifier</att>
+            <att name="long_name">Sensor ID</att>
+            <att name="observedProperty">http://mmisw.org/ont/cf/parameter/air_temperature</att>
+        </addAttributes>
+    </dataVariable>
+    <dataVariable>
+        <sourceName>air_temperature (C)</sourceName>
+        <destinationName>air_temperature</destinationName>
+        <dataType>float</dataType>
+        <addAttributes>
+            <att name="colorBarMinimum" type="double">-10</att>
+            <att name="colorBarMaximum" type="double">40</att>
+            <att name="ioos_category">Temperature</att>
+            <att name="long_name">Air Temperature</att>
+            <att name="observedProperty">http://mmisw.org/ont/cf/parameter/air_temperature</att>
+            <att name="standard_name">air_temperature</att>
+            <att name="units">degree_C</att>
+        </addAttributes>
+    </dataVariable>
+    <dataVariable>
+        <sourceName>quality_flags</sourceName>
+        <destinationName>quality_flags</destinationName>
+        <dataType>String</dataType>
+        <addAttributes>
+            <att name="ioos_category">Quality</att>
+            <att name="long_name">Quality Flags</att>
+            <att name="observedProperty">http://mmisw.org/ont/cf/parameter/air_temperature</att>
+        </addAttributes>
+    </dataVariable>
+</dataset>
+
 <!-- This is an example of EDDTableFromNcFiles, but commented out since you won't have these files.
 <dataset type="EDDTableFromNcFiles" datasetID="cwwcNDBCMetF">
     <reloadEveryNMinutes>10</reloadEveryNMinutes>
