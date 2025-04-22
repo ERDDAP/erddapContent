@@ -25,10 +25,10 @@ to the dataset tag.  For example,
     <dataset type="EDDGridFromDap" datasetID="erdMHchla8day" active="false">
 
 For more information, see 
-https://coastwatch.pfel.noaa.gov/erddap/download/setupDatasetsXml.html
+https://erddap.github.io/docs/server-admin/datasets
 -->
 
-<!-- The tags below are described in setupDatasetsXml.html.
+<!-- The tags below are described in https://erddap.github.io/docs/server-admin/datasets.
      The defaults listed below are as of ERDDAP v2.00. -->
 <cacheMinutes></cacheMinutes>                                     <!-- default=60 --> 
 <decompressedCacheMaxGB></decompressedCacheMaxGB>                 <!-- default=10 --> 
