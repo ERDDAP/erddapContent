@@ -31,6 +31,7 @@ https://erddap.github.io/docs/server-admin/datasets
 <!-- The tags below are described in https://erddap.github.io/docs/server-admin/datasets.
      The defaults listed below are as of ERDDAP v2.00. -->
 <cacheMinutes></cacheMinutes>                                     <!-- default=60 --> 
+<cacheClearMinutes></cacheClearMinutes>                           <!-- default=15 --> 
 <decompressedCacheMaxGB></decompressedCacheMaxGB>                 <!-- default=10 --> 
 <decompressedCacheMaxMinutesOld></decompressedCacheMaxMinutesOld> <!-- default=15 --> 
 <drawLandMask></drawLandMask>                                     <!-- "over", "under" (default), "outline", or "off" -->
